@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://actors/enemies/enemy_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+health = 70
+move_speed = 112.0
+engage_range = 440.0
+attack_reach = 700.0
+damage = 15
+windup = 0.66
+recovery = 1.0

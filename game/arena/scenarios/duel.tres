@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://arena/scenario.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"duel"
+title = "Raider duel"
+purpose = "Read the raider’s windup. Face the strike to guard or parry."
+seed_value = 2173
+roles = PackedStringArray("raider")
+positions = PackedVector2Array(880, 500)

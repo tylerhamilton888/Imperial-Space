@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://arena/scenario.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"dummy"
+title = "Dummy range"
+purpose = "Check rifle impacts and sword reach on a stationary target."
+seed_value = 2172
+roles = PackedStringArray("dummy")
+positions = PackedVector2Array(930, 445)

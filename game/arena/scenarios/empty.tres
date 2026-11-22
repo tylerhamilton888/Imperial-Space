@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://arena/scenario.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"empty"
+title = "Empty floor"
+purpose = "Try movement, mouse aim and dodging around cover."
+seed_value = 2171
+roles = PackedStringArray()
+positions = PackedVector2Array()

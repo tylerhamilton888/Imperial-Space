@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1")
+aim_bounds = Rect2(-26, -87, 52, 91)
 health = 85
 move_speed = 141.0
 engage_range = 66.0

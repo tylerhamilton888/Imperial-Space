@@ -1,6 +1,8 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. This first playable, **Developer Arena 0.1.0**, puts a medium-armored Crusader on a bounded industrial proving range with a service rifle, sword and four repeatable drills.
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.1.1** puts a medium-armored Crusader on a bounded industrial proving range with a service rifle, sword and four repeatable drills.
+
+[Download the current Windows or Linux build and watch the arena clip.](https://github.com/tylerhamilton888/Imperial-Space/releases/tag/arena-v0.1.1)
 
 ## Play
 

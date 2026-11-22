@@ -1,10 +1,10 @@
 extends Node
 
 const UI = preload("res://ui/palette.gd")
+const Instruments = preload("res://ui/instrument_theme.gd")
 const Preferences = preload("res://ui/preferences.gd")
 const Arena = preload("res://arena/arena.gd")
 const TITLE_ART_PATH := "res://art/menu/orbital_watch.jpg"
-const BUILD := "0.1.0"
 enum Session { MENU, ARENA }
 
 var mode := Session.MENU
@@ -49,22 +49,32 @@ func main_menu() -> void:
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	UI.place(art,screen,Vector2.ZERO,Vector2(1280,720))
-	UI.mark(screen,Vector2(71,86),48)
-	UI.place(UI.label("IMPERIAL  /  FLEET COMMAND",14,UI.GOLD),screen,Vector2(132,99))
-	UI.place(UI.label("Imperial",90,UI.PAPER,true),screen,Vector2(66,150))
-	UI.place(UI.label("Space",90,UI.PAPER,true),screen,Vector2(66,230))
-	UI.rule(screen,72,363,423,Color("#546268"))
-	var start:=UI.button("Developer Arena",enter_arena,true)
+	Instruments.mark(screen,Vector2(71,91),42)
+	var command_label := UI.label("IMPERIAL FLEET COMMAND",14,UI.GOLD)
+	command_label.add_theme_constant_override("outline_size",3)
+	command_label.add_theme_color_override("font_outline_color",Color("#111b2cd9"))
+	UI.place(command_label,screen,Vector2(128,101))
+	_title_line("Imperial",Vector2(65,136))
+	_title_line("Space",Vector2(65,226))
+	UI.rule(screen,72,363,335,Color("#c49b69"))
+	var start:=Instruments.button("Developer Arena",enter_arena,true)
 	UI.place(start,screen,Vector2(72,394),Vector2(306,55))
 	start.grab_focus()
-	settings_button=UI.button("Settings",show_settings)
+	settings_button=Instruments.button("Settings",show_settings)
 	UI.place(settings_button,screen,Vector2(72,460),Vector2(148,42))
-	UI.place(UI.button("Quit",func(): get_tree().quit()),screen,Vector2(230,460),Vector2(148,42))
-	UI.rule(screen,72,642,1136,Color("#435259"))
-	UI.place(UI.label("DEVELOPMENT BUILD   /   "+BUILD,13,UI.SOFT),screen,Vector2(72,662))
-	var id_label := UI.label("CRUSADER PROVING RANGE",13,UI.SOFT)
-	UI.place(id_label,screen,Vector2(922,662),Vector2(286,25))
-	id_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	UI.place(Instruments.button("Quit",func(): get_tree().quit()),screen,Vector2(230,460),Vector2(148,42))
+	var build := UI.label("Development build  " + str(ProjectSettings.get_setting("application/config/version")),14,UI.PAPER)
+	build.add_theme_constant_override("outline_size",4)
+	build.add_theme_color_override("font_outline_color",Color("#111b2ce0"))
+	UI.place(build,screen,Vector2(72,660))
+
+func _title_line(value: String, at: Vector2) -> void:
+	var title := UI.label(value,100,Color("#fff0cd"),true)
+	title.add_theme_color_override("font_shadow_color",Color("#0b1428cc"))
+	title.add_theme_constant_override("shadow_offset_x",2)
+	title.add_theme_constant_override("shadow_offset_y",4)
+	title.add_theme_constant_override("shadow_outline_size",2)
+	UI.place(title,screen,at)
 
 func enter_arena() -> void:
 	mode = Session.ARENA
@@ -85,7 +95,7 @@ func show_settings() -> void:
 	# A modal captures navigation focus as well as clicks.
 	for c: Node in screen.get_children():
 		if c is Button: c.focus_mode = Control.FOCUS_NONE
-	var pane := UI.panel(overlay,Vector2(306,56),Vector2(668,608))
+	var pane := Instruments.frame(overlay,Vector2(306,56),Vector2(668,608))
 	UI.place(UI.label("Settings",38,UI.PAPER,true),pane,Vector2(30,18))
 	UI.place(UI.label("Master volume",16,UI.SOFT),pane,Vector2(32,91))
 	var volume := HSlider.new()
@@ -109,7 +119,7 @@ func show_settings() -> void:
 		var row := i % 6
 		var pos := Vector2(32+col*306,238+row*43)
 		UI.place(UI.label(Preferences.NAMES[action],15),pane,pos+Vector2(0,6))
-		var b := UI.button(prefs.key_text(action),_capture.bind(action))
+		var b := Instruments.button(prefs.key_text(action),_capture.bind(action))
 		UI.place(b,pane,pos+Vector2(151,0),Vector2(112,35))
 		bind_buttons[action]=b
 		i+=1
@@ -122,7 +132,7 @@ func show_settings() -> void:
 		prefs.set_mouse_swap(value)
 		bind_label.text=_mouse_legend())
 	UI.place(swap_mouse,pane,Vector2(449,500),Vector2(189,36))
-	var reset := UI.button("Default bindings",func():
+	var reset := Instruments.button("Default bindings",func():
 		prefs.reset_bindings()
 		swap_mouse.set_pressed_no_signal(false)
 		captured_action=""
@@ -134,7 +144,7 @@ func show_settings() -> void:
 	guard.button_pressed=bool(prefs.config.get_value("controls","toggle_guard",false))
 	guard.toggled.connect(prefs.set_guard_toggle)
 	UI.place(guard,pane,Vector2(228,546),Vector2(176,40))
-	var back := UI.button("Done",_close_settings,true)
+	var back := Instruments.button("Done",_close_settings,true)
 	UI.place(back,pane,Vector2(490,546),Vector2(146,40))
 	back.grab_focus()
 

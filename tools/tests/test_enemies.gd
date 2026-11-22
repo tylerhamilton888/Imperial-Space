@@ -140,5 +140,11 @@ func _run() -> void:
 	_check(closing._last_known.is_equal_approx(observed_goal), "raider does not track hidden movement")
 	world.queue_free()
 	await _ticks(3)
+	# Accelerated test frames can finish before the audio thread releases its
+	# final hit cue. Give that thread real time after deleting the test world.
+	var drain_until := Time.get_ticks_msec() + 250
+	while Time.get_ticks_msec() < drain_until:
+		OS.delay_msec(8)
+		await process_frame
 	print("Enemy scenarios: %d checks, %d failures." % [checks, failures])
 	quit(1 if failures else 0)

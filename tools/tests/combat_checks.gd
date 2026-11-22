@@ -4,6 +4,7 @@ extends SceneTree
 
 const Player = preload("res://actors/player.gd")
 const PLAYER = preload("res://actors/player.tscn")
+const ENEMY = preload("res://actors/enemy.tscn")
 const Vitality = preload("res://combat/vitality.gd")
 const Preferences = preload("res://ui/preferences.gd")
 
@@ -152,6 +153,21 @@ func run_tests() -> void:
 	click(target.position, false)
 	await ticks(14)
 	check(target.vitality.health == 390, "cursor at the feet strikes the same actor")
+	# A painted raider is broader than the original target. The upper outside
+	# shoulder must resolve against that role’s picking bounds at game scale.
+	var raider := ENEMY.instantiate()
+	raider.role = &"raider"
+	raider.passive = true
+	raider.position = Vector2(400, 356)
+	room.add_child(raider)
+	await ticks(3)
+	var raider_health: int = raider.health
+	var shoulder: Vector2 = raider.position + Vector2(22, -72)
+	click(shoulder, true)
+	click(shoulder, false)
+	await ticks(14)
+	check(raider.health < raider_health, "clicking the painted raider shoulder registers a shot")
+	raider.queue_free()
 	var panel := Button.new()
 	panel.text = "Refill"
 	panel.position = Vector2(330, 150)

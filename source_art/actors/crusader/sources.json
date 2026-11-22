@@ -1,0 +1,38 @@
+{
+  "project": "Imperial Space",
+  "status": "Original prototype character art for the 0.1.1 Developer Arena",
+  "generator": "OpenAI ImageGen, project-generated transparent RGBA masters",
+  "reference_boards": [
+    "reference_art/01_visual_style.jpg, panel B",
+    "reference_art/02_cloaks_and_weapons.jpg",
+    "reference_art/04_armor_weights.jpg, Medium"
+  ],
+  "camera": "Illustrated elevated three-quarter camera, foot-ground pivot",
+  "masters": {
+    "ready.png": {
+      "job": "4b072930-70db-4ffd-a19a-344326f0cb8c",
+      "art_brief": "Six full-body cutouts. Same original mature armored knight in front-right, right profile, rear-right views, service rifle or two-handed sword guard. Severe enclosed red-ridged helm, matte ivory and dark steel articulated plates, warm gold clasps and long crimson cloak. Dramatic illustrative brushwork, readable unbroken shapes. Transparent background and gutters."
+    },
+    "stride.png": {
+      "job": "ced1b69b-7995-4248-acc0-30003a10c63f",
+      "reference": "ready.png",
+      "art_brief": "Two contact stride examples in three rightward facings. Purposeful infantry advance, distinct lead and rear boots, torso steady, shoulder-mounted rifle gripped in both hands and worn cape. Use same hero and elevated camera."
+    },
+    "sword.png": {
+      "job": "e05ef4e1-08ca-4aca-9f4a-692660c35126",
+      "reference": "ready.png",
+      "art_brief": "Three facings with two painted sword keys. High cross-cut chamber to left of helm, then forward weight-bearing lunge to the right with both hands extended near waist and long steel blade sweeping outward. Broad planted boots, trailing cape and no visible rifle."
+    },
+    "axial.png": {
+      "job": "fb53ef26-402e-47a8-bda7-4c1879d9cc45",
+      "reference": "ready.png",
+      "art_brief": "Four full-body axial cutouts. Front and back, rifle or sword. Front sees closed angular helmet, frontal plate, foreshortened barrel and wide combat stance. Direct rear sees back of crest, shoulders and broad crimson cape."
+    },
+    "low.png": {
+      "job": "bca6d39e-45a4-4311-98f2-69c014e96d72",
+      "reference": "ready.png",
+      "art_brief": "Three orientations of low evasive lunge and prone defeat. Dodge bends at hips and knees while both hands hold rifle. Defeat lies on side, with collapsed cloak, relaxed gloves, helmet still equipped and rifle beside hand."
+    }
+  },
+  "packing": "pack.py registers to anatomical pivots, animates leg joints and cloak with layered painting mattes, selects painted strike poses and exports four sheets. Eight heading columns; three left-facing views reuse mirrored right-facing sources. All combat collision is independent of the rendering."
+}

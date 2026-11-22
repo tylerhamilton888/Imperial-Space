@@ -214,11 +214,14 @@ func _update_art() -> void:
 	_view.queue_redraw()
 	queue_redraw()
 
+func get_aim_bounds() -> Rect2:
+	return profile.aim_bounds
+
 func _draw() -> void:
 	if vitality == null or state == &"dead":
 		return
 	if health < max_health or role == &"dummy":
-		var height := -84.0 if role != &"dummy" else -74.0
+		var height := profile.aim_bounds.position.y - 7.0
 		draw_rect(Rect2(-21,height,42,4), Color("#17212b"))
 		draw_rect(Rect2(-20,height+1,40.0*health/max_health,2), Color("#dfaf70") if role == &"dummy" else Color("#f08064"))
 	if state != &"windup":

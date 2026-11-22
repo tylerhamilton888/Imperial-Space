@@ -1,8 +1,6 @@
 extends Node2D
 ## Directional plates share one pivot at the feet. Combat collision is owned by the actor.
 
-const CELL := Vector2(204, 174)
-const PIVOT := Vector2(102, 143)
 const DENSITY := 1.5
 const DATA := preload("res://art/actors/poses.json")
 const SHEETS := {
@@ -65,8 +63,12 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, 1, Color(0.025, 0.03, 0.04, 0.28), true, -1.0, true)
 	draw_circle(Vector2.ZERO, 0.68, Color(0.025, 0.03, 0.04, 0.22), true, -1.0, true)
 	draw_set_transform(Vector2.ZERO)
-	var source := Rect2(Vector2(_heading(), row % 8) * CELL, CELL)
+	var cell_data: Array = DATA.data[role].cell
+	var pivot_data: Array = DATA.data[role].pivot
+	var cell := Vector2(cell_data[0], cell_data[1])
+	var pivot := Vector2(pivot_data[0], pivot_data[1])
+	var source := Rect2(Vector2(_heading(), row % 8) * cell, cell)
 	var sprite: Texture2D = SHEETS[role][floori(row / 8.0)]
 	var tint := Color.WHITE * (1.0 + 0.65 * feedback)
 	tint.a = 1.0
-	draw_texture_rect_region(sprite, Rect2(-PIVOT / DENSITY, CELL / DENSITY), source, tint)
+	draw_texture_rect_region(sprite, Rect2(-pivot / DENSITY, cell / DENSITY), source, tint)

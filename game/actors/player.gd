@@ -9,6 +9,9 @@ const Query = preload("res://combat/combat_query.gd")
 const Feedback = preload("res://combat/feedback.gd")
 const KIT = preload("res://data/medium_kit.tres")
 const TORSO := Vector2(0, -46)
+# The painted seven-key swing extends the blade in keys 3 through 5.
+const STRIKE_FIRST := 3.0 / 7.0
+const STRIKE_RECOVERY := 6.0 / 7.0
 const PLAYER_ACTIONS: Array[StringName] = [&"dodge", &"guard", &"melee", &"fire", &"reload", &"heal"]
 
 var _vitals := Vitality.new(KIT.max_health)
@@ -158,8 +161,11 @@ func _update_aim_at(cursor: Vector2) -> void:
 		if actor == null or actor.is_queued_for_deletion():
 			continue
 		var local := cursor - actor.global_position
-		var torso_distance := (local - TORSO).length_squared()
-		if absf(local.x) <= 18.0 and local.y >= -78.0 and local.y <= 3.0 and torso_distance < closest:
+		var bounds := Rect2(-18.0, -78.0, 36.0, 82.0)
+		if actor.has_method(&"get_aim_bounds"):
+			bounds = actor.call(&"get_aim_bounds")
+		var torso_distance := local.distance_squared_to(bounds.get_center())
+		if bounds.has_point(local) and torso_distance < closest:
 			closest = torso_distance
 			target_point = actor.global_position
 	var direction := global_position.direction_to(target_point)
@@ -318,5 +324,12 @@ func _feedback(kind: StringName, start: Vector2, end: Vector2) -> void:
 func _update_view(delta: float) -> void:
 	var facing := _aim_locked if action in [&"melee", &"fire"] else aim_direction
 	var phase := clampf(action_time / _duration(), 0, 1)
+	if action == &"melee":
+		if action_time < KIT.sword_contact_start:
+			phase = remap(action_time, 0.0, KIT.sword_contact_start, 0.0, STRIKE_FIRST)
+		elif action_time < KIT.sword_contact_end:
+			phase = remap(action_time, KIT.sword_contact_start, KIT.sword_contact_end, STRIKE_FIRST, STRIKE_RECOVERY)
+		else:
+			phase = remap(action_time, KIT.sword_contact_end, KIT.sword_total, STRIKE_RECOVERY, 1.0)
 	var pose := &"parry" if action == &"guard" and _parry_pose_left > 0 else action
 	$Visual.pose(facing, velocity, pose, phase, delta)

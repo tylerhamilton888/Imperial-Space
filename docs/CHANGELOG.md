@@ -1,5 +1,12 @@
 # Changelog
 
+## Developer Arena 0.1.1 — 22 November 2026
+
+- Replaced the Crusader, Khorgoth and range crew art with painted directional sprites. The Medium kit now reads through its high collar, ivory armor, brass edges, tapered waist and broad crimson cloak. Rifle, sword and defensive poses use registered foot pivots.
+- Repainted the hall and its independently sorted fixtures. Crimson standards, warm work lamps, cooler paving and inlaid range markings separate the playable area from the walls and cover. The camera shows more of the north entrance.
+- Replaced the title illustration and integrated a red-glass health gauge, illustrated weapon and medical slots, and brass-framed range controls. The HUD reflects spent rounds, health and medical charges.
+- Adjusted mouse targeting and overhead health bars for the broader, taller Khorgoth silhouettes. Ground-plane collision, weapon damage and enemy timing retain the 0.1.0 rules.
+
 ## Developer Arena 0.1.0 — 22 November 2026
 
 - Implemented menu, settings, controls, independent aim and movement, collisions, a persistent cloaked medium Crusader, a human scale reference, and an industrial training hall.

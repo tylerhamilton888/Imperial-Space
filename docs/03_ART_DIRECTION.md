@@ -69,3 +69,11 @@ Prefer purposeful silhouettes, concise impact effects, restrained camera shake, 
 ## First native-scale proof
 
 Developer Arena 0.1.0 bakes original articulated geometry to small eight-way sprite sheets and the industrial deck to orthographic plates. Actors share foot pivots and weapon sockets across their sampled poses. The editable sources are under `source_art/`. Evaluate directional footwork in motion before pricing or drawing additional armor families. Runtime dimensions, provenance and footage status are recorded in [the manifest](ART_ASSET_MANIFEST.md) and [test results](TEST_REPORT.md).
+
+## Visual review against option B
+
+The 0.1.0 native-scale demonstration established inputs and timing. The owner rejected its faceted figures and sparse gray deck as a visual interpretation of option B. Keep that milestone as a mechanical reference.
+
+For the playable arena, use the right half of board 01 to judge the separation between the helmet, shoulders, weapon, cloak and ground. Use boards 02 and 04 for the integrated shoulder line, articulated torso, weight of the cloak and visible waist. The approved direction is colorful illustrated science fiction with realistic heroic anatomy. Selective exaggeration should help a player read the figure while moving. One Medium Imperial Standard example is enough for this review.
+
+Review a real combat capture at game scale, with the human defender and the Khorgoth present. Look for independently readable amber worklights, cooler shadowed paving, a broad crimson cloth shape, and differently equipped enemies. Watch a turn, a step and a strike. A successful audio, collision or import test cannot establish style acceptance.

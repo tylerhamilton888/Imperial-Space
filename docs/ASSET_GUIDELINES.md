@@ -1,10 +1,34 @@
 # Asset export checklist
 
-Use the [art direction](03_ART_DIRECTION.md) for the character and camera targets and the [budget specification](07_ASSET_AND_RESPONSE_BUDGETS.md) for encoded size and dimensions.
+Use the [art direction](03_ART_DIRECTION.md) and [reference interpretation](../reference_art/README.md) for silhouette, surface treatment and color. The [asset budgets](07_ASSET_AND_RESPONSE_BUDGETS.md) specify limits for frames, atlases, previews and reference boards.
 
-1. Identify the asset’s role at the 1280 × 720 native view. Preserve editable sources under `source_art/`, reference studies under `reference_art/`, and runtime imports under `game/art/`.
-2. Rebuild actors with `python source_art/actors/bake.py` (Python 3, NumPy, Pillow and a C compiler). Keep the 204 × 174 cell, foot pivot (102, 143), eight heading columns and matching `poses.json`. Check every cell for clipping, including the sword tip during windup.
-3. Rebuild the range with Blender and the crop script in `source_art/range/`. Keep the deck tile edges aligned and preserve the cover and rail ground pivots. Use `source_art/menu/render_orbit.py` for the title artwork. Edit the HUD crest and reticle directly in their SVG sources.
-4. Run the checker with the profile for each file type. Use `python tools/check_assets.py game/art/actors --profile runtime --kind atlas` for actor sheets and `python tools/check_assets.py game/art/menu game/art/range --profile runtime --kind frame` for baked scenery. Check SVG dimensions, hotspots and Godot import separately.
-5. Inspect a native gameplay capture and moving actors. Check alternating boots, cloth continuity, near/far hand and weapon ordering, cover occlusion, and the correspondence between muzzle position and shot feedback.
-6. Update the [asset manifest](ART_ASSET_MANIFEST.md) with source, status, dimensions and encoded bytes. Create a separate review image with `tools/make_preview.py` and run the preview profile before sharing. Record any budget exception in the decision log.
+1. Preserve reusable source paintings and packing code under `source_art/`. Production textures go under `game/art/`. Keep source PNGs outside the Godot import tree. The option B studies guide art direction.
+2. Use the current packers below from the repository root. They export into the live game. Preserve shared pose metadata when repacking one role. Keep each role’s cell and pivot from the [manifest](ART_ASSET_MANIFEST.md). Recheck muzzle positions after changing the rifle art.
+3. Check all frame and atlas outputs with the appropriate profile. SVGs have separate dimension and hotspot checks. Run source and preview checks on their own paths. Preserve full-size sources when creating derivatives.
+4. Reimport with the pinned Godot version. Inspect the release at the native 1280 × 720 game view. Test eight headings, circling gait, backward steps, guard, rifle, blade contacts, defeat, cloak visibility and readability over the floor. Check the shield and rail occlude actors at their ground pivots. Verify aim sockets and shot obstruction in motion.
+5. Update the manifest when an image, packing recipe or source changes. Record the count, dimensions and encoded byte size for the exported file. Give review captures separate filenames and check them with the preview profile before sharing.
+
+## Active recipes
+
+| Asset | Rebuild from the saved master | Dependencies |
+| --- | --- | --- |
+| Medium Crusader, weapons and cloak | `python source_art/actors/crusader/pack.py` | Python, Pillow, NumPy, SciPy |
+| Raider, gunner, range officer and target | `python source_art/actors/khorgoth/build.py` | Python, Pillow, NumPy, SciPy |
+| Deck, two shields and crew rail | `python source_art/range/pack_painted_range.py` | Python, Pillow |
+| Orbital shipyard title | [Title export recipe](../source_art/menu/README.md) | Python, Pillow |
+| HUD inlays, vitality glass, fleet crest and panel frame | `python source_art/hud/forge_instruments.py` | Python, Pillow, Inkscape |
+| Application icon and cursor | Edit `game/art/standard.svg` and `game/art/aim_cursor.svg` | SVG editor or text editor |
+
+The four deck tiles must join at x = 800 and y = 480. The actor runtime samples eight columns clockwise from screen right and looks up its action and muzzle data in `game/art/actors/poses.json`. Keep hit detection and gameplay collision feet-anchored as the paintings change.
+
+## Preflight commands
+
+```sh
+python tools/check_assets.py --profile runtime --kind atlas game/art/actors
+python tools/check_assets.py --profile runtime --kind frame game/art/range game/art/menu game/art/hud
+python tools/check_assets.py --profile reference reference_art
+godot --headless --path game --editor --import
+godot --headless --path game --script ../tools/tests/verify_range_map.gd
+```
+
+For a capture, run `tools/make_preview.py` using the [asset tools guide](../tools/README.md), then `python tools/check_assets.py --profile preview <preview-file>`. The image checker measures file bounds and decoding. The native-view checks cover registration, motion and combat readability.

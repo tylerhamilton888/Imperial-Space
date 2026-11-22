@@ -22,3 +22,7 @@ Use project-specific image budgets, preserved originals, compressed derivatives,
 - Ship one medium kit and four named presets now. Keep the isolated scenario controller as the only code responsible for spawning and reconstructing drills. [Developer Arena](12_DEVELOPER_ARENA.md)
 - Use original rendered directional plates for the first actor. Native captures show the relative human scale, a visible cloak and two distinct boot positions. Preserve source rigs and hold broader cosmetic production until strafing has been reviewed. [Art direction](03_ART_DIRECTION.md)
 - Keep 1280 × 720 as the native review size and embed data in each desktop executable so the playtest needs one launch target. Window/fullscreen and bindings persist independently of any campaign.
+
+## 22 November 2026 — Correct the arena’s visual target
+
+The owner rejected the 0.1.0 presentation. Use option B’s illustrated color and value separation, with the original angular medium armor and crimson cloak from the later design studies. Rework the playable kit, its opponents, the hall and HUD before producing more equipment families. Keep floor collisions and attack timing on their existing ground coordinates. The first visual review uses an actual mixed-squad capture and a movement clip. See [art direction](03_ART_DIRECTION.md).

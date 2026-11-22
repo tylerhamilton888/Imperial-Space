@@ -10,49 +10,84 @@ The user supplied these five concept studies from earlier conversations. Their c
 | `04_armor_weights.jpg` | Concept reference | 1536 × 1024 | 422,098 | Compressed derivative; outside runtime |
 | `05_heavy_collar_variants.jpg` | Concept reference | 1536 × 1024 | 397,564 | Compressed derivative; outside runtime |
 
-## Developer Arena art, version 0.1.0
+## Developer Arena 0.1.1
 
-All runtime visuals and sound cues below are original Imperial Space prototypes created for this repository. The concept studies informed costume shapes and color choices. The runtime sprites, environments and audio were authored independently. Retain the editable sources with the derivatives.
+This release includes new project-specific paintings generated with OpenAI ImageGen and original code-authored graphics. Source paths below identify which process produced each asset. The earlier runtime inventory is recorded at Git tag `arena-v0.1.0`.
 
-### Directional actors
+### Source paintings
 
-Files live under `game/art/actors/`. [bake.py](../source_art/actors/bake.py) builds the rig and animation poses, and [raster.c](../source_art/actors/raster.c) renders the lit surfaces. Each plate has eight facing columns, clockwise from screen right. Every 204 × 174 cell uses the same foot pivot (102, 143) with 1.5 texture pixels per world unit. The generated `poses.json` supplies row ranges and muzzle offsets to [actor_view.gd](../game/art/actor_view.gd).
+Keep the full-resolution masters in `source_art/`. The generation notes document the art direction and reference inputs. Asset packing uses the saved paintings. Live labels, combat state and actor positions are drawn by the game.
 
-| File | Pixels | Encoded bytes |
+| Master under `source_art/` | Source pixels | Encoded bytes | Runtime purpose |
+| --- | --- | ---: | --- |
+| `actors/crusader/axial.png` | 1254 × 1254 | 1,595,534 | Crusader axial headings |
+| `actors/crusader/low.png` | 1536 × 1024 | 2,236,506 | Crusader low defensive and downed poses |
+| `actors/crusader/ready.png` | 1536 × 1024 | 2,318,773 | Crusader ready and weapon presentation |
+| `actors/crusader/stride.png` | 1536 × 1024 | 2,379,829 | Crusader gait contact poses |
+| `actors/crusader/sword.png` | 1536 × 1024 | 2,259,980 | Crusader sword extremes |
+| `actors/khorgoth/dummy_source.png` | 1086 × 1448 | 1,432,582 | Brass target with crimson aiming ring |
+| `actors/khorgoth/gunner_source.png` | 1983 × 793 | 1,933,677 | Gunner carrying and aiming |
+| `actors/khorgoth/raider_source.png` | 1619 × 971 | 2,659,323 | Raider blade poses |
+| `actors/khorgoth/soldier_source.png` | 2172 × 724 | 794,585 | Human scale-reference views |
+| `menu/imperial_shipyard.webp` | 1672 × 941 | 2,057,084 | Title illustration |
+| `range/painted_fixtures.png` | 2125 × 740 | 1,378,438 | Separate shields and crew rail |
+| `range/painted_hall.png` | 1619 × 971 | 2,743,099 | Walkable hall and surrounding architecture |
+
+The medium Crusader uses five painted viewing angles, with three mirrored entries completing the eight-heading set. The saved cutouts include rifle-ready, guard, chambered and extended sword, stride, crouch and defeat poses. The packer articulates the boots and cloak for the gait, applies rifle recoil and samples the painted blade extremes within the attack window. Reload and healing use a simple lowered-rifle pose. Axial actions reuse a nearby three-quarter pose for the full blade swing and low states. [Crusader packing source](../source_art/actors/crusader/pack.py) · [Crusader prompts and provenance](../source_art/actors/crusader/sources.json)
+
+The raider has painted ready, raised and extended blade poses. The gunner has separate carrying and aiming poses. Both use five painted directions that supply eight headings through mirroring. Lower-limb warps create eight stride phases. The soldier uses three painted views with mirroring and reuse for eight idle headings. A single painted brass target with a crimson aiming ring occupies all eight dummy columns and stays fixed while the camera and player move. [Enemy and soldier packing source](../source_art/actors/khorgoth/build.py) · [Enemy, target and soldier prompts](../source_art/actors/khorgoth/prompts.txt)
+
+The range uses option B and the previous room footprint as references. The two illustrated sources supply the four floor plates and separately sorted shields and rail. The packing script registers wall bases to the collision bounds and puts fixture shadows on the ground. The menu illustration shows a cruiser above a coastal Imperial shipyard and places live title controls against open sky. [Range prompts](../source_art/range/painted_sources.json) · [Range packing](../source_art/range/pack_painted_range.py) · [Title brief and export recipe](../source_art/menu/README.md)
+
+### Runtime actor atlas pages
+
+Paths below are relative to `game/art/actors/`. Headings increase clockwise from screen right. Foot pivots are texture-pixel offsets from the upper left of one cell. The runtime draws 1.5 texture pixels per world unit. Eleven atlas pages contain 488 gameplay cells across five roles. The shared layout file holds action rows and muzzle offsets. [Pose metadata](../game/art/actors/poses.json) · [Runtime view](../game/art/actor_view.gd)
+
+| Actor | Cell | Foot pivot | Directional cells | Motion and contact |
+| --- | --- | --- | ---: | --- |
+| Medium Crusader | 256 × 208 | (128, 181) | 224 | Rifle, sword, eight-phase gait, defense, dodge, utility actions and defeat |
+| Raider | 256 × 194 | (128, 163) | 144 | Ready, gait, windup, cut, stagger, defeat |
+| Gunner | 204 × 174 | (102, 143) | 104 | Ready, gait, aim, fire, stagger, defeat |
+| Soldier | 204 × 174 | (102, 143) | 8 | Stationary range officer |
+| Dummy | 204 × 174 | (102, 143) | 8 | Stationary hit target |
+
+| Atlas | Pixels | Encoded bytes |
 | --- | --- | ---: |
-| `crusader_0.webp` | 1632 × 1392 | 304,598 |
-| `crusader_1.webp` | 1632 × 1392 | 309,026 |
-| `crusader_2.webp` | 1632 × 1392 | 300,368 |
-| `crusader_3.webp` | 1632 × 696 | 145,704 |
-| `dummy_0.webp` | 1632 × 174 | 19,214 |
-| `gunner_0.webp` | 1632 × 1392 | 282,706 |
-| `gunner_1.webp` | 1632 × 870 | 167,534 |
-| `raider_0.webp` | 1632 × 1392 | 311,646 |
-| `raider_1.webp` | 1632 × 1392 | 299,600 |
-| `raider_2.webp` | 1632 × 348 | 68,618 |
-| `soldier_0.webp` | 1632 × 174 | 18,426 |
+| `crusader_0.webp` | 2048 × 1664 | 719,526 |
+| `crusader_1.webp` | 2048 × 1664 | 708,744 |
+| `crusader_2.webp` | 2048 × 1664 | 681,826 |
+| `crusader_3.webp` | 2048 × 832 | 306,948 |
+| `dummy_0.webp` | 1632 × 174 | 27,180 |
+| `gunner_0.webp` | 1632 × 1392 | 408,640 |
+| `gunner_1.webp` | 1632 × 870 | 250,152 |
+| `raider_0.webp` | 2048 × 1552 | 664,550 |
+| `raider_1.webp` | 2048 × 1552 | 664,098 |
+| `raider_2.webp` | 2048 × 388 | 150,422 |
+| `soldier_0.webp` | 1632 × 174 | 22,338 |
 
-The medium Crusader has idle, eight walking poses, fire, melee, guard, parry, reload, heal, dodge, stagger and defeat. The crimson cloak, helmet and weapon accompany every pose. Raider and gunner plates cover idle, walk, windup, attack, stagger and defeat. The range dummy and human defender have eight stationary views each. Together these sheets hold 488 directional frames.
+### Runtime scenery and interface
 
-### Environment and interface
-
-Paths below are relative to `game/art/`. [build_range.py](../source_art/range/build_range.py) generates the original orthographic Blender scene. [split_range.py](../source_art/range/split_range.py) crops the deck and transparent props. Prop pivots are listed as texture pixels from the upper-left corner and correspond to ground contact for depth sorting.
+Paths below are relative to `game/art/`. The four deck quarters form a 1600 × 960 ground plane. Range prop pivots use texture pixels. [Range scene](../game/arena/range_map.tscn)
 
 | File | Purpose or pivot | Pixels | Encoded bytes |
 | --- | --- | --- | ---: |
-| `range/crew_rail.webp` | Crew rail (80, 56) | 159 × 61 | 6,106 |
-| `range/north_cover.webp` | North cover (90, 82) | 180 × 87 | 16,040 |
-| `range/south_cover.webp` | South cover (85, 82) | 170 × 87 | 13,530 |
-| `range/deck_0_0.webp` | Northwest deck, top left | 800 × 480 | 59,776 |
-| `range/deck_0_1.webp` | Southwest deck, top left | 800 × 480 | 43,276 |
-| `range/deck_1_0.webp` | Northeast deck, top left | 800 × 480 | 96,278 |
-| `range/deck_1_1.webp` | Southeast deck, top left | 800 × 480 | 68,604 |
-| `menu/orbital_watch.jpg` | Title-screen cruiser and orbital horizon | 1024 × 576 | 80,619 |
-| `standard.svg` | Title crest and application icon | 96 × 96 | 362 |
+| `range/deck_0_0.webp` | Northwest deck | 800 × 480 | 119,730 |
+| `range/deck_1_0.webp` | Northeast deck | 800 × 480 | 127,672 |
+| `range/deck_0_1.webp` | Southwest deck | 800 × 480 | 112,450 |
+| `range/deck_1_1.webp` | Southeast deck | 800 × 480 | 108,246 |
+| `range/north_cover.webp` | North shield (90, 82) | 180 × 87 | 17,750 |
+| `range/south_cover.webp` | South shield (85, 82) | 170 × 87 | 16,746 |
+| `range/crew_rail.webp` | Crew rail (80, 56) | 159 × 61 | 7,464 |
+| `menu/orbital_watch.jpg` | Title-screen cruiser and shipyard | 1024 × 576 | 378,216 |
+| `hud/field_instruments.webp` | Combat instrument plate | 974 × 142 | 34,986 |
+| `hud/vitality_glass.webp` | Vitality lens | 128 × 128 | 9,710 |
+| `hud/frame.webp` | Scalable instrument housing | 148 × 120 | 6,118 |
+| `hud/fleet_crest.webp` | Fleet insignia | 84 × 84 | 5,748 |
+| `standard.svg` | Application icon | 96 × 96 | 362 |
 | `aim_cursor.svg` | Aim reticle, hotspot (16, 16) | 32 × 32 | 378 |
 
-[render_orbit.py](../source_art/menu/render_orbit.py) creates the menu illustration. The two SVGs are their own editable sources. UI panels, lane diagnostics and contact shadows are drawn in Godot.
+The brass HUD plate, vitality glass, fleet crest and nine-patch frame use original drawn paths and gradients, rasterized with Inkscape and Pillow. Equipment labels, current values, bindings, prompts and gauge fill remain live. The application icon and cursor are editable SVG sources. [Instrument artwork](../source_art/hud/forge_instruments.py) · [Instrument controls](../game/ui/instrument_theme.gd)
 
 ### Combat feedback
 
-[feedback.gd](../game/combat/feedback.gd) draws short-lived tracers and sparks and synthesizes the sounds for gunfire, attacks, dodges, defense, reloads, healing and impacts. Each cached mono cue runs for 0.17 s at 22,050 Hz, 16-bit PCM (7,496 sample bytes). The project ships the synthesis code.
+[feedback.gd](../game/combat/feedback.gd) draws short-lived tracers and sparks and synthesizes the sounds for gunfire, attacks, dodges, defense, reloads, healing and impacts. Each cached mono cue runs for 0.17 seconds at 22,050 Hz with 16-bit PCM (7,496 sample bytes).

@@ -1,5 +1,24 @@
 # Verification record
 
+## Illustrated Developer Arena 0.1.1 • 22 November 2026
+
+**Runtime** `dd6de25739e3` (tag `arena-v0.1.1`). A separate checkout of that exact revision imported in Godot 4.7.2 stable and reached both the main menu and direct-entry arena. Runtime, export templates and OS are the same as in the foundation report below.
+
+| Suite or audit | Observed result |
+| --- | --- |
+| Godot | 26 arena, 36 combat, 22 enemy and 16 map checks passed. All four suite logs were clean. The added combat case shoots the upper outside shoulder of a painted raider. Three successive AI runs also completed with clean teardown. |
+| Python | 15 tests passed, including four new image checks across all 488 actor cells. The tests verify atlas geometry, pose ranges, image content, edge clearance and motion differences; the threshold details are in `tools/tests/test_actor_art.py`. |
+| Asset preflight | 11 actor atlases and 12 runtime scenery/menu/HUD frames passed. The largest runtime file is `crusader_0.webp`, 2048 × 1664, 719,526 bytes. Five source reference boards passed their separate reference budget. |
+| Visual review | An actual 1280 × 720 mixed-squad session showed a readable helmet, collar and trailing cloak, separate raider and gunner silhouettes, and a human defender behind the rail. Consecutive sword frames showed the raider losing health during the lunging cut. Directional art limitations are listed in [technical debt](TECH_DEBT.md). |
+| Desktop packages | Linux and Windows x86-64 packages exported with embedded game data. ZIP CRCs and executable checksums match the local exports. The extracted Windows game pack booted under the matching Linux engine. Native Windows execution remains untested. |
+
+Repeat with the commands in the foundation section. For current art preflight, use the commands in [the asset guidelines](ASSET_GUIDELINES.md). To see combat immediately, launch, enter Developer Arena, press **F1** and select **Mixed squad**. [Native image](evidence/illustrated-arena-0.1.1.jpg) · [Gameplay clip and builds](https://github.com/tylerhamilton888/Imperial-Space/releases/tag/arena-v0.1.1)
+
+| Download | SHA-256 |
+| --- | --- |
+| Windows ZIP | `7263ef326178602c75fc23853af58fc641074792c26f77ded5fd98012e18aa43` |
+| Linux ZIP | `8a0906badfff22c1c3ebd4f21cb85a4cbc2e0f4c69352a14550e742b0082f418` |
+
 ## Developer Arena 0.1.0 • 22 November 2026
 
 **Tested runtime** `49e42045d84d` (`arena-v0.1.0`, main). Godot 4.7.2 stable official `ed1daf0bf`, matching desktop export templates, Linux x86-64. The runtime and art were imported from a fresh local Git clone outside the authoring folder. Headless import, menu and direct arena launches completed without engine errors. Removing the optional title illustration from the test checkout also allowed boot.

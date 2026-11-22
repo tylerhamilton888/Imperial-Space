@@ -1,0 +1,77 @@
+[
+  {
+    "source": "Space Crusader Visual Style Comparison.png",
+    "source_sha256": "c41b45e658b950d3cbd3b76cf63148070210315886767269520430f8e5554e38",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "derivative": "01_visual_style.jpg",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "bytes": 497894,
+    "status": "concept reference; not production game asset"
+  },
+  {
+    "source": "Space Crusader Armor Concept Board.png",
+    "source_sha256": "8fe9b8e452fa441246e0988e7361ee9d6e94d065bf931bbd464c5fc550868650",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "derivative": "02_cloaks_and_weapons.jpg",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "bytes": 419310,
+    "status": "concept reference; not production game asset"
+  },
+  {
+    "source": "Space Crusader Helmet Design Series.png",
+    "source_sha256": "520cb671b7d7555fd64dbd6561e604bd1a7be3a9c6a0f49d85ebe1e76c05c3ae",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "derivative": "03_helmet_variants.jpg",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "bytes": 426055,
+    "status": "concept reference; not production game asset"
+  },
+  {
+    "source": "Space Crusader Armor System.png",
+    "source_sha256": "0bb480ddfd513b2d36bb58667e55d9bf8a8d7f5f51f3bb6d5e596a8bc12e7027",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "derivative": "04_armor_weights.jpg",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "bytes": 422098,
+    "status": "concept reference; not production game asset"
+  },
+  {
+    "source": "Space Crusader Armor Comparison Board.png",
+    "source_sha256": "b4520721266a9488e2edcaf90ea52e3bff6ccb7e629fd362caf1c875a2fdb783",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "derivative": "05_heavy_collar_variants.jpg",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "bytes": 397564,
+    "status": "concept reference; not production game asset"
+  }
+]

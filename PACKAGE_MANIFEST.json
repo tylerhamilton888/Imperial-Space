@@ -1,0 +1,186 @@
+{
+  "version": "1.0",
+  "date": "2026-11-22",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 4722,
+      "sha256": "89e87118ecb2710d915666ffa45cf8e4bf212905f5f9983c200c612cccba594b"
+    },
+    {
+      "path": "Imperial_Space_Design_Document.md",
+      "bytes": 112706,
+      "sha256": "a66f64027ca0405c66e8e7ef2ba9d9f653982054be3b20e2e4d8fa55be10e1d5"
+    },
+    {
+      "path": "START_HERE.md",
+      "bytes": 4038,
+      "sha256": "b26a83bcd3d16be883e54ec6a595e864634676a4373e98e6a94fc163586a3373"
+    },
+    {
+      "path": "WORK_MODE_KICKOFF_PROMPT.md",
+      "bytes": 2287,
+      "sha256": "82aa8c3d34edfdf8e3e6ce1b180ed0cc5e23bbcb8c586f880d55e5ed1a2fa7b4"
+    },
+    {
+      "path": "docs/00_VISION_SCOPE.md",
+      "bytes": 6693,
+      "sha256": "139601cd4f389e72638655f69d5d250eb34dc05071f61e5a030c1d211b0eed88"
+    },
+    {
+      "path": "docs/01_UNIVERSE_AND_NARRATIVE.md",
+      "bytes": 8186,
+      "sha256": "754df7bd92e6de6c775a26c5fe7556977e83c705b818726d44112f739b3329ab"
+    },
+    {
+      "path": "docs/02_GAMEPLAY_COMBAT_EQUIPMENT.md",
+      "bytes": 12300,
+      "sha256": "4be0d2c5cba8dc7764eb0592b80935fe94ef337b899708771f3f125f7f058d57"
+    },
+    {
+      "path": "docs/03_ART_DIRECTION.md",
+      "bytes": 9091,
+      "sha256": "2064cf9e0c1f8da89c028dcc40a012859e0bb58af1f6a9b169fda682d95bceba"
+    },
+    {
+      "path": "docs/04_CAST_AND_CHARACTER_OPTIONS.md",
+      "bytes": 9194,
+      "sha256": "d5ee6adae3ebe78a3f381aea2d4c7c03c8133aa41d7f909c288acb9b559cc8dc"
+    },
+    {
+      "path": "docs/05_OPENING_MISSION.md",
+      "bytes": 11077,
+      "sha256": "fb0597d1b91d19854e45113bbda9290cd9e21a661f03f5dbad7cf7dafbd6d8c4"
+    },
+    {
+      "path": "docs/06_TECHNICAL_ARCHITECTURE.md",
+      "bytes": 12625,
+      "sha256": "a36ae67c22a3f8b066e83f0625d42e5ea92e9fef63ea5f658df7aedcec2e9523"
+    },
+    {
+      "path": "docs/07_ASSET_AND_RESPONSE_BUDGETS.md",
+      "bytes": 6791,
+      "sha256": "c211489322e562923e534e1ef07ea420107ea94d13d7b370d257c0bb921911d8"
+    },
+    {
+      "path": "docs/08_PRODUCTION_ROADMAP.md",
+      "bytes": 9550,
+      "sha256": "dbae7e435ab4bc325b376081a4faf5c5870f933cda2e04ac50dc9624551ea261"
+    },
+    {
+      "path": "docs/09_QA_ACCEPTANCE.md",
+      "bytes": 5901,
+      "sha256": "b61f5f2462159e49fbc4daff96e7a1e0d98c3cf3d0756b5ed309799559f7254a"
+    },
+    {
+      "path": "docs/10_DIALOGUE_UI.md",
+      "bytes": 6381,
+      "sha256": "cd89ac5f764e03dc4ab7eb97b7616aa734259a82c7bca826d9d4616379770742"
+    },
+    {
+      "path": "docs/11_CANON_AND_PENDING_DECISIONS.md",
+      "bytes": 3861,
+      "sha256": "6586712a1ab68078197d1ca4fcc63b0d57f3dbe41b33431e19ddebb91485b607"
+    },
+    {
+      "path": "docs/12_DEVELOPER_ARENA.md",
+      "bytes": 7069,
+      "sha256": "1cde439e1d028f06e5e1525d7854d405436f4c3addaaebbfa617d638157459d8"
+    },
+    {
+      "path": "docs/ART_ASSET_MANIFEST.md",
+      "bytes": 1243,
+      "sha256": "425296b9f9c1e9331a978a9ddc193db512442eedba501125ed6ef711db3cfc2f"
+    },
+    {
+      "path": "docs/ASSET_GUIDELINES.md",
+      "bytes": 982,
+      "sha256": "2e3f250fca435c89a9f5905ba805b610c12a77c60f31e828958a0a1f52041632"
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "bytes": 641,
+      "sha256": "bf55907a919a12f3cf7974ea2e9fc81e3a02bdff21afb4576a310796c06097c7"
+    },
+    {
+      "path": "docs/DECISION_LOG.md",
+      "bytes": 1698,
+      "sha256": "7fe9fe3a2b199904bc57a7d16a9a5486a1c1a1576e4ec0618718bc6e99a6926a"
+    },
+    {
+      "path": "docs/PROGRESS.md",
+      "bytes": 1257,
+      "sha256": "71f73b7dd1338c3177c3b5e4e40124eac8e438f1fef2f672b3b5fa24674f03ae"
+    },
+    {
+      "path": "docs/TECH_DEBT.md",
+      "bytes": 1258,
+      "sha256": "ba055753803b3b9b757883017c11e373a30356439eb94b1b4c0e1f6fbbe25e0d"
+    },
+    {
+      "path": "docs/TEST_REPORT.md",
+      "bytes": 1636,
+      "sha256": "17942733b59699c52c3dfe94871bdad9a393a0b95967b792723e7261b34977d1"
+    },
+    {
+      "path": "reference_art/01_visual_style.jpg",
+      "bytes": 497894,
+      "sha256": "b1c8c1ffa31cdf7a696ba8d5e574759da274e31b01185a1b0311e94137b1e063"
+    },
+    {
+      "path": "reference_art/02_cloaks_and_weapons.jpg",
+      "bytes": 419310,
+      "sha256": "648ea7ab2cce4fdf27d7bda9b89e0ca58800b8aaccd9f6a2bd73577bfd34fc6e"
+    },
+    {
+      "path": "reference_art/03_helmet_variants.jpg",
+      "bytes": 426055,
+      "sha256": "7bfcede26bc448a8e8b24383e5063c989a4e1879cffd909c72603f989c8d50cb"
+    },
+    {
+      "path": "reference_art/04_armor_weights.jpg",
+      "bytes": 422098,
+      "sha256": "5ecb9d4ed81be3e1a487fef5ea371a7e2ed040d1064ed588656155240eee5ec5"
+    },
+    {
+      "path": "reference_art/05_heavy_collar_variants.jpg",
+      "bytes": 397564,
+      "sha256": "2e412c353849fb6e486efa9bf6036cfb58b4f12fdb4556e5c14c6dfee783eaa0"
+    },
+    {
+      "path": "reference_art/README.md",
+      "bytes": 2874,
+      "sha256": "ad55cb926f34626f8e7b91e2bf30502d1fb454f887f25a5c6a984a94a88e176b"
+    },
+    {
+      "path": "reference_art/source_manifest.json",
+      "bytes": 1943,
+      "sha256": "bb0ac3a17154acf18782b94d53d87aba45e24f8d4aca013d24ad0425b1439adc"
+    },
+    {
+      "path": "tools/README.md",
+      "bytes": 3288,
+      "sha256": "18c2e266e89d2b8716a2ee39997142d7a02af0b5f611a868588a610beba20ea0"
+    },
+    {
+      "path": "tools/check_assets.py",
+      "bytes": 4390,
+      "sha256": "79dd8f25e2b21e4b62859ed2f8d00089fdce422e99069c6031b65268d81685d4"
+    },
+    {
+      "path": "tools/make_preview.py",
+      "bytes": 4032,
+      "sha256": "efdb11ef54c789750d06f63d0b0c3c14496944fcfb0624f435f79d179e090d91"
+    },
+    {
+      "path": "tools/requirements.txt",
+      "bytes": 15,
+      "sha256": "bbced595a25debee9232fbb784d35ee4f04967d3dbc528e8c3073d3e9adbe2ca"
+    },
+    {
+      "path": "tools/tests/test_asset_tools.py",
+      "bytes": 5564,
+      "sha256": "5989f40be4386a6e3461d8a4df538b58d5f9243a1a9afbc5d306ce95c7ec21c5"
+    }
+  ]
+}

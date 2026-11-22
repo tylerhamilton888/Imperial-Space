@@ -12,7 +12,7 @@
 
 ## Repository delivery
 
-The source ZIP carries an independent working Git repository, its full history and release tag. At packaging time the new GitHub repository still required an authenticated creation session for the owner’s account. The portable repository has no host-specific remote.
+The project is published on [GitHub](https://github.com/tylerhamilton888/Imperial-Space). The default branch is `main`. All four original commits through `ffb553922a39` and the annotated `arena-v0.1.0` tag are available there. The portable source ZIP contains the same original history.
 
 ## Next increment
 

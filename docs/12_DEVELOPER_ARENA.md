@@ -75,3 +75,7 @@ Expose invulnerability, passive enemies, frozen AI, unlimited ammunition and imm
 5. Add the lieutenant and warlord presets, then integrate their proven behaviors into the opening mission.
 
 Do not postpone basic access and reset until the campaign exists. Conversely, do not delay a useful first playable while building every diagnostic listed here. Grow the Arena alongside the production systems, keeping its controls useful at every stage.
+
+## Available in 0.1.0
+
+The title menu opens Empty floor. F1 opens four scenarios and manual spawn, clear, refill and passive-target controls. F5 rebuilds the selected scenario and G toggles the scale grid. See [controls](../README.md) and [tested state](PROGRESS.md). Equipment selection, the destruction lane and the advanced diagnostics listed above belong to later stages.

@@ -8,6 +8,10 @@ Discover the installed engine, export templates and existing project before deci
 
 Keep `game/project.godot` and runtime content under `game/`. Keep `docs/`, `reference_art/`, `tools/`, source art and full test captures outside that runtime root. Suggested runtime areas are `scenes/player`, `scenes/enemies`, `scenes/arena`, `scenes/missions`, `scenes/hub`, `scenes/ui`, `scripts/components`, `data`, `art`, and `audio`. Create folders as content requires them. Do not generate an empty framework of hundreds of files.
 
+## First playable implementation
+
+The 0.1.0 foundation pins Godot 4.7.2 stable (`ed1daf0bf`), Compatibility renderer, 60 Hz physics and a 1280 × 720 reference viewport. Source entry is `game/project.godot`. The boot scene owns session switching and preferences. A separate arena node owns each replaceable simulation. Source paths and commands are in [the README](../README.md).
+
 ## Scene responsibilities
 
 | Component | Responsibility and boundary |

@@ -1,14 +1,10 @@
-# Technical Debt and Production Risks
+# Technical debt and open verification
 
-No implemented game has been inspected, so this is an initial risk register, not a report of existing code defects.
-
-| Risk | Consequence | Resolution milestone |
+| Area | Observed limitation or remaining risk | Resolution |
 | --- | --- | --- |
-| Inconsistent directional character art | Attractive portraits but poor motion and aim readability | M1 native-scale proof; one body and coherent anchors before more variants |
-| Arena behavior diverges from campaign | Testing gives misleading results | M2 shared production actor and resolver scenes |
-| Destruction updates visuals only | Invisible walls, invalid navigation or unfair shooting | M4 collision, navigation and save transaction tests |
-| Save states miss actions or branch claims | Lost progress, unfair resumes or duplicated rewards | M4 snapshot design; M5/M6 branch fixtures |
-| Asset growth exceeds budgets | Slow imports, memory pressure or oversized review payloads | Asset preflight every art increment |
-| Cosmetic and crew choices multiply scope | Animation/dialogue backlog before combat is fun | Limit initial implemented roster and record future candidates |
-
-Add actual defects with reproduction, severity and a bounded fix. Remove entries once resolved; keep a brief completion reference in the changelog.
+| Windows | Release exported. The available Linux compatibility runner failed during its own initialization. Native Windows startup, audio and input still require a PC playtest. | First Windows playtest |
+| Directional movement | Eight aim headings and sampled poses are in use. Strafing reuses the forward or reverse foot cycle, especially visible when circling a stationary target. | Review side-on gait, planted feet and sword transitions before scaling up M3 armor art |
+| Combat balance | Resolver windows and combat states are covered by tests. Timing, difficulty and SFX have had only a short desktop pass. | Tune with a human raider-duel and mixed-squad session |
+| Hardware coverage | The recorded direct-entry timing used a 1280 × 720 Linux software renderer. Crowded formations and 1080p target hardware are unmeasured. | M3/M4 representative hardware review |
+| Range fixtures | The second protected lane holds fixed cover. Breachable walls, supports, diagnostics/stepping and destructible navigation remain scheduled work. | M4 destruction fixtures |
+| Campaign persistence | This arena has no campaign save service or rewards. A sentinel verifies isolation. Save recovery, item identity and story outcomes need real fixtures as those systems land. | M3 item instances, M4 saves, M5 opening operation |

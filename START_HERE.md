@@ -3,6 +3,8 @@
 **Version 1.0 — 22 November 2026**  
 **Purpose:** design and implementation specification for the first playable foundation and opening mission. This package is a handoff, not an implemented game.
 
+**Implementation update.** The first runnable Developer Arena is available. Read [current progress](docs/PROGRESS.md) and [play instructions](README.md). The design handoff below describes the original starting point.
+
 ## Start with a playable arena
 
 Build a single-player action RPG about an extraordinary Imperial Crusader who breaks invasions, defeats powerful enemies, and makes conquered human worlds visibly safer and more prosperous. Preserve the confident, masculine heroic fantasy, characterful shipboard relationships, valuable loot, and freedom to choose an approach.

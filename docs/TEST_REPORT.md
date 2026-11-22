@@ -1,22 +1,47 @@
-# Verification Record
+# Verification record
 
-## Handoff utilities
+## Developer Arena 0.1.0 • 22 November 2026
 
-On 22 November 2026, eleven focused tests passed under Python 3.12.14 and Pillow 13.0.0. Coverage includes valid images, oversized dimensions/bytes, corrupt and missing inputs, runtime frame/atlas limits, preview bounds, preservation of sources, overwrite refusal, transparency, empty directories, alpha-bearing background conversion, truncated JPEGs and symlink handling. The portable suite is included under `tools/tests/`; follow `tools/README.md` for its command.
+**Tested runtime** `49e42045d84d` (`arena-v0.1.0`, main). Godot 4.7.2 stable official `ed1daf0bf`, matching desktop export templates, Linux x86-64. The runtime and art were imported from a fresh local Git clone outside the authoring folder. Headless import, menu and direct arena launches completed without engine errors. Removing the optional title illustration from the test checkout also allowed boot.
 
-The reference-profile audit passed all five compressed concept boards with zero errors (2,112.2 KiB total). Their individual dimensions, sizes and source hashes are recorded in `reference_art/source_manifest.json` and `ART_ASSET_MANIFEST.md`. These are reference assets, not imported runtime textures.
+### Repeatable checks
 
-## Game verification
+Run from the repository root after importing with `godot --headless --path game --editor --import`. The isolated profile is required for the campaign-sentinel test.
 
-No Godot game has been built, launched or playtested as part of this design handoff. All gameplay, save, performance, mission-duration and export checks in `09_QA_ACCEPTANCE.md` remain future acceptance requirements. Do not convert those checklists into a claimed test pass.
+```sh
+export XDG_DATA_HOME="$(mktemp -d -t imperial-test-XXXXXX)"
+godot --headless --path game --fixed-fps 60 --script ../tools/tests/arena_checks.gd
+godot --headless --path game --fixed-fps 60 --script ../tools/tests/combat_checks.gd
+godot --headless --path game --fixed-fps 60 --script ../tools/tests/test_enemies.gd
+godot --headless --path game --script ../tools/tests/verify_range_map.gd
+python3 -m unittest discover -s tools/tests -p 'test_*.py' -q
+```
 
-## Implementation report template
+| Suite | Passed | Observed coverage |
+| --- | ---: | --- |
+| Arena and menu | 26 | Direct menu entry, preferences/defaults, normalized movement, seeded layout, spawn clearance, refill, clear, death/retry, pausing, reconstruction and teardown. Campaign sentinel SHA-256 matched before/after. |
+| Combat | 35 | Registered damage and attacker, ordering against close cover, click at torso/feet, one sword contact per target, timing and rearm of defense, death and UI ownership. |
+| Enemy behavior | 22 | Raider approach and telegraph, parry interruption, gunner aim commitment, late cover, last-seen pursuit and clearance-aware routing. |
+| Range map | 16 | Four boundaries, collision on cover and rail, clear firing lane, valid spawns, grid, reference soldier and actual detour. |
+| Python asset utilities | 11 | Budget limits, image decoding, preview bounds, path safety and preservation of source images. |
 
-- Date, milestone, branch/commit and engine version.
-- Machine/OS and settings when performance or export behavior is involved.
-- Exact command or manual scenario, including arena seed/loadout.
-- Expected result and observed result.
-- Relevant bounded log path or compressed screenshot path.
-- Remaining failure and shortest reproduction.
+All 99 Godot checks passed with zero engine warnings or errors in the fresh clone. All 11 Python utility tests passed. The three asset audits passed all 5 supplied reference boards, 8 runtime frames and 11 actor atlases. The largest new runtime image was `raider_0.webp`, 1632 × 1392, 311,646 bytes. All 488 directional actor cells held nonempty pixels inside their cell borders.
 
-Keep current results here; archive long logs separately. Replace the initial utility summary if the tools change and rerun their relevant checks.
+### Rendered play
+
+Actual OS mouse and keyboard events drove the 1280 × 720 X11 build on a Xeon Platinum 8370C with Mesa llvmpipe (LLVM 19.1.7). Tested the title screen, volume, movement rebinding, restore defaults, entry, scenario controls, grid, clear/refill/reset, pause, resume, exit and Quit. The developer range retained a visible helmet, cloak and distinct leading feet while the Crusader moved.
+
+- In Dummy range, the target lost health as the rifle counted down from 12 to 9. A reload produced 12/81. Refill restored 12/84, clear removed the target, and F5 restored one full-health target.
+- In Mixed squad, a raider approached while a gunner acquired its shot. Combat rendered hits, sword contact, dodging and held guard. A medical charge moved health from 52 to 77 and charges from 3 to 2. Defeat and retry returned the Crusader to full health.
+- On the Linux release, process launch to a visible direct-entry health meter took **0.947 seconds** on the final release (an earlier run took 1.391 seconds). This is a sample from the test host. Frame rate and target-PC benchmarks remain open.
+- The Windows x86-64 PE and Linux x86-64 ELF exports both completed with embedded game data. ZIP integrity and executable hashes matched their export outputs. The Windows pack extracted from the PE also booted with the matching Linux engine. Windows OS execution remains unverified because the available Wine runner failed during its IPC initialization.
+- Gameplay footage and the native-resolution screenshot were taken on `dedb65dd4d38`. The final runtime change releases the custom cursor on exit and has identical arena presentation. A captured shutdown exposed a 5,460-byte texture left allocated; normal and direct desktop exits were checked again after its cleanup. On the final Linux export, swapping the mouse buttons and right-clicking reduced the magazine from 12 to 10 and hit the dummy. Pause → main menu → Quit completed without leaked objects or engine errors. [Developer Arena screenshot](evidence/developer-arena.jpg)
+
+### Release file integrity
+
+| File | SHA-256 |
+| --- | --- |
+| `Imperial-Space-0.1.0-Windows.zip` | `9735b653d8eb5b9ee2cf34403c0c988630a54e39cc261ed0559ddbeaba4635db` |
+| `Imperial-Space-0.1.0-Linux.zip` | `e6a6738af0afa481478e5f93e7513c56792e460f2af43a1ac4cc9c35cd73a021` |
+
+The opening operation, other armor weights, destruction and save recovery have dedicated later gates. See [current debt](TECH_DEBT.md).

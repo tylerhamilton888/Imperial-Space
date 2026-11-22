@@ -65,3 +65,7 @@ Do not make every movement frame for every proposed physique. One base Crusader 
 Read [the reference guide](../reference_art/README.md) before opening the boards. It states which attributes to keep and which remain problematic. The five JPEG derivatives preserve earlier concepts in a manageable form. Source provenance and byte counts are in the manifest; these images belong outside runtime assets.
 
 Prefer purposeful silhouettes, concise impact effects, restrained camera shake, clear hit sounds and readable battlefield contrast over ever larger textures. An actual gameplay screenshot is the evidence for a successful visual milestone. Do not substitute a generated mock screenshot or concept board for that evidence.
+
+## First native-scale proof
+
+Developer Arena 0.1.0 bakes original articulated geometry to small eight-way sprite sheets and the industrial deck to orthographic plates. Actors share foot pivots and weapon sockets across their sampled poses. The editable sources are under `source_art/`. Evaluate directional footwork in motion before pricing or drawing additional armor families. Runtime dimensions, provenance and footage status are recorded in [the manifest](ART_ASSET_MANIFEST.md) and [test results](TEST_REPORT.md).

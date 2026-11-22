@@ -16,6 +16,9 @@ Recommend Godot 4 and a fixed three-quarter native 2D presentation because the u
 
 Use project-specific image budgets, preserved originals, compressed derivatives, bounded output and separate Markdown memory files. The reported prior image/response problem has not been diagnosed from incident logs; the safeguards reduce avoidable payload and import risks without claiming a universal platform limit.
 
-## New decision template
+## 22 November 2026 — First playable runtime
 
-Date — decision; reason; affected document; consequence; revisit condition if genuinely useful. Distinguish a reversible production default from a change to settled creative direction.
+- Pin Godot 4.7.2 official and matched desktop templates. The project starts on the title menu and supports `-- --arena` for direct review. [Architecture](06_TECHNICAL_ARCHITECTURE.md)
+- Ship one medium kit and four named presets now. Keep the isolated scenario controller as the only code responsible for spawning and reconstructing drills. [Developer Arena](12_DEVELOPER_ARENA.md)
+- Use original rendered directional plates for the first actor. Native captures show the relative human scale, a visible cloak and two distinct boot positions. Preserve source rigs and hold broader cosmetic production until strafing has been reviewed. [Art direction](03_ART_DIRECTION.md)
+- Keep 1280 × 720 as the native review size and embed data in each desktop executable so the playtest needs one launch target. Window/fullscreen and bindings persist independently of any campaign.

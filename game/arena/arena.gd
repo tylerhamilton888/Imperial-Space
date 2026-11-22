@@ -171,3 +171,8 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("arena_grid") and panel_kind!="defeat":
 		get_viewport().set_input_as_handled()
 		toggle_grid()
+
+func _exit_tree() -> void:
+	if DisplayServer.get_name() != "headless":
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		Input.set_custom_mouse_cursor(null, Input.CURSOR_CROSS)

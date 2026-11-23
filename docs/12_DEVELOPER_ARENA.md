@@ -1,5 +1,9 @@
 # Developer Arena
 
+## Playable breach scenario
+
+Version 0.2.0 adds **Play breach drill** to the title screen and **Breach drill** to the F1 scenario list. The service rifle breaks the shutter in four hits. Crossing the central opening toward the numbered bays and defeating both authored defenders completes the drill in either combat order. Both jambs still block movement and fire. F5 rebuilds the shutter, targets, defenders and player supplies; the F1 Clear command interrupts a live engagement. Run `godot --path game -- --breach` for direct entry.
+
 ## Purpose
 
 This is a permanent development feature and the first substantial playable deliverable. The owner must be able to launch the game, enter a fight, change equipment, break a wall and reset without playing a campaign introduction. Every later combat feature receives an Arena scenario before it is relied upon in a mission.

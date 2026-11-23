@@ -1,5 +1,15 @@
 # Verification record
 
+## Proving ground 0.2.0 • 22 November 2026
+
+Godot 4.7.2 stable on Linux. Imported the project, then ran `arena_checks.gd`, `combat_checks.gd`, `test_enemies.gd`, `verify_range_map.gd` and `breach_checks.gd` using `godot --headless --path game --fixed-fps 60 --script ../tools/tests/<suite>.gd` with isolated test profiles. All 125 checks passed (26 + 36 + 22 + 17 + 24). All 15 Python tests passed.
+
+The new suite fires four service rifle rounds, compares actor movement, shot rays and AI paths across the same segment before and after breach, checks both solid jambs, rejects a detour as objective progress, exercises target impact and restores the scenario. Removing defenders manually cannot award completion.
+
+Exported Linux and Windows with matching templates. Launched the Linux executable on an X11 desktop, clicked the title button, fired until the panel broke, and reset with F5. Recorded the [complete run](evidence/proving-ground-breach.mp4) at 1280 × 720 using the exported Linux game data and scripted mouse and movement input. Result: crossed the opening, defeated both active defenders, 85 health, one round in the magazine, and a successful F5 reset. Mesa llvmpipe reported unsupported VSync.
+
+Verified the Windows ZIP CRC and booted its embedded game pack to the breach drill under Linux. Native Windows execution awaits a PC playtest. Windows ZIP SHA-256: `d824d014300a851f6b11a72135396e10e01fc1fe9ebdd76955c3c86f3294f9e5`.
+
 ## Four scene art studies • 22 November 2026
 
 Imported the 1,465,499-byte artist kit ZIP into an empty directory, checked every member CRC, imported its project with Godot 4.7.2 stable and launched its default review scene. The clean extraction passed all four view loads, paired-wall state changes, target and terminal visibility, all four Heavy poses (one visible at a time), and instantiation of the individual reusable kit scenes. The packaged copy has 134 files and needs only the Godot editor to open.

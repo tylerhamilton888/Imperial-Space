@@ -10,7 +10,7 @@ var _solid_footprints: Array[Rect2] = []
 func _ready() -> void:
 	add_to_group(&"combat_navigation")
 
-func configure(walk_bounds: Rect2, obstacles: Array[Rect2]) -> void:
+func configure(walk_bounds: Rect2, obstacles: Array[Rect2], perimeter := PackedVector2Array()) -> void:
 	_grid.clear()
 	var bounds := walk_bounds.grow(-CLEARANCE)
 	var columns := maxi(1, floori(bounds.size.x / CELL))
@@ -26,10 +26,16 @@ func configure(walk_bounds: Rect2, obstacles: Array[Rect2]) -> void:
 	_solid_footprints.assign(obstacles)
 	for obstacle in obstacles:
 		_obstacles.append(obstacle.grow(CLEARANCE + 2.0))
+	var inset: Array[PackedVector2Array] = []
+	if not perimeter.is_empty():
+		inset = Geometry2D.offset_polygon(perimeter, -CLEARANCE)
 	for row in range(rows):
 		for column in range(columns):
 			var cell := Vector2i(column, row)
 			var center := _grid.get_point_position(cell)
+			if not inset.is_empty() and not Geometry2D.is_point_in_polygon(center, inset[0]):
+				_grid.set_point_solid(cell)
+				continue
 			for obstacle in _obstacles:
 				# Block every cell footprint touching an expanded wall. This also
 				# covers thin rails which could otherwise fall between grid centers.

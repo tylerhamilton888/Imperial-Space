@@ -1,6 +1,8 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.1.2** puts a medium-armored Crusader in a sunlit civic arsenal forecourt with a service rifle, sword and four repeatable drills.
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.2.0** opens with a playable breach drill in the Imperial Proving Ground. Break a shutter, advance through the opening under fire, and defeat a Khorgoth raider and gunner. The four forecourt presets remain available through Range controls.
+
+[Playthrough](docs/evidence/proving-ground-breach.mp4) · [In-game screenshot](docs/evidence/proving-ground-breach.jpg)
 
 [0.1.2 gameplay screenshot](docs/evidence/arsenal-forecourt.jpg) · [0.1.2 mixed-squad clip](docs/evidence/arsenal-forecourt.mp4)
 
@@ -8,7 +10,7 @@ A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.1.
 
 ## Play
 
-On Windows x86-64, extract the Windows ZIP and run `ImperialSpace.exe`. On Linux x86-64, extract the Linux ZIP, make `ImperialSpace.x86_64` executable if necessary, and launch it. Choose **Developer Arena** on the title screen. Press **F1 → Mixed squad** for the forecourt encounter, **Raider duel** for a single opponent, or choose **Dummy range** to learn the controls at your own pace.
+On Windows x86-64, extract the Windows ZIP and run `ImperialSpace.exe`. On Linux x86-64, extract the Linux ZIP, make `ImperialSpace.x86_64` executable if necessary, and launch it. Choose **Play breach drill** on the title screen. Aim at the shutter in the stone frame, hold left mouse, then use WASD to move through the opening toward the numbered bays. Press F5 to run it again. **Developer Arena** still opens the empty forecourt. Press **F1 → Mixed squad** for the forecourt encounter, **Raider duel** for a single opponent, or choose **Dummy range** to learn the controls at your own pace.
 
 | Default control | Action |
 | --- | --- |
@@ -31,6 +33,7 @@ Use **Godot 4.7.2 stable**, official build `ed1daf0bf`, with its Compatibility r
 godot --headless --path game --editor --import
 godot --path game
 godot --path game -- --arena
+godot --path game -- --breach
 ```
 
 Alternatively, import `game/project.godot` in the Godot Project Manager and press F6 on the boot scene or F5 to run the project. The development build also accepts `-- --arena` on its own executable. The runtime artwork is checked in. The optional bake scripts under `source_art/` are only needed to change the artwork.

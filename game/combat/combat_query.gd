@@ -25,6 +25,7 @@ static func melee_targets(attacker: CollisionObject2D, aim: Vector2, reach: floa
 		var direction := attacker.global_position.direction_to(target.global_position)
 		if not direction.is_zero_approx() and aim.dot(direction) < cos(half_angle):
 			continue
-		if first_hit(attacker, attacker.global_position, target.global_position, 1).is_empty():
+		var obstruction := first_hit(attacker, attacker.global_position, target.global_position, 1)
+		if obstruction.is_empty() or obstruction.collider == target:
 			targets.append(target)
 	return targets

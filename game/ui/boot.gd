@@ -21,7 +21,9 @@ var swap_mouse: CheckButton
 func _ready() -> void:
 	prefs.setup()
 	get_window().min_size = Vector2i(768,432)
-	if "--arena" in OS.get_cmdline_user_args():
+	if "--breach" in OS.get_cmdline_user_args():
+		enter_arena(Arena.BREACH_INDEX)
+	elif "--arena" in OS.get_cmdline_user_args():
 		enter_arena()
 	else:
 		main_menu()
@@ -57,12 +59,13 @@ func main_menu() -> void:
 	_title_line("Imperial",Vector2(65,136))
 	_title_line("Space",Vector2(65,226))
 	UI.rule(screen,72,363,335,Color("#c49b69"))
-	var start:=Instruments.button("Developer Arena",enter_arena,true)
+	var start:=Instruments.button("Play breach drill",enter_arena.bind(Arena.BREACH_INDEX),true)
 	UI.place(start,screen,Vector2(72,394),Vector2(306,55))
 	start.grab_focus()
+	UI.place(Instruments.button("Developer Arena", enter_arena), screen, Vector2(72,460), Vector2(306,45))
 	settings_button=Instruments.button("Settings",show_settings)
-	UI.place(settings_button,screen,Vector2(72,460),Vector2(148,42))
-	UI.place(Instruments.button("Quit",func(): get_tree().quit()),screen,Vector2(230,460),Vector2(148,42))
+	UI.place(settings_button,screen,Vector2(72,517),Vector2(148,42))
+	UI.place(Instruments.button("Quit",func(): get_tree().quit()),screen,Vector2(230,517),Vector2(148,42))
 	var build := UI.label("Development build  " + str(ProjectSettings.get_setting("application/config/version")),14,UI.PAPER)
 	build.add_theme_constant_override("outline_size",4)
 	build.add_theme_color_override("font_outline_color",Color("#111b2ce0"))
@@ -76,13 +79,14 @@ func _title_line(value: String, at: Vector2) -> void:
 	title.add_theme_constant_override("shadow_outline_size",2)
 	UI.place(title,screen,at)
 
-func enter_arena() -> void:
+func enter_arena(initial_scenario := 0) -> void:
 	mode = Session.ARENA
 	_drop(screen)
 	screen = null
 	arena = Arena.new()
 	arena.name = "DeveloperArena"
 	arena.prefs = prefs
+	arena.scenario_index = initial_scenario
 	arena.exit_requested.connect(main_menu)
 	add_child(arena)
 

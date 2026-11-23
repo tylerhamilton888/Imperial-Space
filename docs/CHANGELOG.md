@@ -1,5 +1,11 @@
 # Changelog
 
+## Developer Arena 0.2.0 • 22 November 2026
+
+- Integrated the numbered range bays, practice targets, terminal and paired intact/breached masonry art in a playable proving ground.
+- Added a three-stage drill with two defenders, objective feedback, physical jambs, and an opening that changes collision, gunfire and AI routing.
+- Added title-screen entry, a fifth range preset and direct launch with `-- --breach`. F5 rebuilds the scene.
+
 ## Scene asset kit • 22 November 2026
 
 - Added four owner-selected visual targets, an editable four-view art project, three backdrops, twenty independent prop/character studies and reusable HUD/dialogue art.

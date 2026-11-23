@@ -1,5 +1,9 @@
 # Decision Log
 
+## 22 November 2026 — Prove one breach in live play
+
+Use the illustrated proving ground for a short, repeatable destruction test before equipment expansion. Only the center shutter is breakable. The masonry jambs persist and only a crossing through the aperture advances the objective. Keep the forecourt presets reachable from Range controls.
+
 ## 22 November 2026 — Arena before mission
 
 Build the permanent Developer Arena and shared fundamentals first. The user explicitly requested direct combat, weapon and destruction testing without campaign traversal. The opening invasion is the first integrated milestone, not the first implementation task. See `08_PRODUCTION_ROADMAP.md` and `12_DEVELOPER_ARENA.md`.

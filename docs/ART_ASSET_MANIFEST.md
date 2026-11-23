@@ -1,5 +1,20 @@
 # Art Asset Manifest
 
+## Live proving ground • 0.2.0
+
+These eight runtime textures under `game/art/proving/` reuse the project’s proving-ground study derivatives. See [scene asset provenance](../art_studies/README.md). The background is split into four fixed tiles. The target, terminal and paired wall states have independent anchors. Status: playable review assets. No new third-party art.
+
+| Texture | Dimensions | Bytes |
+| --- | --- | ---: |
+| `plate_0_0.webp` | 640 × 360 | 97,450 |
+| `plate_0_1.webp` | 640 × 360 | 84,808 |
+| `plate_1_0.webp` | 640 × 360 | 88,570 |
+| `plate_1_1.webp` | 640 × 360 | 82,122 |
+| `range_terminal.webp` | 83 × 89 | 5,748 |
+| `slide_target.webp` | 70 × 71 | 3,848 |
+| `wall_breached.webp` | 203 × 171 | 17,908 |
+| `wall_intact.webp` | 203 × 171 | 16,666 |
+
 The user supplied these five concept studies from earlier conversations. Their compact derivatives live in `reference_art/`. Original names and hashes are recorded in [source_manifest.json](../reference_art/source_manifest.json).
 
 | Asset | Purpose | Dimensions | Bytes | Status |

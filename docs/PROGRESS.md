@@ -1,8 +1,14 @@
 # Progress
 
+## 22 November 2026 • Playable proving ground 0.2.0
+
+On `main`, the proving-ground study is now the fifth playable scenario. Choose **Play breach drill**. The medium Crusader can shoot the range targets, breach the shutter with rifle or sword, cross its aperture and secure the far side. F5 resets the drill. The four forecourt presets remain available. Godot 4.7.2. [Recorded playthrough](evidence/proving-ground-breach.mp4) · [Verification](TEST_REPORT.md)
+
+This increment delivers the first destruction fixture. Heavy armor, its cannon and hammer, the Karth Vale operation and the narrative bridge remain future gameplay work. The next equipment pass can use the same drill to compare loadouts.
+
 ## 22 November 2026 • Scene art preparation
 
-Four new acceptance boards are recorded with three assembled environments and a second proving-ground view for Heavy armor. Open the [Godot art studies](../art_studies/README.md) or inspect the [four rendered views](evidence/scene-art-studies.jpg). The latest playable combat build is 0.1.2. Next, bring the range bays and target stations into the Developer Arena and test floor contacts, weapon readability and moving silhouettes at the live camera scale.
+Four new acceptance boards are recorded with three assembled environments and a second proving-ground view for Heavy armor. Open the [Godot art studies](../art_studies/README.md) or inspect the [four rendered views](evidence/scene-art-studies.jpg). The playable build at this point was 0.1.2. The proving-ground integration is recorded above.
 
 ## 22 November 2026 • Developer Arena 0.1.2
 

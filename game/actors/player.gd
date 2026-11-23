@@ -156,7 +156,9 @@ func _update_aim_at(cursor: Vector2) -> void:
 	# Resolve clicks anywhere on an upright silhouette onto its ground position.
 	# The closest torso wins when figures overlap. Cover is still queried at contact.
 	var closest := INF
-	for member in get_tree().get_nodes_in_group(&"enemies"):
+	var candidates := get_tree().get_nodes_in_group(&"enemies")
+	candidates.append_array(get_tree().get_nodes_in_group(&"aim_fixtures"))
+	for member in candidates:
 		var actor := member as Node2D
 		if actor == null or actor.is_queued_for_deletion():
 			continue
@@ -168,6 +170,8 @@ func _update_aim_at(cursor: Vector2) -> void:
 		if bounds.has_point(local) and torso_distance < closest:
 			closest = torso_distance
 			target_point = actor.global_position
+			if actor.is_in_group("aim_fixtures"):
+				target_point.x += local.x
 	var direction := global_position.direction_to(target_point)
 	if not direction.is_zero_approx():
 		aim_direction = direction

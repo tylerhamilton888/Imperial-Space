@@ -11,13 +11,18 @@ const SCENARIOS := [
 	preload("res://arena/scenarios/empty.tres"),
 	preload("res://arena/scenarios/dummy.tres"),
 	preload("res://arena/scenarios/duel.tres"),
-	preload("res://arena/scenarios/squad.tres")
+	preload("res://arena/scenarios/squad.tres"),
+	preload("res://arena/scenarios/breach.tres")
 ]
 const SPAWNS := [Vector2(930,445),Vector2(880,500),Vector2(1090,430),Vector2(1080,570),Vector2(780,450),Vector2(770,550),Vector2(650,375),Vector2(1230,430),Vector2(1220,510),Vector2(1035,670),Vector2(830,340)]
 const CAP := 12
 const SIGHT = preload("res://art/aim_cursor.svg")
 
 var prefs: RefCounted
+const BREACH_INDEX := 4
+const ProvingMap = preload("res://arena/proving/proving_map.tscn")
+var drill_opponents: Array[Node2D] = []
+var drill_interrupted := false
 var scenario_index := 0
 var scenario: Scenario
 var session_rng := RandomNumberGenerator.new()
@@ -39,7 +44,7 @@ func _ready() -> void:
 	hud=Hud.new()
 	hud.arena=self
 	add_child(hud)
-	restart(0)
+	restart(scenario_index)
 
 func restart(index: int = -1) -> void:
 	if index >= 0 and index < SCENARIOS.size(): scenario_index=index
@@ -50,13 +55,15 @@ func restart(index: int = -1) -> void:
 		remove_child(simulation)
 		simulation.queue_free()
 	live_enemies.clear()
+	drill_opponents.clear()
+	drill_interrupted = false
 	session_rng.seed=scenario.seed_value
 	simulation=Node2D.new()
 	simulation.name="Simulation"
 	simulation.process_mode=Node.PROCESS_MODE_PAUSABLE
 	simulation.y_sort_enabled=true
 	add_child(simulation)
-	map=Map.instantiate()
+	map=ProvingMap.instantiate() if scenario.id == &"breach" else Map.instantiate()
 	map.grid_visible=grid_on
 	simulation.add_child(map)
 	player=Player.instantiate()
@@ -74,6 +81,12 @@ func restart(index: int = -1) -> void:
 	camera.limit_bottom=960
 	camera.position_smoothing_enabled=true
 	camera.position_smoothing_speed=8.5
+	if scenario.id == &"breach":
+		camera.zoom = Vector2.ONE
+		camera.limit_top = 0
+		camera.limit_right = 1280
+		camera.limit_bottom = 720
+		map.objective_changed.connect(hud.refresh)
 	player.add_child(camera)
 	camera.make_current()
 	camera.reset_smoothing()
@@ -81,6 +94,8 @@ func restart(index: int = -1) -> void:
 	player.died.connect(_on_defeat)
 	for i in scenario.roles.size():
 		_spawn(scenario.roles[i],scenario.positions[i],false)
+	if scenario.id == &"breach":
+		drill_opponents.assign(live_enemies)
 	set_panel("")
 	hud.refresh()
 	if scenario.id == &"empty":
@@ -97,6 +112,7 @@ func _spawn(role: String, pos: Vector2, passive: bool) -> void:
 
 func _on_enemy_died(e: Node2D) -> void:
 	live_enemies.erase(e)
+	drill_opponents.erase(e)
 	hud.refresh()
 
 func _on_defeat() -> void:
@@ -122,7 +138,25 @@ func spawn_selected() -> void:
 	var spawned:=spawn_count-remaining
 	hud.notice("Spawned %d of %d  •  %s" % [spawned,spawn_count,spawn_role.capitalize()])
 
+func _physics_process(_delta: float) -> void:
+	if panel_kind.is_empty() and scenario.id == &"breach" and is_instance_valid(player):
+		map.track_passage(player.position)
+
+func drill_instruction() -> String:
+	if drill_interrupted:
+		return "Drill cleared manually. Restart to try again."
+	if not map.gate.is_open:
+		return "Shoot the shutter  •  %d%% integrity" % roundi(100.0 * map.gate.vitality.health / map.gate.CAPACITY)
+	if not map.crossed:
+		return "Advance through the opening."
+	if not drill_opponents.is_empty():
+		return "Secure the far side  •  %d remaining" % drill_opponents.size()
+	return "Drill complete  •  %s to run again" % prefs.key_text("arena_reset")
+
 func clear_enemies() -> void:
+	if not drill_opponents.is_empty():
+		drill_interrupted = true
+		drill_opponents.clear()
 	for e: Node in simulation.get_children():
 		if e.scene_file_path == Enemy.resource_path:
 			simulation.remove_child(e)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://arena/scenario.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"breach"
+title = "Breach drill"
+purpose = "Break the shutter, cross the opening and clear the far side."
+seed_value = 1207
+player_start = Vector2(664, 548)
+roles = PackedStringArray("raider", "gunner")
+positions = PackedVector2Array(711, 293, 754, 259)

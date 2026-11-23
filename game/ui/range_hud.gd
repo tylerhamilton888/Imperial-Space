@@ -10,6 +10,8 @@ var base: Control
 var modal: ColorRect
 var scenario_name: Label
 var status: Label
+var objective_card: Panel
+var objective: Label
 var counter: Label
 var ammo: Label
 var meds: Label
@@ -36,6 +38,10 @@ func _ready() -> void:
 	UI.place(UI.label("Developer Arena",21,UI.PAPER,true),title,Vector2(57,6))
 	scenario_name = UI.label("",13,UI.GOLD)
 	UI.place(scenario_name,title,Vector2(58,34))
+	objective_card = Instruments.frame(base, Vector2(17,82), Vector2(354,54))
+	objective_card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	objective = UI.label("",16,UI.PAPER,true)
+	UI.place(objective,objective_card,Vector2(13,12))
 	var top := Instruments.frame(base,Vector2(848,15),Vector2(415,58))
 	counter=UI.label("",14,UI.GOLD)
 	UI.place(counter,top,Vector2(15,17))
@@ -96,6 +102,9 @@ func refresh() -> void:
 	var p=arena.player
 	if is_instance_valid(grid_option): grid_option.set_pressed_no_signal(arena.grid_on)
 	scenario_name.text=arena.scenario.title
+	objective_card.visible = arena.scenario.id == &"breach"
+	if objective_card.visible:
+		objective.text = arena.drill_instruction()
 	counter.text="%d   TARGET%s" % [arena.live_enemies.size(),"" if arena.live_enemies.size()==1 else "S"]
 	health_text.text=str(p.health)
 	hp_bar.max_value=p.max_health
@@ -163,7 +172,7 @@ func _range_controls() -> void:
 	UI.place(UI.label("Scenarios",23,UI.PAPER,true),p,Vector2(32,100))
 	for i: int in arena.SCENARIOS.size():
 		var scenario:Resource=arena.SCENARIOS[i]
-		var y:=151+i*66
+		var y:=146+i*59
 		var b:=Instruments.button(scenario.title,arena.restart.bind(i),i==arena.scenario_index)
 		b.tooltip_text=scenario.purpose
 		UI.place(b,p,Vector2(32,y),Vector2(168,45))

@@ -204,7 +204,7 @@ func drill_instruction() -> String:
 	if drill_interrupted:
 		return "Drill cleared manually. Restart to try again."
 	if not map.gate.is_open:
-		return "Shoot the shutter  •  %d%% integrity" % roundi(100.0 * map.gate.vitality.health / map.gate.CAPACITY)
+		return "Shoot the shutter  •  %d%% integrity" % roundi(100.0 * map.gate.vitality.health / map.gate.profile.capacity)
 	if not map.crossed:
 		return "Advance through the opening."
 	if not drill_opponents.is_empty():

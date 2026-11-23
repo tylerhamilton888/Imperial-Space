@@ -1,5 +1,19 @@
 # Art Asset Manifest
 
+## Destruction paint • 0.4.0
+
+Seven playable review textures derive from the existing proving-ground shutter, range cover and Khorgoth paintings. The [baker](../source_art/destruction/build.py) registers the intermediate states, rebuilds the exposed side-view leg, and splits the raider paint in all eight displayed headings. These derivatives inherit the source provenance recorded below. The runtime frame and atlas audits passed.
+
+| Runtime texture | Dimensions | Bytes |
+| --- | --- | ---: |
+| `cover_cracked.webp` | 180 × 87 | 13,546 |
+| `cover_rubble.webp` | 180 × 87 | 3,414 |
+| `cover_spalled.webp` | 180 × 87 | 11,792 |
+| `fixture_fragments.webp` | 96 × 32 | 1,938 |
+| `raider_break.webp` | 2048 × 388 | 182,852 |
+| `shutter_scored.webp` | 203 × 171 | 41,912 |
+| `shutter_torn.webp` | 203 × 171 | 41,360 |
+
 ## Approved armor comparison • 23 November 2026
 
 The owner’s armor-and-combat handoff includes a [1280 × 720 Medium/Heavy comparison](briefs/armor-and-combat/references/approved_medium_heavy_silhouettes.jpg), 308,605 bytes. Its [source manifest](briefs/armor-and-combat/REFERENCE_MANIFEST.json) records the original, derivative and approval scope. This is a design reference outside the runtime. Track production grips, feet, cloak anchors and draw order against the playable sample.

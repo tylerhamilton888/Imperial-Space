@@ -327,14 +327,21 @@ func _fire_rifle() -> void:
 	var endpoint := global_position + _aim_locked * float(KIT.rifle_range)
 	var hit := Query.first_hit(self, global_position, endpoint, 1 | 4)
 	var struck_actor := false
+	var visible_end := endpoint + TORSO
 	if not hit.is_empty():
 		endpoint = hit.position
+		visible_end = endpoint + TORSO
 		var body := hit.collider as Node2D
 		if body != null and body.has_method(&"receive_hit"):
 			var counter := is_instance_valid(_counter_target) and body == _counter_target
 			var damage: int = KIT.counter_shot_damage if counter else KIT.rifle_damage
 			var kind := &"counter_shot" if counter else &"bullet"
-			var result: Variant = body.call(&"receive_hit", self, _attack_id, damage, kind, _aim_locked)
+			var result: Variant
+			if body.has_method(&"receive_hit_at"):
+				visible_end = body.call(&"impact_surface", endpoint)
+				result = body.call(&"receive_hit_at", self, _attack_id, damage, kind, _aim_locked, endpoint)
+			else:
+				result = body.call(&"receive_hit", self, _attack_id, damage, kind, _aim_locked)
 			if counter and result in [&"hit", &"killed"]:
 				combat_event.emit(&"counter_shot", global_position, endpoint)
 			struck_actor = true
@@ -342,7 +349,6 @@ func _fire_rifle() -> void:
 	_update_view(0.0)
 	var muzzle: Vector2 = global_position + $Visual.muzzle_offset()
 	# If cover is closer than the drawn barrel, flash against its near face.
-	var visible_end := endpoint + TORSO
 	if (visible_end - muzzle).dot(_aim_locked) < 0:
 		muzzle = global_position + TORSO
 	_feedback(&"fire", muzzle, visible_end)

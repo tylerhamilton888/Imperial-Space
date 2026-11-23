@@ -7,6 +7,7 @@ const Profile = preload("res://actors/enemies/enemy_profile.gd")
 const Vitality = preload("res://combat/vitality.gd")
 const Query = preload("res://combat/combat_query.gd")
 const Feedback = preload("res://combat/feedback.gd")
+const Fragment = preload("res://combat/impact_fragment.gd")
 const Routes = preload("res://actors/enemies/ground_routes.gd")
 const View = preload("res://art/actor_view.gd")
 const DUMMY: Profile = preload("res://actors/enemies/dummy.tres")
@@ -52,6 +53,8 @@ var _impulse := Vector2.ZERO
 var _impact_hold := 0.0
 var _exposed := false
 var _blade_cued := false
+var _sever_direction := Vector2.ZERO
+var _severed := false
 
 func _ready() -> void:
 	match role:
@@ -75,13 +78,19 @@ func _physics_process(delta: float) -> void:
 		_update_art()
 		return
 	# Resolve displacement against arena solids, including jambs and cover.
-	if _impulse.length_squared() > 4.0 and state != &"dead":
+	if state == &"dead" and not _severed and not _sever_direction.is_zero_approx():
+		Fragment.split_raider(get_parent(),global_position,facing,_sever_direction)
+		_view.hide()
+		_severed = true
+		_impulse = Vector2.ZERO
+	if _impulse.length_squared() > 4.0:
 		move_and_collide(_impulse * delta)
 		_impulse = _impulse.move_toward(Vector2.ZERO, 1050.0 * delta)
 	_elapsed += delta
 	if state == &"dead":
 		if _elapsed >= _duration:
-			_view.leave_fallen_pose(get_parent(), global_position)
+			if not _severed:
+				_view.leave_fallen_pose(get_parent(), global_position)
 			queue_free()
 	elif role != &"dummy" and not passive:
 		_behavior(delta)
@@ -176,16 +185,21 @@ func _resolve_strike() -> void:
 	if role == &"gunner":
 		var end := global_position + _strike_direction * profile.attack_reach
 		var hit := Query.first_hit(self, global_position, end, 1 | 2 | 4)
+		var visible_end := end + ANKLE_TO_CHEST
 		if not hit.is_empty():
 			end = hit["position"]
+			visible_end = end + ANKLE_TO_CHEST
 			var collider := hit["collider"] as Node2D
 			if collider == _target:
 				_target.call(&"receive_hit", self, _attack_id, profile.damage, &"bullet", _strike_direction)
+			elif collider != null and collider.has_method(&"receive_hit_at"):
+				visible_end = collider.call(&"impact_surface",end)
+				collider.call(&"receive_hit_at",self,_attack_id,profile.damage,&"bullet",_strike_direction,end)
 			elif collider != null and collider.is_in_group(&"combatants"):
 				var result: StringName = collider.call(&"receive_hit", self, _attack_id, profile.damage, &"crossfire", _strike_direction)
 				if result in [&"hit", &"killed"]:
 					crossfire_hit.emit()
-		Feedback.play(self, &"enemy_shot", global_position + _view.muzzle_offset(), end + ANKLE_TO_CHEST)
+		Feedback.play(self, &"enemy_shot", global_position + _view.muzzle_offset(), visible_end)
 	else:
 		var offset := _target.global_position - global_position
 		var start := global_position + ANKLE_TO_CHEST
@@ -220,7 +234,9 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 		_impact_hold = 0.065 if impact == &"counter_hit" else 0.028
 	if result == &"killed":
 		set_deferred(&"collision_layer", 0)
-		set_deferred(&"collision_mask", 0)
+		set_deferred(&"collision_mask", 1)
+		if role == &"raider" and kind in [&"melee", &"return_cut", &"riposte"]:
+			_sever_direction = incoming.normalized() if not incoming.is_zero_approx() else facing
 		_change_state(&"dead", DEATH_TIME)
 		remove_from_group(&"enemies")
 		died.emit()

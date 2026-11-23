@@ -1,5 +1,9 @@
 # Decision Log
 
+## 23 November 2026 — Author the break and simulate the aftermath
+
+Give structural fixtures four registered painted plates and one solid footprint. Use health thresholds to select the plate, then release the footprint on collapse. Give the first severable enemy a painted body and weapon arm in each displayed heading. A shared ground sweep and short vertical arc give the remains direction and weight. This controls the final silhouette and lets the artist add another material or enemy family without drawing every fragment in flight. [Arena acceptance](12_DEVELOPER_ARENA.md#destruction-review)
+
 ## 23 November 2026 — Pair the duel review with the armor proof
 
 Adopt the supplied combat and armor briefs for the [next arena review](08_PRODUCTION_ROADMAP.md#next-playable-review-after-030). Medium and Heavy have approved outlines. The art review tests those outlines at equal height while the combat pass repairs one decisive exchange. Preserve responsive ordinary actions, independent aim, active defense and the existing equipment rules.

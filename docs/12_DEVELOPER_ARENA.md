@@ -1,5 +1,13 @@
 # Developer Arena
 
+## Destruction review
+
+In the Breach drill, shoot a barricade once per beat. The first round cracks the facing, the second removes a section, and the third leaves a low mound that actors and shots can cross. The shutter takes four rifle rounds. The frame's masonry jambs continue to block. The drill objective still requires passage through the center aperture.
+
+In the Counter duel, land a killing right-click or parry into a riposte. Check that the arm and blade leave the body on the contact beat, the torso lands first, and both settle on the near side of solid cover. Compare the same opponent killed by rifle. F5 restores all fixtures and clears the floor.
+
+Future fixtures supply four matching plates, their origin, scale, profile and footprint. Each new enemy breakup needs matching directional paint, per-piece spin pivots and a reconstructed silhouette beneath the cut. Reserve extra separation for attacks and victims where the result reads at normal zoom.
+
 ## Counter duel and Crossfire drill • 0.3.0
 
 **Play counter duel** and `-- --duel` enter the raider preset with a closer camera and contextual controls for a parry follow-up. **F1 → Crossfire drill** sets a gunner and raider on intersecting approaches. The orange line shows the gunner's committed direction. Pull the raider across it and finish the squad. F5 rebuilds either encounter.

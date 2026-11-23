@@ -1,5 +1,10 @@
 # Changelog
 
+## Developer Arena 0.4.0 • 23 November 2026
+
+- The breach shutter dents, tears and opens. Both waist-high barricades crack, lose a section and collapse into traversable rubble. Rifle tracers, impacts, material sounds and debris originate on the struck fixture.
+- A lethal sword hit splits the Khorgoth raider into a collapsing torso and a separately tumbling weapon arm. Rifle kills retain the whole body and carry through in the hit direction. Fallen parts bounce, stop at cover and clear with the encounter.
+
 ## Developer Arena 0.3.0 • 22 November 2026
 
 - Added a sword riposte and rifle countershot after a timed frontal parry. A connected ordinary slash accepts a second press during recovery for a return cut.

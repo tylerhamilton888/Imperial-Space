@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://combat/fixture_profile.gd" id="1"]
+[ext_resource type="Texture2D" path="res://art/range/north_cover.webp" id="2"]
+[ext_resource type="Texture2D" path="res://art/destruction/cover_cracked.webp" id="3"]
+[ext_resource type="Texture2D" path="res://art/destruction/cover_spalled.webp" id="4"]
+[ext_resource type="Texture2D" path="res://art/destruction/cover_rubble.webp" id="5"]
+
+[resource]
+script = ExtResource("1")
+plates = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+capacity = 72
+art_origin = Vector2(-63,-57)
+art_scale = Vector2(0.70,0.82)
+aim_bounds = Rect2(-56,-33,112,40)
+surface_width = Vector2(-53,53)
+contact_height = 17.0
+masonry = true

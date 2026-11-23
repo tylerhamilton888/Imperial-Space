@@ -1,5 +1,13 @@
 # Verification record
 
+## Destruction 0.4.0 • 23 November 2026
+
+All 205 Godot gameplay checks passed at 60 fixed frames per second. The six prior suites cover 161 checks. The 44 new checks in `tools/tests/destruction_checks.gd` cover damage thresholds, shots against closed and open cover, route updates, spawn clearance, duplicate deaths, separated remains, directional force near a wall, cleanup, the 48-piece cap and expiry. All 15 Python tests passed.
+
+Recorded the Breach drill and Counter duel through the game action resolver at 1280 × 720, 30 fps, under X11 with Mesa llvmpipe. The barricade and shutter both reached their final phase. A timed guard against a live raider produced a lethal riposte. The [normal-speed capture](evidence/destruction-pass.mp4) crops the action for inspection.
+
+Exported an embedded Windows x86-64 build using the matching 4.7.2 launcher from the previous release. Verified its PE pack section, ZIP CRC and boot into the Breach drill. The 44 destruction checks passed again against the exact extracted game pack under Linux. Native Windows execution remains unverified. ZIP SHA-256 `438f88ba055e778f7e83d5cb02ea300ef0ccf9176edb16b47b810e9aceaf3e9b`.
+
 ## Counter duel and crossfire 0.3.0 • 22 November 2026
 
 Ran Godot 4.7.2 headless with `--fixed-fps 60 --script ../tools/tests/<suite>.gd` and separate test profiles. All 161 gameplay checks passed across arena (26), combat (36), enemy (22), map (17), breach (24) and counter (36) suites. All 15 Python tests passed. The counter suite checks a parry spent through guard, target binding, expiry, a blocked shot, a missed slash, a buffered return, reset, and a squadmate entering a locked firing lane.

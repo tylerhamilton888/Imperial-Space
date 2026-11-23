@@ -1,6 +1,6 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.3.0** features the counter duel, crossfire drill and destructible proving ground. [Watch the combat playtest](docs/evidence/counter-duel.mp4).
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.0** adds destructible barricades, a shutter that tears open under fire, and a directional sword finish against the Khorgoth raider. [Watch the destruction playtest](docs/evidence/destruction-pass.mp4).
 
 [0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 

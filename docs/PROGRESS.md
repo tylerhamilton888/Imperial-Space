@@ -1,5 +1,11 @@
 # Progress
 
+## 23 November 2026 • Destruction review 0.4.0
+
+Choose **Play breach drill** for the four-stage shutter and two collapsible stone barricades. Choose **Play counter duel** for the first directional Khorgoth dismemberment. [Watch the nine-second gameplay capture](evidence/destruction-pass.mp4). The Windows x86-64 build uses Godot 4.7.2. [Verification](TEST_REPORT.md).
+
+Next review the force of the landing and the readability of the flying weapon arm at normal zoom. Next content targets are a heavy hammer versus an armored defender and a breakable support whose collapse changes a route. The Medium return-cut ending and equal-height armor proof remain open.
+
 ## 23 November 2026 • Next owner review
 
 Playable baseline: 0.3.0, `20164c4`. The new [review sequence](08_PRODUCTION_ROADMAP.md#next-playable-review-after-030) pairs one repaired sword exchange with the equal-height Medium/Heavy silhouette proof. Heavy currently has art studies. The runtime protagonist is Medium. The immediate code targets are lethal displacement and the return-cut finish.

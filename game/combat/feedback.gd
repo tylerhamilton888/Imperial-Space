@@ -17,7 +17,7 @@ static func play(owner_node: Node2D, kind: StringName, start_world: Vector2, end
 	effect._endpoint = end_world - start_world
 	if kind in [&"fire", &"enemy_shot"]:
 		effect._lifetime = 0.48
-	elif kind in [&"counter_hit", &"parried"]:
+	elif kind in [&"counter_hit", &"parried", &"shutter_break"]:
 		effect._lifetime = 0.32
 	effect.top_level = true
 	effect.z_index = 32
@@ -36,7 +36,7 @@ static func play(owner_node: Node2D, kind: StringName, start_world: Vector2, end
 	sound.play()
 
 static func _synthesize(kind: StringName) -> AudioStreamWAV:
-	var duration := 0.32 if kind in [&"counter_hit", &"parried", &"fire"] else 0.17
+	var duration := 0.32 if kind in [&"counter_hit", &"parried", &"fire", &"shutter_break"] else 0.17
 	var rng := RandomNumberGenerator.new()
 	rng.seed = absi(kind.hash())
 	var samples := PackedByteArray()
@@ -55,6 +55,14 @@ static func _synthesize(kind: StringName) -> AudioStreamWAV:
 				sample += noise * exp(-76.0 * t) * 0.65 + smoothed * exp(-28.0 * t) * 0.32
 			&"melee", &"enemy_swing", &"dodge":
 				sample = smoothed * sin(PI * t / duration) * exp(-10.0 * t) * 0.9
+			&"stone_hit", &"stone_break":
+				var tail := 18.0 if kind == &"stone_break" else 40.0
+				sample = smoothed * exp(-tail*t) * 0.86 + sin(TAU*84*t)*exp(-35*t)*0.6
+				sample += noise*exp(-70*absf(t-0.038))*0.32
+			&"shutter_tear", &"shutter_break":
+				var pitch := 72.0 if kind == &"shutter_break" else 218.0
+				sample = (sin(TAU*pitch*t) + 0.32*sin(TAU*pitch*2.73*t))*exp(-16.0*t)*0.55
+				sample += smoothed*(exp(-27.0*t)+0.48*exp(-50.0*absf(t-0.065)))*0.6
 			&"blade_cue":
 				sample = sin(TAU*(890.0*t + 1770.0*t*t))*exp(-37.0*t)*0.48
 			&"step":
@@ -105,9 +113,9 @@ func _draw() -> void:
 			_draw_blade_trail()
 		&"counter_hit", &"blade_hit", &"bullet_hit":
 			_draw_impact()
-		&"hit", &"killed", &"parried", &"guarded":
+		&"hit", &"killed", &"parried", &"guarded", &"shutter_tear", &"shutter_break":
 			var progress := clampf(_age / _lifetime, 0, 1)
-			var color := Color("#f7ce8b") if _kind in [&"hit", &"killed"] else Color("#99f1f6")
+			var color := Color("#f7ce8b") if _kind in [&"hit", &"killed", &"shutter_tear", &"shutter_break"] else Color("#99f1f6")
 			color.a = 1 - progress
 			for index in range(6):
 				var ray := Vector2.from_angle(index * TAU / 6 + 0.22)

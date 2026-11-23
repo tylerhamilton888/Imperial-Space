@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://art/proving/backdrop.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://art/proving/slide_target.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://art/proving/range_terminal.tscn" id="4"]
-[ext_resource type="Texture2D" path="res://art/range/north_cover.webp" id="5"]
+[ext_resource type="Resource" path="res://arena/proving/cover.tres" id="5"]
 [ext_resource type="Script" path="res://arena/proving/breach_gate.gd" id="6"]
 [ext_resource type="Script" path="res://arena/scale_grid.gd" id="7"]
 [ext_resource type="Script" path="res://arena/proving/steel_target.gd" id="8"]
@@ -14,6 +14,12 @@ size = Vector2(86, 18)
 
 [sub_resource type="RectangleShape2D" id="Steel"]
 size = Vector2(56, 14)
+
+[sub_resource type="RectangleShape2D" id="WestWing"]
+size = Vector2(113,20)
+
+[sub_resource type="RectangleShape2D" id="EastWing"]
+size = Vector2(110,20)
 
 [node name="ProvingGround" type="Node2D"]
 y_sort_enabled = true
@@ -62,16 +68,22 @@ script = ExtResource("8")
 [node name="Foot" type="CollisionShape2D" parent="SteelTarget2"]
 shape = SubResource("Steel")
 
-[node name="WestWing" type="Sprite2D" parent="."]
-position = Vector2(537, 406)
-scale = Vector2(0.70, 0.82)
-centered = false
-offset = Vector2(-90, -82)
-texture = ExtResource("5")
+[node name="WestWing" type="StaticBody2D" parent="."]
+position = Vector2(536.5,396)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("6")
+profile = ExtResource("5")
 
-[node name="EastWing" type="Sprite2D" parent="."]
-position = Vector2(878, 438)
-scale = Vector2(0.70, 0.82)
-centered = false
-offset = Vector2(-90, -82)
-texture = ExtResource("5")
+[node name="Foot" type="CollisionShape2D" parent="WestWing"]
+shape = SubResource("WestWing")
+
+[node name="EastWing" type="StaticBody2D" parent="."]
+position = Vector2(878,428)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("6")
+profile = ExtResource("5")
+
+[node name="Foot" type="CollisionShape2D" parent="EastWing"]
+shape = SubResource("EastWing")

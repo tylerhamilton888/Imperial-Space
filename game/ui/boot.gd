@@ -21,7 +21,9 @@ var swap_mouse: CheckButton
 func _ready() -> void:
 	prefs.setup()
 	get_window().min_size = Vector2i(768,432)
-	if "--breach" in OS.get_cmdline_user_args():
+	if "--duel" in OS.get_cmdline_user_args():
+		enter_arena(Arena.DUEL_INDEX)
+	elif "--breach" in OS.get_cmdline_user_args():
 		enter_arena(Arena.BREACH_INDEX)
 	elif "--arena" in OS.get_cmdline_user_args():
 		enter_arena()
@@ -59,13 +61,14 @@ func main_menu() -> void:
 	_title_line("Imperial",Vector2(65,136))
 	_title_line("Space",Vector2(65,226))
 	UI.rule(screen,72,363,335,Color("#c49b69"))
-	var start:=Instruments.button("Play breach drill",enter_arena.bind(Arena.BREACH_INDEX),true)
+	var start:=Instruments.button("Play counter duel",enter_arena.bind(Arena.DUEL_INDEX),true)
 	UI.place(start,screen,Vector2(72,394),Vector2(306,55))
 	start.grab_focus()
-	UI.place(Instruments.button("Developer Arena", enter_arena), screen, Vector2(72,460), Vector2(306,45))
+	UI.place(Instruments.button("Play breach drill", enter_arena.bind(Arena.BREACH_INDEX)), screen, Vector2(72,459), Vector2(306,44))
+	UI.place(Instruments.button("Developer Arena", enter_arena), screen, Vector2(72,512), Vector2(306,42))
 	settings_button=Instruments.button("Settings",show_settings)
-	UI.place(settings_button,screen,Vector2(72,517),Vector2(148,42))
-	UI.place(Instruments.button("Quit",func(): get_tree().quit()),screen,Vector2(230,517),Vector2(148,42))
+	UI.place(settings_button,screen,Vector2(72,566),Vector2(148,42))
+	UI.place(Instruments.button("Quit",func(): get_tree().quit()),screen,Vector2(230,566),Vector2(148,42))
 	var build := UI.label("Development build  " + str(ProjectSettings.get_setting("application/config/version")),14,UI.PAPER)
 	build.add_theme_constant_override("outline_size",4)
 	build.add_theme_color_override("font_outline_color",Color("#111b2ce0"))
@@ -114,6 +117,11 @@ func show_settings() -> void:
 	full.toggled.connect(prefs.set_fullscreen)
 	UI.place(full,pane,Vector2(469,84))
 	UI.rule(pane,30,142,608,Color("#4b5b60"))
+	var impact := CheckButton.new()
+	impact.text = "Impact camera"
+	impact.button_pressed = bool(prefs.config.get_value("display", "impact_camera", true))
+	impact.toggled.connect(prefs.set_impact_camera)
+	UI.place(impact,pane,Vector2(457,152),Vector2(179,35))
 	UI.place(UI.label("Keyboard bindings",24,UI.PAPER,true),pane,Vector2(30,157))
 	UI.place(UI.label("Select an action, then press a key.",14,UI.SOFT),pane,Vector2(32,198))
 	bind_buttons.clear()

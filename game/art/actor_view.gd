@@ -2,6 +2,7 @@ extends Node2D
 ## Directional plates share one pivot at the feet. Combat collision is owned by the actor.
 
 const DENSITY := 1.5
+const STRAFE = preload("res://art/movement/medium_strafe.webp")
 const DATA := preload("res://art/actors/poses.json")
 const SHEETS := {
 	&"crusader": [preload("res://art/actors/crusader_0.webp"), preload("res://art/actors/crusader_1.webp"),
@@ -19,7 +20,9 @@ var travel := 0.0
 var action: StringName = &"idle"
 var phase := 0.0
 var feedback := 0.0
+var _recoil := Vector2.ZERO
 var _stride := 0.0
+var _strafing := false
 var _reverse_stride := false
 @onready var _cast_shadow := Sprite2D.new()
 
@@ -45,10 +48,19 @@ func pose(aim: Vector2, movement: Vector2, state: StringName, progress: float, _
 	travel = clampf(movement.length() / 190.0, 0.0, 1.0)
 	action = state
 	phase = progress
-	_reverse_stride = movement.dot(aim) < 0
+	var lateral := aim.cross(movement.normalized())
+	_strafing = role == "crusader" and absf(lateral) >= 0.70
+	_reverse_stride = lateral < 0 if _strafing else movement.dot(aim) < 0
+	queue_redraw()
+
+func kick(direction: Vector2, strength: float) -> void:
+	_recoil = direction.normalized() * strength
 	queue_redraw()
 
 func _process(delta: float) -> void:
+	if not _recoil.is_zero_approx():
+		_recoil = _recoil.move_toward(Vector2.ZERO, delta * 38.0)
+		queue_redraw()
 	if travel > 0.01:
 		var direction := -1.0 if _reverse_stride else 1.0
 		_stride = fposmod(_stride + delta * travel * direction * 2.15, 1.0)
@@ -87,9 +99,42 @@ func _draw() -> void:
 	var pivot := Vector2(pivot_data[0], pivot_data[1])
 	var source := Rect2(Vector2(_heading(), row % 8) * cell, cell)
 	var sprite: Texture2D = SHEETS[role][floori(row / 8.0)]
+	if _strafing and travel > 0.01 and id in [&"walk", &"fire"]:
+		sprite = STRAFE
+		source.position.y = floori(_stride * 8.0) * cell.y
 	_cast_shadow.texture = sprite
 	_cast_shadow.region_rect = source
 	_cast_shadow.offset = -pivot
 	var tint := Color.WHITE * (1.0 + 0.65 * feedback)
 	tint.a = 1.0
+	# Shear about the boot pivot: the torso absorbs the blow while the feet
+	# and their collision stay planted. Vertical recoil compresses the pose.
+	var transform := Transform2D(Vector2.RIGHT, Vector2(-_recoil.x / 90.0, 1.0 - _recoil.y / 110.0), Vector2.ZERO)
+	draw_set_transform_matrix(transform)
 	draw_texture_rect_region(sprite, Rect2(-pivot / DENSITY, cell / DENSITY), source, tint)
+
+## Leave a brief, collision-free silhouette after the combat actor is retired.
+## Its owning encounter removes it immediately on clear or reset.
+func leave_fallen_pose(ground: Node2D, feet: Vector2) -> void:
+	var poses: Dictionary = DATA.data[role].poses
+	if not poses.has(&"dead"):
+		return
+	var row: int = poses[&"dead"][0]
+	var size_data: Array = DATA.data[role].cell
+	var pivot: Array = DATA.data[role].pivot
+	var cell := Vector2(size_data[0], size_data[1])
+	var remains := Sprite2D.new()
+	remains.texture = SHEETS[role][floori(row / 8.0)]
+	remains.centered = false
+	remains.region_enabled = true
+	remains.region_filter_clip_enabled = true
+	remains.region_rect = Rect2(Vector2(_heading(), row % 8)*cell, cell)
+	remains.offset = -Vector2(pivot[0], pivot[1])
+	remains.scale = Vector2.ONE / DENSITY
+	ground.add_child(remains)
+	remains.global_position = feet
+	remains.add_to_group(&"fallen_actors")
+	var fade := remains.create_tween()
+	fade.tween_interval(1.5)
+	fade.tween_property(remains,"modulate:a",0.0,0.5)
+	fade.tween_callback(remains.queue_free)

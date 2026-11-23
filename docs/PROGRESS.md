@@ -1,5 +1,11 @@
 # Progress
 
+## 22 November 2026 • Counter duel and crossfire 0.3.0
+
+On `main`, the Medium kit now supports two target-specific parry counters, a confirmed second sword cut, physical impact reactions and eight-direction sidestepping. Choose **Play counter duel** from the title screen, then try **F1 → Crossfire drill**. Gunner shots lock on commit and a raider crossing that line can absorb the hit. The proving ground remains playable. [Normal-speed capture](evidence/counter-duel.mp4) · [Test report](TEST_REPORT.md).
+
+Next review: test the guard cue by ear and sight and try both finishes against pressure from a mixed squad. Heavy equipment remains a later milestone.
+
 ## 22 November 2026 • Playable proving ground 0.2.0
 
 On `main`, the proving-ground study is now the fifth playable scenario. Choose **Play breach drill**. The medium Crusader can shoot the range targets, breach the shutter with rifle or sword, cross its aperture and secure the far side. F5 resets the drill. The four forecourt presets remain available. Godot 4.7.2. [Recorded playthrough](evidence/proving-ground-breach.mp4) · [Verification](TEST_REPORT.md)

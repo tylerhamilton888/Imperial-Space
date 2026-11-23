@@ -1,5 +1,9 @@
 # Combat and Equipment
 
+## Current Medium combat tuning • 0.3.0
+
+A parry opens the attacker for 0.86 seconds. The next aimed sword attack can riposte for 90 damage; the rifle can counter for 62. A normal sword hit (38) accepts a second press in recovery for a returning cut (49). An ordinary miss grants no follow-up. Raiders have 85 health. Gunner shots evaluate the first body or solid in their locked lane: movement after commitment can make them stagger their own raider. These are arena playtest values.
+
 ## Purpose and authority
 
 Build a responsive, readable action RPG in which one exceptional man breaks a battlefield open. The Crusader is already formidable at the start. His equipment and good decisions produce specialization; he never needs to train basic competence. This specification supplies implementation defaults, not measured balance results. All numbers below are provisional tuning values.

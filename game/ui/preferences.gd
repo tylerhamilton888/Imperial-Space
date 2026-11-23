@@ -85,3 +85,7 @@ func set_fullscreen(on: bool, persist := true) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if on else DisplayServer.WINDOW_MODE_WINDOWED)
 	config.set_value("display","fullscreen",on)
 	if persist: config.save(FILE)
+
+func set_impact_camera(on: bool) -> void:
+	config.set_value("display", "impact_camera", on)
+	config.save(FILE)

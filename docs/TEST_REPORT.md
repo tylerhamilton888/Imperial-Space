@@ -1,5 +1,13 @@
 # Verification record
 
+## Counter duel and crossfire 0.3.0 • 22 November 2026
+
+Ran Godot 4.7.2 headless with `--fixed-fps 60 --script ../tools/tests/<suite>.gd` and separate test profiles. All 161 gameplay checks passed across arena (26), combat (36), enemy (22), map (17), breach (24) and counter (36) suites. All 15 Python tests passed. The counter suite checks a parry spent through guard, target binding, expiry, a blocked shot, a missed slash, a buffered return, reset, and a squadmate entering a locked firing lane.
+
+Launched the Linux executable on an X11 desktop, selected the duel with the mouse, fired and restarted with F5. Recorded the exported Linux game data at 1280 × 720 and 30 fps using gameplay inputs. Across three rematches a riposte defeated a full-health raider, a countershot plus a normal round defeated the next, and a first hit plus a buffered return cut defeated the third. In a separate run, selected Crossfire from F1, sidestepped after the gunner committed, and finished both opponents at 100 health. The [14.6-second clip](evidence/counter-duel.mp4) includes all four exchanges at normal speed. Mesa llvmpipe reported unsupported VSync.
+
+The Windows x86-64 ZIP passed CRC verification and its embedded game data booted to the duel under Linux. Native Windows execution remains untested. ZIP SHA-256: `255a12424c0a893d5f59ebc70b393f073ae7c861189711f2b7eedcd54fcb2cc1`.
+
 ## Proving ground 0.2.0 • 22 November 2026
 
 Godot 4.7.2 stable on Linux. Imported the project, then ran `arena_checks.gd`, `combat_checks.gd`, `test_enemies.gd`, `verify_range_map.gd` and `breach_checks.gd` using `godot --headless --path game --fixed-fps 60 --script ../tools/tests/<suite>.gd` with isolated test profiles. All 125 checks passed (26 + 36 + 22 + 17 + 24). All 15 Python tests passed.

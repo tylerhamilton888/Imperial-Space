@@ -102,7 +102,7 @@ func refresh() -> void:
 	var p=arena.player
 	if is_instance_valid(grid_option): grid_option.set_pressed_no_signal(arena.grid_on)
 	scenario_name.text=arena.scenario.title
-	objective_card.visible = arena.scenario.id == &"breach"
+	objective_card.visible = arena.scenario.id in [&"breach", &"duel", &"crossfire"]
 	if objective_card.visible:
 		objective.text = arena.drill_instruction()
 	counter.text="%d   TARGET%s" % [arena.live_enemies.size(),"" if arena.live_enemies.size()==1 else "S"]
@@ -120,6 +120,8 @@ func refresh() -> void:
 
 func _process(dt: float) -> void:
 	if is_instance_valid(arena.player):
+		if arena.scenario.id == &"duel":
+			objective.text = arena.drill_instruction()
 		var now:String=arena.player.action
 		status.text=STATUS_TEXT.get(now,"")
 	if toast_time>0:
@@ -128,7 +130,7 @@ func _process(dt: float) -> void:
 
 func notice(message: String) -> void:
 	toast.text=message
-	toast_time=2.2
+	toast_time=1.2
 
 func show_panel(kind: String) -> void:
 	grid_option=null
@@ -172,7 +174,7 @@ func _range_controls() -> void:
 	UI.place(UI.label("Scenarios",23,UI.PAPER,true),p,Vector2(32,100))
 	for i: int in arena.SCENARIOS.size():
 		var scenario:Resource=arena.SCENARIOS[i]
-		var y:=146+i*59
+		var y:=146+i*50
 		var b:=Instruments.button(scenario.title,arena.restart.bind(i),i==arena.scenario_index)
 		b.tooltip_text=scenario.purpose
 		UI.place(b,p,Vector2(32,y),Vector2(168,45))

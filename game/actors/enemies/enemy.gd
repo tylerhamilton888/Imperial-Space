@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal died
+signal crossfire_hit
 
 const Profile = preload("res://actors/enemies/enemy_profile.gd")
 const Vitality = preload("res://combat/vitality.gd")
@@ -47,6 +48,10 @@ var _strike_direction := Vector2.DOWN
 var _telegraph_length := 0.0
 var _attack_id := 0
 var _flash := 0.0
+var _impulse := Vector2.ZERO
+var _impact_hold := 0.0
+var _exposed := false
+var _blade_cued := false
 
 func _ready() -> void:
 	match role:
@@ -58,14 +63,25 @@ func _ready() -> void:
 	_sense_delay = float(posmod(roundi(position.x + 3.0 * position.y), 7)) / 60.0
 	_view.role = role
 	add_to_group(&"enemies")
+	if role != &"dummy":
+		add_to_group(&"combatants")
 	_update_art()
 
 func _physics_process(delta: float) -> void:
 	_flash = maxf(0.0, _flash - delta * 4.0)
 	velocity = Vector2.ZERO
+	if _impact_hold > 0.0:
+		_impact_hold -= delta
+		_update_art()
+		return
+	# Resolve displacement against arena solids, including jambs and cover.
+	if _impulse.length_squared() > 4.0 and state != &"dead":
+		move_and_collide(_impulse * delta)
+		_impulse = _impulse.move_toward(Vector2.ZERO, 1050.0 * delta)
 	_elapsed += delta
 	if state == &"dead":
 		if _elapsed >= _duration:
+			_view.leave_fallen_pose(get_parent(), global_position)
 			queue_free()
 	elif role != &"dummy" and not passive:
 		_behavior(delta)
@@ -83,6 +99,10 @@ func _behavior(delta: float) -> void:
 		return
 	match state:
 		&"windup":
+			if role == &"raider" and not _blade_cued and _duration - _elapsed <= 0.20:
+				_blade_cued = true
+				var blade := global_position + ANKLE_TO_CHEST + facing * 29.0
+				Feedback.play(self, &"blade_cue", blade, blade)
 			if _elapsed >= _duration:
 				_resolve_strike()
 		&"recover", &"stagger":
@@ -107,6 +127,19 @@ func _search_or_engage(delta: float) -> void:
 		return
 	var toward := _last_known - global_position
 	if _can_see and toward.length() <= profile.engage_range:
+		if role == &"gunner":
+			var lane := Query.first_hit(self, global_position, _target.global_position, 1 | 2 | 4)
+			var blocker := lane.get("collider") as Node2D
+			if blocker != null and blocker.is_in_group(&"enemies"):
+				# Seek a clean shot before committing; a locked shot can be baited.
+				var side := toward.normalized().orthogonal()
+				if test_move(global_transform, side * 24.0):
+					side = -side
+				velocity = side * profile.move_speed * 0.65
+				move_and_slide()
+				facing = toward.normalized()
+				_change_state(&"approach")
+				return
 		_strike_direction = toward.normalized() if not toward.is_zero_approx() else facing
 		facing = _strike_direction
 		_attack_id += 1
@@ -142,12 +175,16 @@ func _resolve_strike() -> void:
 	_change_state(&"recover", profile.recovery)
 	if role == &"gunner":
 		var end := global_position + _strike_direction * profile.attack_reach
-		var hit := Query.first_hit(self, global_position, end, 1 | 2)
+		var hit := Query.first_hit(self, global_position, end, 1 | 2 | 4)
 		if not hit.is_empty():
 			end = hit["position"]
-			var collider: Object = hit["collider"]
+			var collider := hit["collider"] as Node2D
 			if collider == _target:
 				_target.call(&"receive_hit", self, _attack_id, profile.damage, &"bullet", _strike_direction)
+			elif collider != null and collider.is_in_group(&"combatants"):
+				var result: StringName = collider.call(&"receive_hit", self, _attack_id, profile.damage, &"crossfire", _strike_direction)
+				if result in [&"hit", &"killed"]:
+					crossfire_hit.emit()
 		Feedback.play(self, &"enemy_shot", global_position + _view.muzzle_offset(), end + ANKLE_TO_CHEST)
 	else:
 		var offset := _target.global_position - global_position
@@ -156,22 +193,41 @@ func _resolve_strike() -> void:
 		if offset.length() <= profile.attack_reach and absf(_strike_direction.angle_to(offset)) <= HALF_SWEEP and _clear_sight(_target.global_position):
 			var outcome: StringName = _target.call(&"receive_hit", self, _attack_id, profile.damage, &"melee", offset.normalized())
 			if outcome == &"parried":
+				_exposed = true
+				_impulse = -_strike_direction * 116.0
+				_view.kick(-_strike_direction, 9.0)
 				_change_state(&"stagger", PARRY_STAGGER)
 
-func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, _incoming: Vector2) -> StringName:
+func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, incoming: Vector2) -> StringName:
 	var result := vitality.apply(source, attack_id, damage)
 	if result != &"hit" and result != &"killed":
 		return result
 	_flash = 1.0
 	var contact := global_position + ANKLE_TO_CHEST
-	Feedback.play(self, &"killed" if result == &"killed" else &"hit", contact, contact)
+	var impact := &"bullet_hit"
+	var push := 60.0
+	match kind:
+		&"riposte", &"counter_shot":
+			impact = &"counter_hit"
+			push = 208.0
+		&"melee", &"return_cut":
+			impact = &"blade_hit"
+			push = 148.0 if kind == &"return_cut" else 110.0
+	Feedback.play(self, impact, contact, contact + incoming.normalized())
+	if role != &"dummy":
+		_impulse = incoming.normalized() * push
+		_view.kick(incoming, push / 17.0)
+		_impact_hold = 0.065 if impact == &"counter_hit" else 0.028
 	if result == &"killed":
 		set_deferred(&"collision_layer", 0)
 		set_deferred(&"collision_mask", 0)
 		_change_state(&"dead", DEATH_TIME)
 		remove_from_group(&"enemies")
 		died.emit()
-	elif role != &"dummy" and kind == &"melee":
+	elif role != &"dummy" and kind in [&"melee", &"return_cut", &"riposte", &"counter_shot", &"crossfire"]:
+		_exposed = false
+		_elapsed = 0.0
+		_duration = STAGGER_TIME
 		_change_state(&"stagger", STAGGER_TIME)
 	_update_art()
 	return result
@@ -179,6 +235,10 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 func _change_state(next: StringName, duration := 0.0) -> void:
 	if state == next:
 		return
+	if next == &"windup":
+		_blade_cued = false
+	if next != &"stagger":
+		_exposed = false
 	state = next
 	_elapsed = 0.0
 	_duration = duration
@@ -211,6 +271,8 @@ func _update_art() -> void:
 				_view.phase = lerpf(0.5, 1.0, _elapsed / 0.24)
 		_:
 			_view.action = state
+	if state == &"dead" and _elapsed < 0.10 and role != &"dummy":
+		_view.action = &"stagger"
 	_view.queue_redraw()
 	queue_redraw()
 
@@ -224,6 +286,9 @@ func _draw() -> void:
 		var height := profile.aim_bounds.position.y - 7.0
 		draw_rect(Rect2(-21,height,42,4), Color("#17212b"))
 		draw_rect(Rect2(-20,height+1,40.0*health/max_health,2), Color("#dfaf70") if role == &"dummy" else Color("#f08064"))
+	if _exposed:
+		var tip := Vector2(0, profile.aim_bounds.position.y - 17.0)
+		draw_polyline(PackedVector2Array([tip + Vector2(-7,-5), tip + Vector2(0,2), tip + Vector2(7,-5)]), Color("#ffe7a1"), 2.5, true)
 	if state != &"windup":
 		return
 	var phase := clampf(_elapsed / _duration, 0, 1)
@@ -233,6 +298,10 @@ func _draw() -> void:
 		draw_dashed_line(muzzle, endpoint, Color(GUN_WARNING, 0.46 + 0.42 * phase), 1.4 + phase, 9.0, true)
 		draw_circle(muzzle, 3.2 + phase * 2.3, Color(GUN_WARNING, 0.85), true, -1.0, true)
 	else:
+		if _duration - _elapsed <= 0.145:
+			var glint := facing * 29.0 + ANKLE_TO_CHEST + Vector2(0,-13)
+			var size := 5.0 + 4.0 * sin(PI * clampf((_duration - _elapsed) / 0.145, 0, 1))
+			draw_colored_polygon(PackedVector2Array([glint + Vector2(0,-size), glint + Vector2(3,0), glint + Vector2(0,size), glint + Vector2(-3,0)]), Color("#fff3ba"))
 		var start := facing.angle() - HALF_SWEEP
 		var finish := facing.angle() + HALF_SWEEP
 		var edge := profile.attack_reach

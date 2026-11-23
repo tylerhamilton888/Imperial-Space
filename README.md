@@ -1,8 +1,8 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.2.0** opens with a playable breach drill in the Imperial Proving Ground. Break a shutter, advance through the opening under fire, and defeat a Khorgoth raider and gunner. The four forecourt presets remain available through Range controls.
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.3.0** features the counter duel, crossfire drill and destructible proving ground. [Watch the combat playtest](docs/evidence/counter-duel.mp4).
 
-[Playthrough](docs/evidence/proving-ground-breach.mp4) · [In-game screenshot](docs/evidence/proving-ground-breach.jpg)
+[0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 
 [0.1.2 gameplay screenshot](docs/evidence/arsenal-forecourt.jpg) · [0.1.2 mixed-squad clip](docs/evidence/arsenal-forecourt.mp4)
 
@@ -10,7 +10,7 @@ A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.2.
 
 ## Play
 
-On Windows x86-64, extract the Windows ZIP and run `ImperialSpace.exe`. On Linux x86-64, extract the Linux ZIP, make `ImperialSpace.x86_64` executable if necessary, and launch it. Choose **Play breach drill** on the title screen. Aim at the shutter in the stone frame, hold left mouse, then use WASD to move through the opening toward the numbered bays. Press F5 to run it again. **Developer Arena** still opens the empty forecourt. Press **F1 → Mixed squad** for the forecourt encounter, **Raider duel** for a single opponent, or choose **Dummy range** to learn the controls at your own pace.
+On Windows x86-64, extract the Windows ZIP and run `ImperialSpace.exe`. On Linux x86-64, extract the Linux ZIP, make `ImperialSpace.x86_64` executable if necessary, and launch it. Choose **Play counter duel**. Face the raider and tap Shift as its blade glints. Right-click during the opening to riposte, or left-click for a countershot. On a regular sword hit, click again during recovery for a return cut. F5 starts a rematch. Open F1 → **Crossfire drill** to bait a gunner into hitting its own raider. The breach drill has a separate title button. **Developer Arena** opens the empty forecourt.
 
 | Default control | Action |
 | --- | --- |
@@ -33,6 +33,7 @@ Use **Godot 4.7.2 stable**, official build `ed1daf0bf`, with its Compatibility r
 godot --headless --path game --editor --import
 godot --path game
 godot --path game -- --arena
+godot --path game -- --duel
 godot --path game -- --breach
 ```
 

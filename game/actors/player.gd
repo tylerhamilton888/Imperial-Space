@@ -36,6 +36,16 @@ var input_enabled := true:
 		if not value:
 			cancel_input()
 
+# A parry belongs to the attacker whose weapon was turned. The first attack
+# spends the opportunity, even if it misses or hits cover.
+var opening: Node2D
+var opening_left := 0.0
+var _counter_target: Node2D
+var _return_cut := false
+var _followup_left := 0.0
+var _contact_hold := 0.0
+var _trail_drawn := false
+var _step_distance := 0.0
 var _aim_locked := Vector2.RIGHT
 var _dodge_direction := Vector2.RIGHT
 var _attack_id := 0
@@ -105,6 +115,13 @@ func refill() -> void:
 	_parry_pose_left = 0.0
 	_guard_armed = false
 	_sword_contacts.clear()
+	opening = null
+	opening_left = 0.0
+	_counter_target = null
+	_followup_left = 0.0
+	_contact_hold = 0.0
+	_return_cut = false
+	_step_distance = 0.0
 	velocity = Vector2.ZERO
 	_set_action(&"idle")
 	stats_changed.emit()
@@ -112,6 +129,15 @@ func refill() -> void:
 func _physics_process(delta: float) -> void:
 	if health == 0:
 		_update_view(delta)
+		return
+	if opening_left > 0.0:
+		opening_left = maxf(0.0, opening_left - delta)
+		if opening_left == 0.0 or not is_instance_valid(opening):
+			opening = null
+	_followup_left = maxf(0.0, _followup_left - delta)
+	if _contact_hold > 0.0:
+		_contact_hold -= delta
+		_update_view(0.0)
 		return
 	var movement := Vector2.ZERO
 	if input_enabled:
@@ -147,7 +173,19 @@ func _physics_process(delta: float) -> void:
 		&"reload", &"heal":
 			speed *= 0.75
 	velocity = movement * speed
+	if action == &"melee" and action_time >= KIT.sword_contact_start - 0.055 and action_time < KIT.sword_contact_end:
+		var drive := 72.0
+		if _return_cut:
+			drive = 115.0
+		if is_instance_valid(_counter_target):
+			drive = 178.0
+		velocity += _aim_locked * drive
 	move_and_slide()
+	if movement.length_squared() > 0.01 and action in [&"idle", &"fire", &"guard"]:
+		_step_distance += get_position_delta().length()
+		if _step_distance >= 49.0:
+			_step_distance = fmod(_step_distance, 49.0)
+			Feedback.play(self, &"step", global_position, global_position)
 	_advance_action()
 	_update_view(delta)
 
@@ -179,14 +217,21 @@ func _update_aim_at(cursor: Vector2) -> void:
 func request_action(id: StringName) -> bool:
 	if health == 0 or not id in PLAYER_ACTIONS:
 		return false
-	if action == &"guard" and id == &"dodge":
+	if action == &"guard" and (id == &"dodge" or (id in [&"melee", &"fire"] and has_opening())):
 		_set_action(&"idle")
 	if action == &"idle":
 		return _begin_action(id)
 	if id != &"guard":
 		_buffered = id
 		_buffer_left = KIT.buffer_time
+		# A second, deliberate press on contact carries through recovery.
+		# Keep one request only; holding the button never strings attacks.
+		if id == &"melee" and action == &"melee" and _followup_left > 0.0 and not _return_cut:
+			_buffer_left = maxf(_buffer_left, _duration() - action_time + 0.06)
 	return false
+
+func has_opening() -> bool:
+	return opening_left > 0.0 and is_instance_valid(opening) and opening.is_inside_tree()
 
 func _begin_action(id: StringName) -> bool:
 	match id:
@@ -199,6 +244,9 @@ func _begin_action(id: StringName) -> bool:
 			_shot_fired = false
 		&"melee":
 			_sword_contacts.clear()
+			_return_cut = _followup_left > 0.0 and not has_opening()
+			_followup_left = 0.0
+			_trail_drawn = false
 			_feedback(&"melee", global_position + TORSO, global_position + TORSO)
 		&"reload":
 			if magazine == KIT.mag_size or reserve <= 0:
@@ -216,6 +264,11 @@ func _begin_action(id: StringName) -> bool:
 	_aim_locked = aim_direction
 	if id == &"fire" or id == &"melee":
 		_attack_id += 1
+		_counter_target = opening if has_opening() else null
+		opening = null
+		opening_left = 0.0
+		if id == &"fire":
+			_followup_left = 0.0
 	_set_action(id)
 	return true
 
@@ -237,6 +290,12 @@ func _advance_action() -> void:
 				_fire_rifle()
 		&"melee":
 			if action_time >= KIT.sword_contact_start and action_time <= KIT.sword_contact_end:
+				if not _trail_drawn:
+					_trail_drawn = true
+					var stroke := &"return_arc" if _return_cut else &"sword_arc"
+					if is_instance_valid(_counter_target):
+						stroke = &"riposte_arc"
+					Feedback.play(self, stroke, global_position + TORSO, global_position + TORSO + _aim_locked)
 				_sword_contact()
 	if action_time < _duration():
 		return
@@ -272,8 +331,14 @@ func _fire_rifle() -> void:
 		endpoint = hit.position
 		var body := hit.collider as Node2D
 		if body != null and body.has_method(&"receive_hit"):
-			body.call(&"receive_hit", self, _attack_id, KIT.rifle_damage, &"bullet", _aim_locked)
+			var counter := is_instance_valid(_counter_target) and body == _counter_target
+			var damage: int = KIT.counter_shot_damage if counter else KIT.rifle_damage
+			var kind := &"counter_shot" if counter else &"bullet"
+			var result: Variant = body.call(&"receive_hit", self, _attack_id, damage, kind, _aim_locked)
+			if counter and result in [&"hit", &"killed"]:
+				combat_event.emit(&"counter_shot", global_position, endpoint)
 			struck_actor = true
+	$Visual.kick(-_aim_locked, 3.7)
 	_update_view(0.0)
 	var muzzle: Vector2 = global_position + $Visual.muzzle_offset()
 	# If cover is closer than the drawn barrel, flash against its near face.
@@ -292,7 +357,23 @@ func _sword_contact() -> void:
 			continue
 		_sword_contacts[id] = true
 		var direction := global_position.direction_to(target.global_position)
-		target.call(&"receive_hit", self, _attack_id, KIT.sword_damage, &"melee", direction)
+		var counter := is_instance_valid(_counter_target) and target == _counter_target
+		var kind := &"melee"
+		var damage: int = KIT.sword_damage
+		if counter:
+			kind = &"riposte"
+			damage = KIT.riposte_damage
+		elif _return_cut:
+			kind = &"return_cut"
+			damage = KIT.return_cut_damage
+		var result: Variant = target.call(&"receive_hit", self, _attack_id, damage, kind, direction)
+		if result not in [&"hit", &"killed"] or not target.is_in_group(&"combatants"):
+			continue
+		_contact_hold = 0.065 if counter else 0.035
+		$Visual.kick(_aim_locked, 3.5 if counter else 1.8)
+		if kind == &"melee":
+			_followup_left = 0.68
+		combat_event.emit(kind if kind != &"melee" else &"cut_landed", global_position, target.global_position)
 
 func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, incoming: Vector2) -> StringName:
 	var outcome: StringName = &"hit"
@@ -311,6 +392,9 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 	if outcome == &"parried":
 		_guard_armed = false
 		_parry_pose_left = KIT.parry_window
+		opening = source
+		opening_left = KIT.counter_window
+		$Visual.kick(incoming, 4.0)
 	$Visual.feedback = 1.0
 	_feedback(outcome, global_position + TORSO, global_position + TORSO)
 	stats_changed.emit()
@@ -336,4 +420,13 @@ func _update_view(delta: float) -> void:
 		else:
 			phase = remap(action_time, KIT.sword_contact_end, KIT.sword_total, STRIKE_RECOVERY, 1.0)
 	var pose := &"parry" if action == &"guard" and _parry_pose_left > 0 else action
+	# The return cut travels back across the silhouette. Contact still falls
+	# inside the painted extension keys in either direction.
+	if action == &"melee" and _return_cut:
+		if phase < STRIKE_FIRST:
+			phase = lerpf(0.99, 0.85, phase / STRIKE_FIRST)
+		elif phase < STRIKE_RECOVERY:
+			phase = remap(phase, STRIKE_FIRST, STRIKE_RECOVERY, 0.85, STRIKE_FIRST)
+		else:
+			phase = remap(phase, STRIKE_RECOVERY, 1.0, STRIKE_FIRST, 0.0)
 	$Visual.pose(facing, velocity, pose, phase, delta)

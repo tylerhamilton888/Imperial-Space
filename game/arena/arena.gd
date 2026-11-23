@@ -12,17 +12,23 @@ const SCENARIOS := [
 	preload("res://arena/scenarios/dummy.tres"),
 	preload("res://arena/scenarios/duel.tres"),
 	preload("res://arena/scenarios/squad.tres"),
-	preload("res://arena/scenarios/breach.tres")
+	preload("res://arena/scenarios/breach.tres"),
+	preload("res://arena/scenarios/crossfire.tres")
 ]
 const SPAWNS := [Vector2(930,445),Vector2(880,500),Vector2(1090,430),Vector2(1080,570),Vector2(780,450),Vector2(770,550),Vector2(650,375),Vector2(1230,430),Vector2(1220,510),Vector2(1035,670),Vector2(830,340)]
 const CAP := 12
 const SIGHT = preload("res://art/aim_cursor.svg")
 
 var prefs: RefCounted
+const DUEL_INDEX := 2
 const BREACH_INDEX := 4
 const ProvingMap = preload("res://arena/proving/proving_map.tscn")
 var drill_opponents: Array[Node2D] = []
 var drill_interrupted := false
+var crossfire_landed := false
+var duel_finish := ""
+var combat_camera: Camera2D
+var impact_camera_enabled := true
 var scenario_index := 0
 var scenario: Scenario
 var session_rng := RandomNumberGenerator.new()
@@ -57,6 +63,8 @@ func restart(index: int = -1) -> void:
 	live_enemies.clear()
 	drill_opponents.clear()
 	drill_interrupted = false
+	duel_finish = ""
+	crossfire_landed = false
 	session_rng.seed=scenario.seed_value
 	simulation=Node2D.new()
 	simulation.name="Simulation"
@@ -71,6 +79,8 @@ func restart(index: int = -1) -> void:
 	player.position=scenario.player_start
 	simulation.add_child(player)
 	var camera:=Camera2D.new()
+	combat_camera = camera
+	impact_camera_enabled = bool(prefs.config.get_value("display", "impact_camera", true))
 	# Frame a 96–100 px Crusader at the approved 1080p scale while keeping the
 	# arsenal entrance and the gunner across the range visible in the opening shot.
 	camera.zoom=Vector2(1.07,1.07)
@@ -81,6 +91,13 @@ func restart(index: int = -1) -> void:
 	camera.limit_bottom=960
 	camera.position_smoothing_enabled=true
 	camera.position_smoothing_speed=8.5
+	if scenario.id == &"crossfire":
+		camera.zoom = Vector2(1.20,1.20)
+		camera.position = Vector2(108,-56)
+	if scenario.id == &"duel":
+		# Bring both silhouettes forward for the one-on-one exchange.
+		camera.zoom = Vector2(1.42,1.42)
+		camera.position = Vector2(45,-66)
 	if scenario.id == &"breach":
 		camera.zoom = Vector2.ONE
 		camera.limit_top = 0
@@ -92,6 +109,7 @@ func restart(index: int = -1) -> void:
 	camera.reset_smoothing()
 	player.stats_changed.connect(hud.refresh)
 	player.died.connect(_on_defeat)
+	player.combat_event.connect(_on_combat_event)
 	for i in scenario.roles.size():
 		_spawn(scenario.roles[i],scenario.positions[i],false)
 	if scenario.id == &"breach":
@@ -109,10 +127,37 @@ func _spawn(role: String, pos: Vector2, passive: bool) -> void:
 	simulation.add_child(e)
 	live_enemies.append(e)
 	e.died.connect(_on_enemy_died.bind(e))
+	e.crossfire_hit.connect(_on_crossfire)
+
+func _on_crossfire() -> void:
+	crossfire_landed = true
+	hud.notice("Crossfire")
+	hud.refresh()
+
+func _on_combat_event(kind: StringName, _start: Vector2, _end: Vector2) -> void:
+	if impact_camera_enabled:
+		match kind:
+			&"fire":
+				if combat_camera.offset.length() <= 1.25:
+					combat_camera.offset = -player.aim_direction * 1.25
+			&"cut_landed", &"return_cut": combat_camera.offset = player.aim_direction * 2.25
+			&"riposte", &"parried", &"counter_shot": combat_camera.offset = -player.aim_direction * 4.0
+	match kind:
+		&"riposte":
+			hud.notice("Riposte")
+		&"counter_shot":
+			hud.notice("Countershot")
+		&"return_cut":
+			hud.notice("Return cut")
+	if scenario.id == &"duel" and live_enemies.is_empty() and kind in [&"riposte", &"counter_shot", &"return_cut"]:
+		duel_finish = {&"riposte":"Riposte", &"counter_shot":"Countershot", &"return_cut":"Return cut"}[kind]
+		hud.refresh()
 
 func _on_enemy_died(e: Node2D) -> void:
 	live_enemies.erase(e)
 	drill_opponents.erase(e)
+	if scenario.id == &"duel" and live_enemies.is_empty():
+		duel_finish = "Raider defeated"
 	hud.refresh()
 
 func _on_defeat() -> void:
@@ -138,11 +183,24 @@ func spawn_selected() -> void:
 	var spawned:=spawn_count-remaining
 	hud.notice("Spawned %d of %d  •  %s" % [spawned,spawn_count,spawn_role.capitalize()])
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if panel_kind == "" and is_instance_valid(combat_camera):
+		combat_camera.offset = combat_camera.offset.move_toward(Vector2.ZERO, 36.0 * delta)
 	if panel_kind.is_empty() and scenario.id == &"breach" and is_instance_valid(player):
 		map.track_passage(player.position)
 
 func drill_instruction() -> String:
+	if scenario.id == &"crossfire":
+		if drill_interrupted: return "Drill cleared  ·  %s to reset" % prefs.key_text("arena_reset")
+		if live_enemies.is_empty(): return "Squad defeated  ·  %s to replay" % prefs.key_text("arena_reset")
+		if crossfire_landed: return "Crossfire hit  ·  Finish the squad"
+		return "Lure the raider across the orange line."
+	if scenario.id == &"duel":
+		if drill_interrupted: return "Duel cleared  ·  %s to reset" % prefs.key_text("arena_reset")
+		if duel_finish != "": return "%s  ·  %s for a rematch" % [duel_finish, prefs.key_text("arena_reset")]
+		if player.has_opening():
+			return "%s counter cut  ·  %s countershot" % [prefs.mouse_text("melee"), prefs.mouse_text("fire")]
+		return "Face the blade  ·  %s on the gold glint" % prefs.key_text("guard")
 	if drill_interrupted:
 		return "Drill cleared manually. Restart to try again."
 	if not map.gate.is_open:
@@ -154,11 +212,13 @@ func drill_instruction() -> String:
 	return "Drill complete  •  %s to run again" % prefs.key_text("arena_reset")
 
 func clear_enemies() -> void:
+	if scenario.id in [&"duel", &"crossfire"]:
+		drill_interrupted = true
 	if not drill_opponents.is_empty():
 		drill_interrupted = true
 		drill_opponents.clear()
 	for e: Node in simulation.get_children():
-		if e.scene_file_path == Enemy.resource_path:
+		if e.scene_file_path == Enemy.resource_path or e.is_in_group(&"fallen_actors"):
 			simulation.remove_child(e)
 			e.queue_free()
 	live_enemies.clear()

@@ -1,5 +1,9 @@
 # Developer Arena
 
+## Counter duel and Crossfire drill • 0.3.0
+
+**Play counter duel** and `-- --duel` enter the raider preset with a closer camera and contextual controls for a parry follow-up. **F1 → Crossfire drill** sets a gunner and raider on intersecting approaches. The orange line shows the gunner's committed direction. Pull the raider across it and finish the squad. F5 rebuilds either encounter.
+
 ## Playable breach scenario
 
 Version 0.2.0 adds **Play breach drill** to the title screen and **Breach drill** to the F1 scenario list. The service rifle breaks the shutter in four hits. Crossing the central opening toward the numbered bays and defeating both authored defenders completes the drill in either combat order. Both jambs still block movement and fire. F5 rebuilds the shutter, targets, defenders and player supplies; the F1 Clear command interrupts a live engagement. Run `godot --path game -- --breach` for direct entry.

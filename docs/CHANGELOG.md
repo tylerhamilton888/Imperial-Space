@@ -1,5 +1,11 @@
 # Changelog
 
+## Developer Arena 0.3.0 • 22 November 2026
+
+- Added a sword riposte and rifle countershot after a timed frontal parry. A connected ordinary slash accepts a second press during recovery for a return cut.
+- Added gunner line discipline, friendly obstruction of committed shots, and a playable Crossfire drill.
+- Reworked the Medium actor's lateral steps, recoil, sword drive and hit feedback. Enemy bodies move against solids, retain a brief fallen silhouette, and reset with the encounter. Impact camera motion can be disabled in Settings.
+
 ## Developer Arena 0.2.0 • 22 November 2026
 
 - Integrated the numbered range bays, practice targets, terminal and paired intact/breached masonry art in a playable proving ground.

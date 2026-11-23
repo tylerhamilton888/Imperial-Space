@@ -10,6 +10,10 @@ extends Resource
 @export var shot_interval := 0.19
 @export var reload_time := 1.05
 @export var sword_damage := 38
+@export var counter_window := 0.86
+@export var riposte_damage := 90
+@export var counter_shot_damage := 62
+@export var return_cut_damage := 49
 @export var sword_reach := 68.0
 @export var sword_half_angle_degrees := 65.0
 @export var sword_contact_start := 0.115

@@ -4,7 +4,7 @@
 script = ExtResource("1")
 id = &"squad"
 title = "Mixed squad"
-purpose = "Close on a gunner while a raider pressures your flank."
+purpose = "Draw the raider across the gunner’s locked shot."
 seed_value = 2174
 roles = PackedStringArray("raider", "gunner")
 positions = PackedVector2Array(880, 500, 775, 254)

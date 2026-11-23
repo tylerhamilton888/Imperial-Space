@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://arena/scenario.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"crossfire"
+title = "Crossfire drill"
+purpose = "Draw the raider into a locked shot, then finish the squad."
+seed_value = 2175
+player_start = Vector2(590,495)
+roles = PackedStringArray("raider", "gunner")
+positions = PackedVector2Array(688,458,958,495)

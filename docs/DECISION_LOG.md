@@ -1,5 +1,9 @@
 # Decision Log
 
+## 22 November 2026 — Reward one opening in two ways
+
+Give a successful frontal parry a short opportunity against that specific raider. The player chooses a sword finish or a high-damage rifle shot. The next attack spends the chance, including a miss. Put the second ordinary sword stroke behind confirmed contact and a fresh press. These decisions reuse familiar controls and leave guard, dodge and aim responsive. The Crossfire drill gives positioning a comparable payoff in mixed combat.
+
 ## 22 November 2026 — Prove one breach in live play
 
 Use the illustrated proving ground for a short, repeatable destruction test before equipment expansion. Only the center shutter is breakable. The masonry jambs persist and only a crossing through the aperture advances the objective. Keep the forecourt presets reachable from Range controls.

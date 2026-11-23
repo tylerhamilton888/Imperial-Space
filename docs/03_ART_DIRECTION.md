@@ -1,5 +1,16 @@
 # Art Direction and Production
 
+## Karth Vale gameplay art target
+
+Use the [Karth Vale concept](../reference_art/06_karth_vale_art_target.jpg) as the primary visual acceptance reference for a finished gameplay frame. Earlier boards supply character and equipment details. The camera pitch, staging, exact palette and amount of detail can change to suit play. Judge the result at ordinary game zoom.
+
+- **Place.** The arsenal has an entrance wide enough to use, the transit shelter serves the street, and stairs connect two occupied levels. Give the training range that same sense of purpose with its own architecture. Use doors, cover and railings to establish scale against a human defender. Concentrate wear and damage where people or weapons caused it.
+- **Materials and light.** In the street, broad areas of pale masonry and dark enamel let brass edges, crimson cloth and muzzle flashes stand out. Let stone look matte, metal catch narrow highlights, and the cloak cast a broad folded shadow. Carry one main light direction through the floor, boots, cover and walls. Interiors may use their own lighting.
+- **Figures in combat.** At a glance the Crusader has a helmet crest, a long crimson cloak, planted boots and a rifle leveled with both hands. The human soldiers are smaller and use cover. A Khorgoth bearing down with a blade reads differently from one braced behind a gun. Preserve those distinctions as characters turn, strafe and overlap.
+- **HUD and effects.** Dark inset panels, fine brass rims and compact icons leave the combat space open. A muzzle flash identifies the shooter and a warning on the pavement shows the threatened area. Use this hierarchy with the controls and systems present in the build. The pictured minimap, labels and ability slots are illustrative.
+
+Compare a native 1280 × 720 mixed-squad screenshot with the reference at the same display width. Then watch the Crusader circle an enemy, pass cover and fire. Check the feet against the ground, the cloak against the torso, and the weapon hand through the turn. Keep one screenshot and a short gameplay clip with the reviewed revision. The owner has selected the target. Acceptance of the playable result is still open.
+
 ## Chosen direction
 
 Use colorful, readable illustrated science fiction with heroic anatomy, substantial materials and an industrial foundation. The preferred visual comparison is option B: stronger color separation, expressive portraits and clear silhouettes. Its rounded armor is not an approved final character. Keep the readability while moving the Crusader toward a tall, imposing, regal silhouette.
@@ -70,7 +81,7 @@ Prefer purposeful silhouettes, concise impact effects, restrained camera shake, 
 
 Developer Arena 0.1.0 bakes original articulated geometry to small eight-way sprite sheets and the industrial deck to orthographic plates. Actors share foot pivots and weapon sockets across their sampled poses. The editable sources are under `source_art/`. Evaluate directional footwork in motion before pricing or drawing additional armor families. Runtime dimensions, provenance and footage status are recorded in [the manifest](ART_ASSET_MANIFEST.md) and [test results](TEST_REPORT.md).
 
-## Visual review against option B
+## Developer Arena 0.1.1 review against option B
 
 The 0.1.0 native-scale demonstration established inputs and timing. The owner rejected its faceted figures and sparse gray deck as a visual interpretation of option B. Keep that milestone as a mechanical reference.
 

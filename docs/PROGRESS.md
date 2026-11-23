@@ -16,6 +16,6 @@ The independent project is on [GitHub](https://github.com/tylerhamilton888/Imper
 
 ## Next increment
 
-1. Play the raider duel on Windows, checking sword contact, guard timing and the leg poses while circling.
+1. Bring one playable mixed-squad encounter toward the [Karth Vale target](03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Review architectural depth, lighting on the actors and planted strafing in a native screenshot and short clip. Play the raider duel on Windows, checking sword contact, guard timing and the leg poses while circling.
 2. Begin M3 with interchangeable loadouts on the same actor. Prove Light/Medium/Heavy movement and a simple equipment selector before producing additional armor art.
 3. Add the precision rifle, heavy cannon and hammer to the range and verify their handling against the same four scenarios.

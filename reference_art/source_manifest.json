@@ -73,5 +73,20 @@
     ],
     "bytes": 397564,
     "status": "concept reference; not production game asset"
+  },
+  {
+    "source": "image(3).png",
+    "source_sha256": "85dbb54d69dfb32e4856d7a1a7028c416bc385fd10acaf9d9f63e7ef590ed00b",
+    "source_dimensions": [
+      1672,
+      941
+    ],
+    "derivative": "06_karth_vale_art_target.jpg",
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 699607,
+    "status": "Owner-supplied gameplay art acceptance reference, outside runtime"
   }
 ]

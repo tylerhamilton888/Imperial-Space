@@ -1,6 +1,8 @@
 # Reference Art Guide
 
-These five boards are compressed derivatives of concept images supplied in the conversation. They show visual development, not actual gameplay, production-ready sprites or final approved armor. Their old Space Crusader titles, generated labels and emblems are not canonical. **Imperial Space** is the working title.
+The [Karth Vale gameplay art target](06_karth_vale_art_target.jpg) is the owner's reference for the finished scene. Compare a playable frame with it using the [art acceptance criteria](../docs/03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Camera angle and composition are flexible.
+
+The following five boards are compressed derivatives of concept images supplied in the conversation. They show visual development, not actual gameplay, production-ready sprites or final approved armor. Their old Space Crusader titles, generated labels and emblems are not canonical. **Imperial Space** is the working title.
 
 The written design takes precedence where a board contains a rejected or overly derivative shape. Interpret the references selectively rather than tracing a whole suit.
 

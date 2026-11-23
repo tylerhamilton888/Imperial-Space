@@ -1,5 +1,9 @@
 # Changelog
 
+## Art direction • 22 November 2026
+
+- Added the owner-selected Karth Vale concept and gameplay capture criteria to the art guide. The current playable release is 0.1.1.
+
 ## Developer Arena 0.1.1 — 22 November 2026
 
 - Replaced the Crusader, Khorgoth and range crew art with painted directional sprites. The Medium kit now reads through its high collar, ivory armor, brass edges, tapered waist and broad crimson cloak. Rifle, sword and defensive poses use registered foot pivots.

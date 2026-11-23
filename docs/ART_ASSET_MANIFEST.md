@@ -10,6 +10,10 @@ The user supplied these five concept studies from earlier conversations. Their c
 | `04_armor_weights.jpg` | Concept reference | 1536 × 1024 | 422,098 | Compressed derivative; outside runtime |
 | `05_heavy_collar_variants.jpg` | Concept reference | 1536 × 1024 | 397,564 | Compressed derivative; outside runtime |
 
+## Gameplay art target
+
+The owner supplied [Karth Vale](../reference_art/06_karth_vale_art_target.jpg) as the reference for whole-scene art acceptance. The 1600 × 900 JPEG (699,607 bytes) is a review derivative of the supplied 1672 × 941 PNG. Source identity is recorded in the [source manifest](../reference_art/source_manifest.json). Keep this concept outside the runtime.
+
 ## Developer Arena 0.1.1
 
 This release includes new project-specific paintings generated with OpenAI ImageGen and original code-authored graphics. Source paths below identify which process produced each asset. The earlier runtime inventory is recorded at Git tag `arena-v0.1.0`.

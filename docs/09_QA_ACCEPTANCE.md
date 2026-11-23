@@ -51,6 +51,8 @@ Separately test defeat and checkpoint retry. A retry restores the chosen checkpo
 
 Agree on a modest Windows test machine before setting firm budgets. A provisional goal is stable 60 fps at 1920×1080 for ordinary encounters. Record frame-time spikes, actor counts, effects and memory use; lower content budgets when measurements require it. An uncapped empty room is not a representative performance test.
 
+Review the native gameplay frame and movement clip against the [Karth Vale art target and criteria](03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Record visible differences and the owner’s review alongside the build revision.
+
 Check readable enemy telegraphs, damage feedback, UI text, color distinctions and cursor visibility with reduced effects. Do not depend on red versus green alone. Use image previews within the asset-response budgets; do not attach full-resolution raw sheets to routine status updates.
 
 ## Ready for owner review

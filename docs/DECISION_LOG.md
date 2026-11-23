@@ -26,3 +26,7 @@ Use project-specific image budgets, preserved originals, compressed derivatives,
 ## 22 November 2026 — Correct the arena’s visual target
 
 The owner rejected the 0.1.0 presentation. Use option B’s illustrated color and value separation, with the original angular medium armor and crimson cloak from the later design studies. Rework the playable kit, its opponents, the hall and HUD before producing more equipment families. Keep floor collisions and attack timing on their existing ground coordinates. The first visual review uses an actual mixed-squad capture and a movement clip. See [art direction](03_ART_DIRECTION.md).
+
+## 22 November 2026 — Karth Vale as the scene reference
+
+The owner selected the supplied Karth Vale concept as the acceptance target for the game's overall look, with flexibility on viewpoint and composition. Use the earlier armor studies for kit details and compare the next playable encounter against the [scene criteria](03_ART_DIRECTION.md#karth-vale-gameplay-art-target).

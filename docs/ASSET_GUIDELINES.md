@@ -32,3 +32,7 @@ godot --headless --path game --script ../tools/tests/verify_range_map.gd
 ```
 
 For a capture, run `tools/make_preview.py` using the [asset tools guide](../tools/README.md), then `python tools/check_assets.py --profile preview <preview-file>`. The image checker measures file bounds and decoding. The native-view checks cover registration, motion and combat readability.
+
+## Scene kit export
+
+Run `python source_art/scene_targets/pack.py` from a checkout to rebuild the study textures with Pillow. The three 1280 × 720 backdrops split into 640 × 360 tiles. Keep the authored prop scene origins when updating a frame. [Kit review and integration](../art_studies/README.md)

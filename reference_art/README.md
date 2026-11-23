@@ -1,6 +1,6 @@
 # Reference Art Guide
 
-The [Karth Vale gameplay art target](06_karth_vale_art_target.jpg) is the owner's reference for the finished scene. Compare a playable frame with it using the [art acceptance criteria](../docs/03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Camera angle and composition are flexible.
+The [close Karth Vale gameplay target](06_karth_vale_art_target.jpg) and boards 07–10 are the owner’s references for finished scenes. Compare a playable frame with it using the [art acceptance criteria](../docs/03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Camera angle and composition are flexible.
 
 The following five boards are compressed derivatives of concept images supplied in the conversation. They show visual development, not actual gameplay, production-ready sprites or final approved armor. Their old Space Crusader titles, generated labels and emblems are not canonical. **Imperial Space** is the working title.
 
@@ -13,6 +13,15 @@ The written design takes precedence where a board contains a rejected or overly 
 | [03 Helmet variants](03_helmet_variants.jpg) | Multiple helmet families and palettes can coexist as loot. Severe, sculpted or crowned visages fit. | Six directions do not require six production helmets in the first milestone. Design original insignia and clean functional geometry. |
 | [04 Armor weights](04_armor_weights.jpg) | Readable Light/Medium/Heavy progression and retained human stature; cloak continuity. | Heavy mass still needs a distinct original design. Do not simply copy the rounded shoulder treatment. |
 | [05 Heavy collar variants](05_heavy_collar_variants.jpg) | The collar-like enclosure and squared imposing mass; recessed and prominent helmet alternatives. | User liked the uniform-collar idea while remaining concerned about Space Marine resemblance. Treat this as a refinement target, not a final asset. |
+
+## Additional accepted concepts
+
+- [07 • Imperial Proving Ground](07_proving_ground.jpg) establishes range architecture, fixtures and the control panel.
+- [08 • Karth Vale, wide](08_karth_vale_wide.jpg) establishes district scale, connected levels, greenery and the transit corridor.
+- [09 • Cruiser Bridge](09_cruiser_bridge.jpg) establishes room composition, Vale’s visual presentation and the dialogue layout.
+- [10 • Heavy Proving Ground](10_proving_ground_heavy.jpg) establishes Heavy mass, stance, cloak and weapon silhouette in the same range.
+
+See the [scene acceptance criteria](../docs/03_ART_DIRECTION.md#scene-specific-acceptance-targets) and [prepared kit](../art_studies/README.md).
 
 ## Use in implementation
 

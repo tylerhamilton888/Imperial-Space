@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="plate_0_0.webp" id="1"]
+[ext_resource type="Texture2D" path="plate_1_0.webp" id="2"]
+[ext_resource type="Texture2D" path="plate_0_1.webp" id="3"]
+[ext_resource type="Texture2D" path="plate_1_1.webp" id="4"]
+
+[node name="Backdrop" type="Node2D"]
+z_index = -5
+
+[node name="Plate0" type="Sprite2D" parent="."]
+position = Vector2(0, 0)
+centered = false
+texture = ExtResource("1")
+
+[node name="Plate1" type="Sprite2D" parent="."]
+position = Vector2(640, 0)
+centered = false
+texture = ExtResource("2")
+
+[node name="Plate2" type="Sprite2D" parent="."]
+position = Vector2(0, 360)
+centered = false
+texture = ExtResource("3")
+
+[node name="Plate3" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+centered = false
+texture = ExtResource("4")
+
+[node name="BayNumber1" type="Label" parent="."]
+offset_left = 429.0
+offset_top = 101.0
+offset_right = 463.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0.88, 0.72, 0.47, 1)
+theme_override_font_sizes/font_size = 18
+text = "01"
+horizontal_alignment = 1
+rotation = -0.13
+
+[node name="BayNumber2" type="Label" parent="."]
+offset_left = 545.0
+offset_top = 80.0
+offset_right = 579.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.88, 0.72, 0.47, 1)
+theme_override_font_sizes/font_size = 18
+text = "02"
+horizontal_alignment = 1
+rotation = -0.13
+
+[node name="BayNumber3" type="Label" parent="."]
+offset_left = 657.0
+offset_top = 57.0
+offset_right = 691.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.88, 0.72, 0.47, 1)
+theme_override_font_sizes/font_size = 18
+text = "03"
+horizontal_alignment = 1
+rotation = -0.13

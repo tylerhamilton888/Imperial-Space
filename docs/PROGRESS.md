@@ -1,5 +1,9 @@
 # Progress
 
+## 22 November 2026 • Scene art preparation
+
+Four new acceptance boards are recorded with three assembled environments and a second proving-ground view for Heavy armor. Open the [Godot art studies](../art_studies/README.md) or inspect the [four rendered views](evidence/scene-art-studies.jpg). The latest playable combat build is 0.1.2. Next, bring the range bays and target stations into the Developer Arena and test floor contacts, weapon readability and moving silhouettes at the live camera scale.
+
 ## 22 November 2026 • Developer Arena 0.1.2
 
 The early environment pass is playable on `main`. The four existing drills share a sunlit arsenal forecourt. A staffed inspection desk and reusable stone cover establish human scale. The gunner starts beside the north barricade in Mixed squad. All actors cast directional shadows from their current pose.

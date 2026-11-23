@@ -1,0 +1,442 @@
+[
+  {
+    "path": "art_studies/kits/bridge/captain_vale.webp",
+    "size": [
+      22,
+      83
+    ],
+    "bytes": 2392
+  },
+  {
+    "path": "art_studies/kits/bridge/command_chair.webp",
+    "size": [
+      58,
+      76
+    ],
+    "bytes": 3884
+  },
+  {
+    "path": "art_studies/kits/bridge/crusader_at_ease.webp",
+    "size": [
+      53,
+      108
+    ],
+    "bytes": 4892
+  },
+  {
+    "path": "art_studies/kits/bridge/crusader_at_ease_front.webp",
+    "size": [
+      54,
+      108
+    ],
+    "bytes": 5022
+  },
+  {
+    "path": "art_studies/kits/bridge/door_guard.webp",
+    "size": [
+      42,
+      83
+    ],
+    "bytes": 3360
+  },
+  {
+    "path": "art_studies/kits/bridge/holomap.webp",
+    "size": [
+      167,
+      131
+    ],
+    "bytes": 12956
+  },
+  {
+    "path": "art_studies/kits/bridge/plate_0_0.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 85410
+  },
+  {
+    "path": "art_studies/kits/bridge/plate_0_1.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 74608
+  },
+  {
+    "path": "art_studies/kits/bridge/plate_1_0.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 91088
+  },
+  {
+    "path": "art_studies/kits/bridge/plate_1_1.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 60058
+  },
+  {
+    "path": "art_studies/kits/bridge/seated_operator.webp",
+    "size": [
+      49,
+      68
+    ],
+    "bytes": 3494
+  },
+  {
+    "path": "art_studies/kits/bridge/side_console.webp",
+    "size": [
+      90,
+      115
+    ],
+    "bytes": 7158
+  },
+  {
+    "path": "art_studies/kits/district/civic_steps.webp",
+    "size": [
+      149,
+      143
+    ],
+    "bytes": 12534
+  },
+  {
+    "path": "art_studies/kits/district/plate_0_0.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 126354
+  },
+  {
+    "path": "art_studies/kits/district/plate_0_1.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 114998
+  },
+  {
+    "path": "art_studies/kits/district/plate_1_0.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 122804
+  },
+  {
+    "path": "art_studies/kits/district/plate_1_1.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 109502
+  },
+  {
+    "path": "art_studies/kits/district/terrace_planter.webp",
+    "size": [
+      157,
+      160
+    ],
+    "bytes": 18768
+  },
+  {
+    "path": "art_studies/kits/district/transit_sign.webp",
+    "size": [
+      48,
+      107
+    ],
+    "bytes": 4470
+  },
+  {
+    "path": "art_studies/kits/district/transit_wreck.webp",
+    "size": [
+      201,
+      156
+    ],
+    "bytes": 17760
+  },
+  {
+    "path": "art_studies/kits/heavy/cannon_ready.webp",
+    "size": [
+      131,
+      129
+    ],
+    "bytes": 10464
+  },
+  {
+    "path": "art_studies/kits/heavy/cannon_reverse.webp",
+    "size": [
+      130,
+      129
+    ],
+    "bytes": 10380
+  },
+  {
+    "path": "art_studies/kits/heavy/hammer_raised.webp",
+    "size": [
+      127,
+      146
+    ],
+    "bytes": 11630
+  },
+  {
+    "path": "art_studies/kits/heavy/hammer_ready.webp",
+    "size": [
+      137,
+      129
+    ],
+    "bytes": 11786
+  },
+  {
+    "path": "art_studies/kits/interface/cannon.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 1788
+  },
+  {
+    "path": "art_studies/kits/interface/captain_vale.webp",
+    "size": [
+      248,
+      207
+    ],
+    "bytes": 16546
+  },
+  {
+    "path": "art_studies/kits/interface/dodge.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 2406
+  },
+  {
+    "path": "art_studies/kits/interface/grenade.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 2234
+  },
+  {
+    "path": "art_studies/kits/interface/guard.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 2180
+  },
+  {
+    "path": "art_studies/kits/interface/hammer.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 1730
+  },
+  {
+    "path": "art_studies/kits/interface/impact.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 2332
+  },
+  {
+    "path": "art_studies/kits/interface/medical.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 2002
+  },
+  {
+    "path": "art_studies/kits/interface/rifle.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 2052
+  },
+  {
+    "path": "art_studies/kits/interface/sword.webp",
+    "size": [
+      64,
+      56
+    ],
+    "bytes": 1648
+  },
+  {
+    "path": "art_studies/kits/proving/plate_0_0.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 97450
+  },
+  {
+    "path": "art_studies/kits/proving/plate_0_1.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 84808
+  },
+  {
+    "path": "art_studies/kits/proving/plate_1_0.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 88570
+  },
+  {
+    "path": "art_studies/kits/proving/plate_1_1.webp",
+    "size": [
+      640,
+      360
+    ],
+    "bytes": 82122
+  },
+  {
+    "path": "art_studies/kits/proving/range_terminal.webp",
+    "size": [
+      83,
+      89
+    ],
+    "bytes": 5748
+  },
+  {
+    "path": "art_studies/kits/proving/slide_target.webp",
+    "size": [
+      70,
+      71
+    ],
+    "bytes": 3848
+  },
+  {
+    "path": "art_studies/kits/proving/wall_breached.webp",
+    "size": [
+      203,
+      171
+    ],
+    "bytes": 17908
+  },
+  {
+    "path": "art_studies/kits/proving/wall_intact.webp",
+    "size": [
+      203,
+      171
+    ],
+    "bytes": 16666
+  },
+  {
+    "path": "art_studies/review/scale/cover.webp",
+    "size": [
+      180,
+      87
+    ],
+    "bytes": 13420
+  },
+  {
+    "path": "art_studies/review/scale/crusader.webp",
+    "size": [
+      256,
+      208
+    ],
+    "bytes": 10454
+  },
+  {
+    "path": "art_studies/review/scale/gunner.webp",
+    "size": [
+      204,
+      174
+    ],
+    "bytes": 6428
+  },
+  {
+    "path": "art_studies/review/scale/raider.webp",
+    "size": [
+      256,
+      194
+    ],
+    "bytes": 11164
+  },
+  {
+    "path": "art_studies/review/scale/soldier.webp",
+    "size": [
+      204,
+      174
+    ],
+    "bytes": 3252
+  },
+  {
+    "path": "source_art/scene_targets/masters/bridge.webp",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2179130
+  },
+  {
+    "path": "source_art/scene_targets/masters/bridge_kit.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 811570
+  },
+  {
+    "path": "source_art/scene_targets/masters/crew_kit.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 646666
+  },
+  {
+    "path": "source_art/scene_targets/masters/district.webp",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2729974
+  },
+  {
+    "path": "source_art/scene_targets/masters/heavy_kit.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 1171062
+  },
+  {
+    "path": "source_art/scene_targets/masters/proving.webp",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2268350
+  },
+  {
+    "path": "source_art/scene_targets/masters/range_kit.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 995750
+  },
+  {
+    "path": "source_art/scene_targets/masters/street_kit.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 1043984
+  }
+]

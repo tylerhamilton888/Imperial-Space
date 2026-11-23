@@ -1,0 +1,292 @@
+{
+  "crew_kit": [
+    {
+      "group": "bridge",
+      "name": "crusader_at_ease",
+      "crop": [
+        178,
+        22,
+        464,
+        602
+      ],
+      "size": [
+        53,
+        108
+      ]
+    },
+    {
+      "group": "bridge",
+      "name": "crusader_at_ease_front",
+      "crop": [
+        759,
+        19,
+        1050,
+        602
+      ],
+      "size": [
+        54,
+        108
+      ]
+    },
+    {
+      "group": "bridge",
+      "name": "seated_operator",
+      "crop": [
+        149,
+        713,
+        508,
+        1208
+      ],
+      "size": [
+        49,
+        68
+      ]
+    },
+    {
+      "group": "bridge",
+      "name": "door_guard",
+      "crop": [
+        805,
+        647,
+        1098,
+        1233
+      ],
+      "size": [
+        42,
+        83
+      ]
+    }
+  ],
+  "range_kit": [
+    {
+      "group": "proving",
+      "name": "slide_target",
+      "crop": [
+        124,
+        126,
+        546,
+        557
+      ],
+      "size": [
+        70,
+        71
+      ]
+    },
+    {
+      "group": "proving",
+      "name": "range_terminal",
+      "crop": [
+        748,
+        131,
+        1129,
+        541
+      ],
+      "size": [
+        83,
+        89
+      ]
+    },
+    {
+      "group": "proving",
+      "name": "wall_intact",
+      "crop": [
+        14,
+        685,
+        612,
+        1190
+      ],
+      "size": [
+        203,
+        171
+      ]
+    },
+    {
+      "group": "proving",
+      "name": "wall_breached",
+      "crop": [
+        641,
+        685,
+        1239,
+        1190
+      ],
+      "size": [
+        203,
+        171
+      ]
+    }
+  ],
+  "street_kit": [
+    {
+      "group": "district",
+      "name": "terrace_planter",
+      "crop": [
+        84,
+        60,
+        573,
+        558
+      ],
+      "size": [
+        157,
+        160
+      ]
+    },
+    {
+      "group": "district",
+      "name": "civic_steps",
+      "crop": [
+        709,
+        97,
+        1199,
+        568
+      ],
+      "size": [
+        149,
+        143
+      ]
+    },
+    {
+      "group": "district",
+      "name": "transit_wreck",
+      "crop": [
+        45,
+        714,
+        655,
+        1188
+      ],
+      "size": [
+        201,
+        156
+      ]
+    },
+    {
+      "group": "district",
+      "name": "transit_sign",
+      "crop": [
+        835,
+        647,
+        1087,
+        1208
+      ],
+      "size": [
+        48,
+        107
+      ]
+    }
+  ],
+  "bridge_kit": [
+    {
+      "group": "bridge",
+      "name": "holomap",
+      "crop": [
+        55,
+        97,
+        601,
+        524
+      ],
+      "size": [
+        167,
+        131
+      ]
+    },
+    {
+      "group": "bridge",
+      "name": "side_console",
+      "crop": [
+        769,
+        88,
+        1102,
+        514
+      ],
+      "size": [
+        90,
+        115
+      ]
+    },
+    {
+      "group": "bridge",
+      "name": "command_chair",
+      "crop": [
+        150,
+        660,
+        519,
+        1143
+      ],
+      "size": [
+        58,
+        76
+      ]
+    },
+    {
+      "group": "bridge",
+      "name": "captain_vale",
+      "crop": [
+        826,
+        566,
+        998,
+        1207
+      ],
+      "size": [
+        22,
+        83
+      ]
+    }
+  ],
+  "heavy_kit": [
+    {
+      "group": "heavy",
+      "name": "cannon_ready",
+      "crop": [
+        47,
+        26,
+        582,
+        553
+      ],
+      "size": [
+        131,
+        129
+      ]
+    },
+    {
+      "group": "heavy",
+      "name": "cannon_reverse",
+      "crop": [
+        704,
+        60,
+        1186,
+        539
+      ],
+      "size": [
+        130,
+        129
+      ]
+    },
+    {
+      "group": "heavy",
+      "name": "hammer_ready",
+      "crop": [
+        37,
+        687,
+        608,
+        1224
+      ],
+      "size": [
+        137,
+        129
+      ]
+    },
+    {
+      "group": "heavy",
+      "name": "hammer_raised",
+      "crop": [
+        670,
+        633,
+        1183,
+        1221
+      ],
+      "size": [
+        127,
+        146
+      ]
+    }
+  ]
+}

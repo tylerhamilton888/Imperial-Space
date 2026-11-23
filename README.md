@@ -47,6 +47,10 @@ godot --headless --path game --export-release "Linux"
 
 Include Godot and third-party engine notices with distributed builds. See the packaged notices and the Godot editor’s Credits / License view.
 
+## Scene art kit
+
+[Download the editable Godot kit](docs/downloads/Imperial-Space-Scene-Art-Kit.zip) · [See the four assembled views](docs/evidence/scene-art-studies.jpg). Open `art_studies/project.godot` in Godot 4.7.2 to review the scenes. [Asset list and controls](art_studies/README.md)
+
 ## Continue development
 
 Read `AGENTS.md` and `docs/PROGRESS.md` to resume. `docs/TEST_REPORT.md` records verification and `docs/TECH_DEBT.md` tracks remaining work. Shared actors, hit resolution and navigation live under `game/actors/` and `game/combat/`. Arena-specific setup and resets live under `game/arena/`. The gameplay data never writes to campaign progression.

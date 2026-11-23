@@ -34,3 +34,7 @@ The owner selected the supplied Karth Vale concept as the acceptance target for 
 ## 22 November 2026 — Prove one environment before expanding equipment
 
 The owner wants environment production tested early given the campaign scope. Use the first mixed-squad encounter to prove actor scale, material separation, prop collisions, depth sorting and assembly cost. Keep moving actors and solid fixtures independent of the painted perimeter. The [roadmap](08_PRODUCTION_ROADMAP.md#early-environment-and-art-pass) places this work before the equipment expansion.
+
+## 22 November 2026 — Scene targets and a reusable art kit
+
+Use all four supplied concepts as acceptance targets alongside the original Karth Vale close view. The arena pair shares architecture, fixtures, scale and panel treatment. Heavy adds a distinct silhouette. Stage the new art in its own small Godot project so the team can place props and compare alternatives before binding campaign, movement or destruction systems. [Scene acceptance](03_ART_DIRECTION.md#scene-specific-acceptance-targets)

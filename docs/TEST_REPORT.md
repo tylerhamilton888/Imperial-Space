@@ -1,5 +1,13 @@
 # Verification record
 
+## Four scene art studies • 22 November 2026
+
+Imported the 1,465,499-byte artist kit ZIP into an empty directory, checked every member CRC, imported its project with Godot 4.7.2 stable and launched its default review scene. The clean extraction passed all four view loads, paired-wall state changes, target and terminal visibility, all four Heavy poses (one visible at a time), and instantiation of the individual reusable kit scenes. The packaged copy has 134 files and needs only the Godot editor to open.
+
+Rendered the four assemblies at 1280 × 720 on Linux with the Compatibility renderer and Mesa llvmpipe. Reviewed the [four-scene capture](evidence/scene-art-studies.jpg), corrected cross-cell clipping on the transit sign and Vale, registered the wall variants on a common canvas and checked the final capture. Software GL reported unsupported VSync. The staging project contains static actor studies; animation, actor controls, wall physics and mission flow require live integration.
+
+Asset preflight passed all 47 study textures, 10 reference boards and the composite preview. The largest study texture was the northwest Karth Vale tile at 640 × 360 and 126,354 bytes. The largest source painting was the full 1672 × 941 district at 2,729,974 bytes. [Repeat the checks](../source_art/scene_targets/README.md).
+
 ## Civic arsenal forecourt 0.1.2 • 22 November 2026
 
 Ran Godot 4.7.2 stable on Linux x86-64. Imported the project, exported both desktop presets and recorded a 1280 × 720 Mixed squad session from the Linux executable using mouse and keyboard. The screenshot and [short clip](evidence/arsenal-forecourt.mp4) come from that run. A second rendered check placed the player on opposite sides of the north barricade to inspect the ground pivot and overlap.

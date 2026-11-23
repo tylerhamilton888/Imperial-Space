@@ -1,5 +1,10 @@
 # Changelog
 
+## Scene asset kit • 22 November 2026
+
+- Added four owner-selected visual targets, an editable four-view art project, three backdrops, twenty independent prop/character studies and reusable HUD/dialogue art.
+- Captured the assembled studies at game resolution and checked imports, common wall anchors and Heavy pose switching.
+
 ## Developer Arena 0.1.2 • 22 November 2026
 
 - Rebuilt the proving range as a civic arsenal forecourt with a staffed inspection point, pale paving, enamel-and-stone cover and a raised transit canopy.

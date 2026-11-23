@@ -88,5 +88,65 @@
     ],
     "bytes": 699607,
     "status": "Owner-supplied gameplay art acceptance reference, outside runtime"
+  },
+  {
+    "source": "image(4).png",
+    "source_sha256": "e864e6146c868385c768cdb21cee3a71a665b1674ed8588ffd85c672996e92c5",
+    "source_dimensions": [
+      1672,
+      941
+    ],
+    "derivative": "07_proving_ground.jpg",
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 688155,
+    "status": "Owner-selected visual acceptance target, outside runtime"
+  },
+  {
+    "source": "image(5).png",
+    "source_sha256": "e1b3bbf34db426be290317b482b9a95dc077917d32ebf61e1c2291fb0413da9d",
+    "source_dimensions": [
+      1671,
+      941
+    ],
+    "derivative": "08_karth_vale_wide.jpg",
+    "dimensions": [
+      1600,
+      901
+    ],
+    "bytes": 752009,
+    "status": "Owner-selected visual acceptance target, outside runtime"
+  },
+  {
+    "source": "image(6).png",
+    "source_sha256": "3e7ee690be7aa49e002c5eea4d3372df6a246ac2a6c942ec87103b08cf732ac2",
+    "source_dimensions": [
+      1672,
+      941
+    ],
+    "derivative": "09_cruiser_bridge.jpg",
+    "dimensions": [
+      1600,
+      900
+    ],
+    "bytes": 545745,
+    "status": "Owner-selected visual acceptance target, outside runtime"
+  },
+  {
+    "source": "image(7).png",
+    "source_sha256": "54dbdda9627ee9e5f43b319133701c0326b71102c2f4cada4706a113a223cc85",
+    "source_dimensions": [
+      1671,
+      941
+    ],
+    "derivative": "10_proving_ground_heavy.jpg",
+    "dimensions": [
+      1600,
+      901
+    ],
+    "bytes": 630527,
+    "status": "Owner-selected visual acceptance target, outside runtime"
   }
 ]

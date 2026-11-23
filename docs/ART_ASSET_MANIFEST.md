@@ -14,6 +14,12 @@ The user supplied these five concept studies from earlier conversations. Their c
 
 The owner supplied [Karth Vale](../reference_art/06_karth_vale_art_target.jpg) as the reference for whole-scene art acceptance. The 1600 × 900 JPEG (699,607 bytes) is a review derivative of the supplied 1672 × 941 PNG. Source identity is recorded in the [source manifest](../reference_art/source_manifest.json). Keep this concept outside the runtime.
 
+## Scene art kit
+
+Four separately indexed owner-provided targets (07–10) are recorded in the [reference manifest](../reference_art/source_manifest.json). The three clean environment plates and five original transparent prop/actor sheets were generated with OpenAI ImageGen using their respective concept images. Full-resolution lossless masters are in [source_art/scene_targets/masters](../source_art/scene_targets/masters). The target-to-source mapping is in [production notes](../source_art/scene_targets/README.md).
+
+The separate Godot art project contains twelve backdrop tiles, twenty prop and character frames, nine cropped action icons, a cropped Vale portrait and five scale fixtures from the 0.1.2 arena. The [inventory](../source_art/scene_targets/inventory.json) records dimensions and exact bytes for every master and exported texture. These are staged production studies. The wall has two visual states at a shared origin. Heavy has four poses.
+
 ## Developer Arena 0.1.2 environment kit
 
 Original ImageGen plates guided by the owner-supplied Karth Vale concept. Three lossless source paintings live under `source_art/range/`. The packer registers the painted paving to the rectangular play area and cuts the fixtures around their feet. The signs, actors, cast shadows and HUD render in Godot. The 0.1.1 section below records the previous kit.

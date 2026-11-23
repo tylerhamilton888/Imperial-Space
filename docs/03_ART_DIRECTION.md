@@ -1,5 +1,18 @@
 # Art Direction and Production
 
+## Scene-specific acceptance targets
+
+These four owner-selected images supplement the [close Karth Vale combat reference](../reference_art/06_karth_vale_art_target.jpg). Match the visual relationships at gameplay zoom. Camera pitch, exact coordinates, labels and action bindings may adapt to the playable scene.
+
+| Reference | Look for in the game |
+| --- | --- |
+| [Proving ground](../reference_art/07_proving_ground.jpg) | The raised observation window overlooks numbered bays and target tracks. A breach lane, readable distance cues and a right-side control panel make the purpose of the room clear. The player, targets and cover remain visible with controls open. |
+| [Karth Vale, wide](../reference_art/08_karth_vale_wide.jpg) | Read the arsenal entrance, transit stop, terraces and canal as connected places. Soldiers and the wreck establish street scale. Sunlit masonry and civic planting frame an open route across the plaza. |
+| [Cruiser bridge](../reference_art/09_cruiser_bridge.jpg) | Vale and the unhelmeted Crusader read against the bridge deck at conversation distance. Consoles face crew stations, the holomap has room around it, and a low portrait panel keeps the speakers visible. Vale is the visual exemplar for this study. |
+| [Heavy proving ground](../reference_art/10_proving_ground_heavy.jpg) | Compare the same room and human scale with the Heavy figure. Look for the high squared collar, articulated black-and-brass mass, visible crimson cloak, planted feet, and a two-handed cannon or hammer silhouette that reads at a glance. |
+
+The two range boards share a single environment target. Their distance/letter markings and pictured loadout selections vary. Use the Heavy board to judge the Heavy outfit. Review the prepared art in [the four-view Godot kit](../art_studies/README.md) and compare later game integration against these original boards.
+
 ## Karth Vale gameplay art target
 
 Use the [Karth Vale concept](../reference_art/06_karth_vale_art_target.jpg) as the primary visual acceptance reference for a finished gameplay frame. Earlier boards supply character and equipment details. The camera pitch, staging, exact palette and amount of detail can change to suit play. Judge the result at ordinary game zoom.

@@ -1,5 +1,9 @@
 # Art Asset Manifest
 
+## Approved armor comparison • 23 November 2026
+
+The owner’s armor-and-combat handoff includes a [1280 × 720 Medium/Heavy comparison](briefs/armor-and-combat/references/approved_medium_heavy_silhouettes.jpg), 308,605 bytes. Its [source manifest](briefs/armor-and-combat/REFERENCE_MANIFEST.json) records the original, derivative and approval scope. This is a design reference outside the runtime. Track production grips, feet, cloak anchors and draw order against the playable sample.
+
 ## Medium sidestep • 0.3.0
 
 `game/art/movement/medium_strafe.webp` is a 2048 × 1664 atlas (589,592 bytes). Eight phases in each of eight aim headings animate planted and lifting boots beneath a braced rifle. The [offline baker](../source_art/actors/crusader/pack_strafe.py) uses the project's existing Medium ready paintings and their recorded provenance. Status: playable review. Runtime atlas preflight passed all 12 actor and movement sheets. Weapon trails, sparks, recoil, footfalls and contact sounds are generated in-engine.

@@ -25,7 +25,7 @@ All numerical combat values are starting tuning values. Character names, planet 
 - Exact engine release and renderer: inspect the environment and pin a tested choice.
 - Exact camera scale, movement speed, defense timings, damage and loot rates: tune in the arena.
 - Final appearance preset and preferred crew alternatives: use the default concepts while keeping data replaceable.
-- Final heavy helmet enclosure and additional traditions: resolve through the native-scale art proof.
+- Heavy has an approved squared collar and readable faceplate. Verify helmet turning clearance at gameplay scale. Additional visual traditions remain open.
 - Full galaxy rules, economy, factions, romances, orders, children and immortality benefits: retain the lore direction and defer gameplay systems.
 - Optional loyalty-failsafe narrative: preserve the premise, implement none of the branch in this slice.
 

@@ -1,0 +1,25 @@
+{
+  "project": "Imperial Space",
+  "package_role": "Focused addition to existing game design and implementation instructions",
+  "approval_status": "Owner approved Medium/Heavy silhouette direction; not production-asset or gameplay acceptance",
+  "source_filename": "exec-f8e0db8c-ca48-42ff-bba1-647b6f36335d.png",
+  "source_sha256": "286c6530868a2912e5b643817857a6d67d1db111f1a77448bafe42cecb8aaf32",
+  "source_dimensions_pixels": [
+    1672,
+    941
+  ],
+  "reference_path": "references/approved_medium_heavy_silhouettes.jpg",
+  "reference_sha256": "64edc2e5f59bc624585b0551d7ca6043a4250c99c0409245b0d6b3a824b4d253",
+  "reference_dimensions_pixels": [
+    1280,
+    720
+  ],
+  "reference_size_bytes": 308605,
+  "derivative_operations": "Proportional resize and JPEG encoding only; no compositional or aesthetic changes",
+  "notes": [
+    "Earlier giant and medium-like heavy concepts are superseded and intentionally excluded.",
+    "Light armor remains outside the visual approval recorded by this board.",
+    "Numeric combat timing and presentation values are proposed tuning seeds.",
+    "The current repository was not audited for this documentation handoff."
+  ]
+}

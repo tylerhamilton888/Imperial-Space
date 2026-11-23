@@ -1,5 +1,9 @@
 # Decision Log
 
+## 23 November 2026 — Pair the duel review with the armor proof
+
+Adopt the supplied combat and armor briefs for the [next arena review](08_PRODUCTION_ROADMAP.md#next-playable-review-after-030). Medium and Heavy have approved outlines. The art review tests those outlines at equal height while the combat pass repairs one decisive exchange. Preserve responsive ordinary actions, independent aim, active defense and the existing equipment rules.
+
 ## 22 November 2026 — Reward one opening in two ways
 
 Give a successful frontal parry a short opportunity against that specific raider. The player chooses a sword finish or a high-damage rifle shot. The next attack spends the chance, including a miss. Put the second ordinary sword stroke behind confirmed contact and a fresh press. These decisions reuse familiar controls and leave guard, dodge and aim responsive. The Crossfire drill gives positioning a comparable payoff in mixed combat.

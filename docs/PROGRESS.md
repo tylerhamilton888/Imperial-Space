@@ -1,5 +1,9 @@
 # Progress
 
+## 23 November 2026 • Next owner review
+
+Playable baseline: 0.3.0, `20164c4`. The new [review sequence](08_PRODUCTION_ROADMAP.md#next-playable-review-after-030) pairs one repaired sword exchange with the equal-height Medium/Heavy silhouette proof. Heavy currently has art studies. The runtime protagonist is Medium. The immediate code targets are lethal displacement and the return-cut finish.
+
 ## 22 November 2026 • Counter duel and crossfire 0.3.0
 
 On `main`, the Medium kit now supports two target-specific parry counters, a confirmed second sword cut, physical impact reactions and eight-direction sidestepping. Choose **Play counter duel** from the title screen, then try **F1 → Crossfire drill**. Gunner shots lock on commit and a raider crossing that line can absorb the hit. The proving ground remains playable. [Normal-speed capture](evidence/counter-duel.mp4) · [Test report](TEST_REPORT.md).
@@ -35,9 +39,3 @@ Enter Developer Arena → F1 → Mixed squad. [Native capture](evidence/arsenal-
 ## Repository delivery
 
 The independent project is on [GitHub](https://github.com/tylerhamilton888/Imperial-Space). Release notes, game builds and the mixed-squad gameplay clip are collected on the [0.1.1 release](https://github.com/tylerhamilton888/Imperial-Space/releases/tag/arena-v0.1.1).
-
-## Next increment
-
-1. Review the forecourt capture against [Karth Vale](03_ART_DIRECTION.md#karth-vale-gameplay-art-target). For the next art increment, give the Medium Crusader dedicated lateral steps and preserve the weapon hand through the mirrored headings. Recheck this same encounter before expanding the roster.
-2. Begin M3 with interchangeable loadouts on the same actor. Prove Light/Medium/Heavy movement and a simple equipment selector before producing additional armor art.
-3. Add the precision rifle, heavy cannon and hammer to the range and verify their handling against the same four scenarios.

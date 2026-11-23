@@ -11,7 +11,7 @@ These four owner-selected images supplement the [close Karth Vale combat referen
 | [Cruiser bridge](../reference_art/09_cruiser_bridge.jpg) | Vale and the unhelmeted Crusader read against the bridge deck at conversation distance. Consoles face crew stations, the holomap has room around it, and a low portrait panel keeps the speakers visible. Vale is the visual exemplar for this study. |
 | [Heavy proving ground](../reference_art/10_proving_ground_heavy.jpg) | Compare the same room and human scale with the Heavy figure. Look for the high squared collar, articulated black-and-brass mass, visible crimson cloak, planted feet, and a two-handed cannon or hammer silhouette that reads at a glance. |
 
-The two range boards share a single environment target. Their distance/letter markings and pictured loadout selections vary. Use the Heavy board to judge the Heavy outfit. Review the prepared art in [the four-view Godot kit](../art_studies/README.md) and compare later game integration against these original boards.
+The two range boards share a single environment target. Their distance/letter markings and pictured loadout selections vary. Use the Heavy arena board for framing, equipment scale and scene density. The [approved comparison](briefs/armor-and-combat/01_ARMOR_SILHOUETTE_AND_ART_DIRECTION.md) governs armor construction. Review the prepared art in [the four-view Godot kit](../art_studies/README.md) and compare later game integration against these original boards.
 
 ## Karth Vale gameplay art target
 
@@ -42,7 +42,7 @@ Use original panel proportions and construction. Avoid the combined silhouette o
 | Medium | Heroic proportions, visible torso articulation, strong uniform collar, balanced plates and equipment. | Generic tactical soldier silhouette with no regal character. |
 | Heavy | Squared mass, layered chest and shoulders, raised collar, braced hips and powerful feet; visible human head/torso relationship. | Simply enlarging Medium, hiding every human proportion, or duplicating a recognizable franchise suit. |
 
-The favored heavy study uses a collar-like enclosure around the head. Both a recessed protected head and a more prominent helm can exist as variants. Prototype one. The user has not required a single universal heavy helmet arrangement.
+The approved Medium has sloping overlapping shoulders, a mobile gorget and a tapered waist. Heavy has a broad, nearly level mantle, a squared rear yoke, a readable faceplate and crown, an articulated waist, separated hip guards and straight-sided greaves. Use the same body height and camera to establish the difference. Resolve joints, grips and cloak clearance before ornament. Light remains a later visual exploration.
 
 ## Traditions and customization
 

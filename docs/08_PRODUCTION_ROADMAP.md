@@ -1,5 +1,19 @@
 # Production roadmap
 
+## Next playable review after 0.3.0
+
+The [combat implementation brief](briefs/armor-and-combat/02_COMBAT_FEEL_IMPLEMENTATION_BRIEF.md) defines the exchange to prove. The [armor direction and approved board](briefs/armor-and-combat/01_ARMOR_SILHOUETTE_AND_ART_DIRECTION.md) define its wearer. Keep the current Medium kit, Godot 4.7.2, action clock and seeded arena encounters as the comparison baseline. The timing ranges in the brief are hypotheses. Record changes against the shipped tuning in [combat and equipment](02_GAMEPLAY_COMBAT_EQUIPMENT.md).
+
+| Order | Work | Evidence for review |
+| --- | --- | --- |
+| 1. Observe one exchange | Use Counter Duel. Expose the attack phase, contact shape, hit position and reaction tick. Compare hit, miss, parry, return cut and lethal riposte in the same setup. | Identify where the painted edge and the resolved contact diverge. Keep separate records of damage, interruption/displacement and presentation. |
+| 2. Fix follow-through | Give the return cut its own ending across the body. Plant the lead foot, carry hips and shoulders through contact, and keep the blade in hand. Apply lethal momentum against terrain while immediately retiring the opponent as a threat. Give the fall a readable loss of balance and landing. | In open ground and beside cover, the defender falls in the strike direction and stays on the playable side of the obstacle. Review at normal speed with full feedback, then muted with HUD, shake and decorative effects off. Keep the blade cue visible. Check one hit per swing, guard/dodge recovery and a clean F5 reset. |
+| Parallel art proof | Compare Medium and Heavy at equal standing height, facing, pose, camera, light and palette, first as solid-black armor-only figures, then helmeted with equipped cloaks. Include an ordinary defender for scale. | At gameplay zoom the suits are identifiable from shoulders, waist, hips and greaves on bright paving and a dark industrial floor. Check the faceplate, weapon grips, muzzle, elbow clearance and cloak in every supported direction. |
+| 3. Prove equipment and target contrast | Start from the existing rifle and gunner. Introduce the hammer and armored brute, then run identical turn, attack, defend, take-hit and pass-behind-cover actions in both suits. | Show when a raider yields and a brute resists or exposes an opening. Both melee and ranged approaches work. Heavy plants more firmly while responding promptly to input. |
+| 4. Test under pressure | Reuse Crossfire and the breach drill. Build toward six raiders and two gunners, a champion with support, and a breach that changes the usable route. | Check readability over several minutes, simultaneous hits, corner collisions, bounded audio/effects and repeated reset with campaign saves isolated. Carry the proven exchange into the opening operation. |
+
+The next owner review pairs the repaired Medium duel with the controlled armor comparison. The Heavy integration and larger encounters follow those proofs.
+
 ## Delivery strategy
 
 Build the fundamentals, prove combat in a permanent Developer Arena, then integrate the opening mission. **The first deliverable is a runnable development foundation with direct arena access, not a finished planetary campaign.** The first major integrated milestone is the opening operation with both outcomes and a useful shipboard loop. This packet specifies the work; it does not contain a completed game.

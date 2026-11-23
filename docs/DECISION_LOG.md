@@ -30,3 +30,7 @@ The owner rejected the 0.1.0 presentation. Use option B’s illustrated color an
 ## 22 November 2026 — Karth Vale as the scene reference
 
 The owner selected the supplied Karth Vale concept as the acceptance target for the game's overall look, with flexibility on viewpoint and composition. Use the earlier armor studies for kit details and compare the next playable encounter against the [scene criteria](03_ART_DIRECTION.md#karth-vale-gameplay-art-target).
+
+## 22 November 2026 — Prove one environment before expanding equipment
+
+The owner wants environment production tested early given the campaign scope. Use the first mixed-squad encounter to prove actor scale, material separation, prop collisions, depth sorting and assembly cost. Keep moving actors and solid fixtures independent of the painted perimeter. The [roadmap](08_PRODUCTION_ROADMAP.md#early-environment-and-art-pass) places this work before the equipment expansion.

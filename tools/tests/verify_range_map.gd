@@ -29,6 +29,7 @@ func run() -> void:
 		[Vector2(570,460), Vector2(930,445), ""],
 		[Vector2(860,180), Vector2(860,420), "NorthCover"],
 		[Vector2(1130,590), Vector2(1130,710), "SouthCover"],
+		[Vector2(383,204), Vector2(383,260), "InspectionDesk"],
 		[Vector2(320,210), Vector2(320,350), "CrewRail"],
 		[Vector2(547,530), Vector2(20,530), "WestWall"],
 		[Vector2(1380,355), Vector2(1550,355), "EastWall"],

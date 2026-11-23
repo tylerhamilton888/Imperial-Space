@@ -30,6 +30,12 @@ Prove damage attribution, one-hit-per-swing rules, shot collision, enemy telegra
 
 **Gate:** The developer can enter the arena and fight without playing any story. A new encounter and a reset are quick. Death and restart work. Holding attack, alternating inputs, parry timing and shots against walls do not create obvious exploit or collision failures. The arena uses production combat scenes, not a disconnected toy implementation.
 
+## Early environment and art pass
+
+Run this pass on the shared-combat arena before expanding armor families or building campaign districts. Use one playable civic arsenal forecourt as the first environment kit. Establish how much of the architecture can live in the background, which props must sort against moving actors, and how paving, cover, cloth and armor read in the same light. Keep the barriers and rail reusable at ground pivots shared with collision.
+
+Review a mixed-squad encounter at ordinary zoom against the [Karth Vale target](03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Walk behind and in front of cover, circle the raider and exchange fire with the gunner. Record a native screenshot and short clip, and identify what still needs a second pass before multiplying it across the campaign. Use the approved material and scale choices in the opening district.
+
 ## M3 Loadouts and build expression
 
 Add Light, Medium and Heavy armor functions using a shared body baseline. Add the precision rifle and heavy cannon, plus the hammer: **three firearms and two melee weapons total**. Give each armor role one initial special and a small set of freely respecable traits. Begin simple weapon mastery with a high baseline competence; its initial progression may be a modest proof rather than a full campaign balance curve.

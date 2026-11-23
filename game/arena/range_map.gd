@@ -7,8 +7,9 @@ const OBSTACLES: Array[Rect2] = [
 	Rect2(1090, 622, 150, 30),
 	Rect2(287, 263, 137, 9),
 	Rect2(350, 218, 22, 15),
+	Rect2(342, 237, 82, 13),
 ]
-const OBSTACLE_NAMES := ["NorthCover", "SouthCover", "CrewRail", "RangeOfficer"]
+const OBSTACLE_NAMES := ["NorthCover", "SouthCover", "CrewRail", "RangeOfficer", "InspectionDesk"]
 
 @export var grid_visible: bool = false:
 	set(value):

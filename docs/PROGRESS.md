@@ -1,5 +1,11 @@
 # Progress
 
+## 22 November 2026 • Developer Arena 0.1.2
+
+The early environment pass is playable on `main`. The four existing drills share a sunlit arsenal forecourt. A staffed inspection desk and reusable stone cover establish human scale. The gunner starts beside the north barricade in Mixed squad. All actors cast directional shadows from their current pose.
+
+Enter Developer Arena → F1 → Mixed squad. [Native capture](evidence/arsenal-forecourt.jpg) · [Combat clip](evidence/arsenal-forecourt.mp4) · [Verification](TEST_REPORT.md). The latest packaged GitHub release below is the earlier 0.1.1 hall.
+
 ## 22 November 2026 • Developer Arena 0.1.1
 
 - Branch `main`. The illustrated runtime is `dd6de25739e3`, tagged `arena-v0.1.1`. A subsequent documentation commit records that build. The mechanical baseline is tagged `arena-v0.1.0`.
@@ -16,6 +22,6 @@ The independent project is on [GitHub](https://github.com/tylerhamilton888/Imper
 
 ## Next increment
 
-1. Bring one playable mixed-squad encounter toward the [Karth Vale target](03_ART_DIRECTION.md#karth-vale-gameplay-art-target). Review architectural depth, lighting on the actors and planted strafing in a native screenshot and short clip. Play the raider duel on Windows, checking sword contact, guard timing and the leg poses while circling.
+1. Review the forecourt capture against [Karth Vale](03_ART_DIRECTION.md#karth-vale-gameplay-art-target). For the next art increment, give the Medium Crusader dedicated lateral steps and preserve the weapon hand through the mirrored headings. Recheck this same encounter before expanding the roster.
 2. Begin M3 with interchangeable loadouts on the same actor. Prove Light/Medium/Heavy movement and a simple equipment selector before producing additional armor art.
 3. Add the precision rifle, heavy cannon and hammer to the range and verify their handling against the same four scenarios.

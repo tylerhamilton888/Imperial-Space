@@ -21,6 +21,24 @@ var phase := 0.0
 var feedback := 0.0
 var _stride := 0.0
 var _reverse_stride := false
+@onready var _cast_shadow := Sprite2D.new()
+
+
+func _ready() -> void:
+	# Ground shadows sit beneath every actor and piece of cover. Project the
+	# active pose from its boot pivot so a moving cloak casts a moving shadow.
+	_cast_shadow.centered = false
+	_cast_shadow.region_enabled = true
+	_cast_shadow.region_filter_clip_enabled = true
+	_cast_shadow.z_index = -2
+	_cast_shadow.self_modulate = Color(0.06, 0.07, 0.10, 0.26)
+	_cast_shadow.transform = Transform2D(
+		Vector2(1.0, 0.0) / DENSITY,
+		Vector2(-0.42, -0.20) / DENSITY,
+		Vector2.ZERO
+	)
+	add_child(_cast_shadow)
+
 
 func pose(aim: Vector2, movement: Vector2, state: StringName, progress: float, _delta: float) -> void:
 	facing = aim
@@ -69,6 +87,9 @@ func _draw() -> void:
 	var pivot := Vector2(pivot_data[0], pivot_data[1])
 	var source := Rect2(Vector2(_heading(), row % 8) * cell, cell)
 	var sprite: Texture2D = SHEETS[role][floori(row / 8.0)]
+	_cast_shadow.texture = sprite
+	_cast_shadow.region_rect = source
+	_cast_shadow.offset = -pivot
 	var tint := Color.WHITE * (1.0 + 0.65 * feedback)
 	tint.a = 1.0
 	draw_texture_rect_region(sprite, Rect2(-pivot / DENSITY, cell / DENSITY), source, tint)

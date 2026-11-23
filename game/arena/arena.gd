@@ -65,11 +65,11 @@ func restart(index: int = -1) -> void:
 	simulation.add_child(player)
 	var camera:=Camera2D.new()
 	# Frame a 96–100 px Crusader at the approved 1080p scale while keeping the
-	# hall entrance and the gunner across the range visible in the opening shot.
+	# arsenal entrance and the gunner across the range visible in the opening shot.
 	camera.zoom=Vector2(1.07,1.07)
-	camera.position=Vector2(0,-104)
+	camera.position=Vector2(0,-164)
 	camera.limit_left=0
-	camera.limit_top=0
+	camera.limit_top=-120
 	camera.limit_right=1600
 	camera.limit_bottom=960
 	camera.position_smoothing_enabled=true

@@ -14,6 +14,26 @@ The user supplied these five concept studies from earlier conversations. Their c
 
 The owner supplied [Karth Vale](../reference_art/06_karth_vale_art_target.jpg) as the reference for whole-scene art acceptance. The 1600 × 900 JPEG (699,607 bytes) is a review derivative of the supplied 1672 × 941 PNG. Source identity is recorded in the [source manifest](../reference_art/source_manifest.json). Keep this concept outside the runtime.
 
+## Developer Arena 0.1.2 environment kit
+
+Original ImageGen plates guided by the owner-supplied Karth Vale concept. Three lossless source paintings live under `source_art/range/`. The packer registers the painted paving to the rectangular play area and cuts the fixtures around their feet. The signs, actors, cast shadows and HUD render in Godot. The 0.1.1 section below records the previous kit.
+
+| Asset | Pixels | Bytes |
+| --- | ---: | ---: |
+| `source_art/range/arsenal_fixtures.webp` | 2172 × 724 | 1,122,932 |
+| `source_art/range/arsenal_forecourt.webp` | 1619 × 971 | 2,269,730 |
+| `source_art/range/inspection_desk.webp` | 1774 × 887 | 1,237,472 |
+| `game/art/range/crew_rail.webp` | 159 × 61 | 6,120 |
+| `game/art/range/deck_0_0.webp` | 800 × 540 | 177,668 |
+| `game/art/range/deck_0_1.webp` | 800 × 540 | 155,262 |
+| `game/art/range/deck_1_0.webp` | 800 × 540 | 180,824 |
+| `game/art/range/deck_1_1.webp` | 800 × 540 | 151,716 |
+| `game/art/range/inspection_desk.webp` | 94 × 49 | 5,882 |
+| `game/art/range/north_cover.webp` | 180 × 87 | 13,420 |
+| `game/art/range/south_cover.webp` | 170 × 87 | 12,414 |
+
+The four 800 × 540 tiles cover world coordinates (0, −120) to (1600, 960). The inspection desk and rail form one staffed station. Both barriers share the same design and register to their existing collision widths. Use these independently sorted pieces when assembling another civic encounter. The forecourt panorama remains specific to this location.
+
 ## Developer Arena 0.1.1
 
 This release includes new project-specific paintings generated with OpenAI ImageGen and original code-authored graphics. Source paths below identify which process produced each asset. The earlier runtime inventory is recorded at Git tag `arena-v0.1.0`.

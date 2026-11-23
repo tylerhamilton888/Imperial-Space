@@ -1,5 +1,18 @@
 # Verification record
 
+## Civic arsenal forecourt 0.1.2 • 22 November 2026
+
+Ran Godot 4.7.2 stable on Linux x86-64. Imported the project, exported both desktop presets and recorded a 1280 × 720 Mixed squad session from the Linux executable using mouse and keyboard. The screenshot and [short clip](evidence/arsenal-forecourt.mp4) come from that run. A second rendered check placed the player on opposite sides of the north barricade to inspect the ground pivot and overlap.
+
+| Check | Observed result |
+| --- | --- |
+| Godot suites | 26 arena, 36 combat, 22 enemy and 17 map checks passed. A new ray query hits the inspection desk at its painted footprint. |
+| Art and utilities | 15 Python tests passed. All 13 scenery/menu/HUD frames and 11 actor atlases passed preflight. The largest new runtime image is `deck_1_0.webp` at 180,824 bytes. The native screenshot passed the preview profile. |
+| Windows export | The ZIP passed CRC validation and its executable matched the export. Its embedded pack booted into the arena with the matching Linux engine. Native Windows play remains open. ZIP SHA-256 `ffb948d2fd3f49416e6cb4d9b3af0d23ca2afa38df09816c198e216e4062f6a5`. |
+| Capture limitations | The software GL driver reported unsupported VSync. Fixed-frame movie shutdown reported WAV playback objects still in use. The separate rendered cover check and all four headless suite runs exited without that warning. |
+
+See the [native screenshot](evidence/arsenal-forecourt.jpg) for the environment review. The original actor poses still have the directional limitations recorded in [technical debt](TECH_DEBT.md).
+
 ## Illustrated Developer Arena 0.1.1 • 22 November 2026
 
 **Runtime** `dd6de25739e3` (tag `arena-v0.1.1`). A separate checkout of that exact revision imported in Godot 4.7.2 stable and reached both the main menu and direct-entry arena. Runtime, export templates and OS are the same as in the foundation report below.

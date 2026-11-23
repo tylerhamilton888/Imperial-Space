@@ -1,8 +1,8 @@
 """Register the illustrated hall and fixtures to the existing range collisions.
 
-Run with Pillow 10+ from any directory. The native ImageGen paintings are saved
+Run with Pillow 10+ from any directory. The lossless ImageGen masters are saved
 beside this script. The earlier Blender set is the physical registration study.
-The two brass course markings are painted into the deck. Raised props are sorted
+The brass lane inlays are painted into the deck. Raised props are sorted
 individually at their feet in Godot, while contact shadows stay on the ground.
 """
 from pathlib import Path
@@ -13,16 +13,23 @@ RUNTIME = HERE.parents[1] / "game/art/range"
 LANCZOS = Image.Resampling.LANCZOS
 
 def register_hall(source: Image.Image) -> Image.Image:
-    # Edges of the rear/side bulkheads and front service trench on the painting.
-    # Anchor the center of the sparring ring to its original gameplay location.
-    strips_x = [(0, 0), (140, 100), (437, 438), (1490, 1480), (1619, 1600)]
-    strips_y = [(0, 0), (197, 130), (486, 487), (809, 830), (971, 960)]
-    result = Image.new("RGB", (1600, 960))
-    for (sx, x), (sx1, x1) in zip(strips_x, strips_x[1:]):
-        for (sy, y), (sy1, y1) in zip(strips_y, strips_y[1:]):
-            tile = source.crop((sx, sy, sx1, sy1)).resize((x1-x, y1-y), LANCZOS)
-            result.paste(tile, (x,y))
-    return result
+    # Source cross sections give (source y, inside-left x, inside-right x).
+    # Straighten the painted curbs onto the simulation's rectangular perimeter.
+    # The extra 120 px above world zero retain the full height of the arsenal.
+    rows = [(0, 0, 114, 1490), (250, 270, 114, 1490),
+            (950, 871, 49, 1562), (1080, 971, 49, 1562)]
+    world_x = (0, 100, 1480, 1600)
+    mesh = []
+    for (y0, sy0, left0, right0), (y1, sy1, left1, right1) in zip(rows, rows[1:]):
+        upper = (0, left0, right0, source.width)
+        lower = (0, left1, right1, source.width)
+        for col in range(3):
+            dest = (world_x[col], y0, world_x[col+1], y1)
+            quad = (upper[col], sy0, lower[col], sy1,
+                    lower[col+1], sy1, upper[col+1], sy0)
+            mesh.append((dest, quad))
+    return source.transform((1600, 1080), Image.Transform.MESH, mesh,
+                            Image.Resampling.BICUBIC)
 
 def add_ground_shadows(hall: Image.Image) -> None:
     # Warm lights are high and to the left. Do not let shadows travel with
@@ -39,6 +46,8 @@ def add_ground_shadows(hall: Image.Image) -> None:
     mask = Image.new("L", hall.size)
     pen = ImageDraw.Draw(mask)
     pen.line([(300,279),(432,279)], fill=82, width=4)
+    # The inspection counter rests just behind the staff rail.
+    pen.polygon([(345,248), (422,248), (435,257), (355,256)], fill=95)
     for x in (293,356,418):
         pen.line([(x,269),(x+10,279)], fill=80, width=4)
     hall.paste((25,21,38), mask=mask.filter(ImageFilter.GaussianBlur(1.9)))
@@ -53,18 +62,23 @@ def fixture(source: Image.Image, bounds: tuple, size: tuple,
     output.save(RUNTIME/f"{name}.webp",lossless=True,method=6)
 
 def main() -> None:
-    hall = register_hall(Image.open(HERE/"painted_hall.png").convert("RGB"))
-    add_ground_shadows(hall)
+    hall = register_hall(Image.open(HERE/"arsenal_forecourt.webp").convert("RGB"))
+    ground = hall.crop((0, 120, 1600, 1080))
+    add_ground_shadows(ground)
+    hall.paste(ground, (0, 120))
     for row in range(2):
         for column in range(2):
-            x,y = column*800,row*480
-            hall.crop((x,y,x+800,y+480)).save(
+            x,y = column*800,row*540
+            hall.crop((x,y,x+800,y+540)).save(
                 RUNTIME/f"deck_{column}_{row}.webp",quality=93,method=6)
-    props = Image.open(HERE/"painted_fixtures.png")
-    cover = (244,14,1881,328)
-    fixture(props,cover,(164,63),(180,87),(8,20),"north_cover")
-    fixture(props,cover,(154,63),(170,87),(8,20),"south_cover")
-    fixture(props,(244,443,1881,712),(140,46),(159,61),(10,11),"crew_rail")
+    props = Image.open(HERE/"arsenal_fixtures.webp")
+    cover = (149,44,2026,365)
+    fixture(props,cover,(164,53),(180,87),(8,30),"north_cover")
+    fixture(props,cover,(154,52),(170,87),(8,31),"south_cover")
+    fixture(props,(109,453,2065,695),(140,35),(159,61),(10,22),"crew_rail")
+
+    desk = Image.open(HERE/"inspection_desk.webp")
+    fixture(desk,(42,42,1720,842),(88,43),(94,49),(3,3),"inspection_desk")
 
 if __name__ == "__main__":
     main()

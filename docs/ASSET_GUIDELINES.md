@@ -14,12 +14,12 @@ Use the [art direction](03_ART_DIRECTION.md) and [reference interpretation](../r
 | --- | --- | --- |
 | Medium Crusader, weapons and cloak | `python source_art/actors/crusader/pack.py` | Python, Pillow, NumPy, SciPy |
 | Raider, gunner, range officer and target | `python source_art/actors/khorgoth/build.py` | Python, Pillow, NumPy, SciPy |
-| Deck, two shields and crew rail | `python source_art/range/pack_painted_range.py` | Python, Pillow |
+| Forecourt, two shields, inspection desk and crew rail | `python source_art/range/pack_painted_range.py` | Python, Pillow |
 | Orbital shipyard title | [Title export recipe](../source_art/menu/README.md) | Python, Pillow |
 | HUD inlays, vitality glass, fleet crest and panel frame | `python source_art/hud/forge_instruments.py` | Python, Pillow, Inkscape |
 | Application icon and cursor | Edit `game/art/standard.svg` and `game/art/aim_cursor.svg` | SVG editor or text editor |
 
-The four deck tiles must join at x = 800 and y = 480. The actor runtime samples eight columns clockwise from screen right and looks up its action and muzzle data in `game/art/actors/poses.json`. Keep hit detection and gameplay collision feet-anchored as the paintings change.
+The four deck tiles must join at world x = 800 and y = 420 (the canvas starts at y = −120). The actor runtime samples eight columns clockwise from screen right and looks up its action and muzzle data in `game/art/actors/poses.json`. Keep hit detection and gameplay collision feet-anchored as the paintings change.
 
 ## Preflight commands
 

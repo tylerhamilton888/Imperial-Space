@@ -1,5 +1,10 @@
 # Changelog
 
+## Developer Arena 0.1.2 • 22 November 2026
+
+- Rebuilt the proving range as a civic arsenal forecourt with a staffed inspection point, pale paving, enamel-and-stone cover and a raised transit canopy.
+- Registered the tall facade to the arena perimeter, added a solid inspection desk to navigation and placed the mixed-squad gunner beside the forward barricade. Character shadows now follow the actor's pose and sort beneath the fixtures.
+
 ## Art direction • 22 November 2026
 
 - Added the owner-selected Karth Vale concept and gameplay capture criteria to the art guide. The current playable release is 0.1.1.

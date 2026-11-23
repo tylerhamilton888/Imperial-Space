@@ -1,5 +1,10 @@
 # Changelog
 
+## Developer Arena 0.4.2 • 23 November 2026
+
+- Registered a rigid cleaver to the Khorgoth’s painted fist in its walk, raised strike and recovery. The parry glint follows the weapon. The final blow holds the hit pose through the short impact pause.
+- Added original artwork for the released cleaver, weapon forearm, shoulder armor and one-armed fall. Each loose piece tumbles and settles independently. A rifle finish drops the cleaver and plays the intact fall.
+
 ## Developer Arena 0.4.1 • 23 November 2026
 
 - Redrew the Medium sword windup, contact and follow-through for lateral and diagonal attacks. The Crusader readies and carries the blade following sword use. Firing or reloading brings up the rifle.

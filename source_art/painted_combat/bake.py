@@ -63,24 +63,12 @@ for h in [0,1,3,4,5,7]:
         swing.alpha_composite(cell,(256*h,208*key))
 save(swing,"medium_sword")
 
-# Front and back views have different body overlap. For the blade kill only,
-# clip the far gauntlet where it is visible beyond the upper arm. In the last
-# two keys the shoulder hides that limb as the near fist takes the ground.
-falls=Image.new("RGBA",(4*176,4*150))
-for i,(left,top,part) in enumerate(cutouts("fallen")):
-    for sever in range(2):
-        body=part.copy()
-        if sever and i in (0,1):
-            contour=([(278,222),(307,202),(346,222),(344,318),(255,318),(255,277)]
-                     if i==0 else [(625,314),(649,301),(679,322),(678,399),(595,400),(596,357)])
-            mask=body.getchannel("A")
-            ImageDraw.Draw(mask).polygon([(x-left,y-top) for x,y in contour], fill=0)
-            body.putalpha(mask)
-        pic=scaled(body,.315)
-        # Keep the center of gravity over a planted or braced support point.
-        x=88-pic.width//2
-        y=140-pic.height
-        falls.alpha_composite(pic,(i%4*176+x,(i//4+2*sever)*150+y))
+# Whole-body falls are reserved for rifle kills. The sword finish has its own
+# separately painted wounded body in source_art/actors/raider.
+falls=Image.new("RGBA",(4*176,2*150))
+for i,(_,_,part) in enumerate(cutouts("fallen")):
+    pic=scaled(part,.315)
+    falls.alpha_composite(pic,(i%4*176+88-pic.width//2,i//4*150+140-pic.height))
 save(falls,"raider_fall")
 
 # Keep the rubble registration in place when tall objects lose their crowns.

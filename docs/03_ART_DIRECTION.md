@@ -105,3 +105,9 @@ The 0.1.0 native-scale demonstration established inputs and timing. The owner re
 For the playable arena, use the right half of board 01 to judge the separation between the helmet, shoulders, weapon, cloak and ground. Use boards 02 and 04 for the integrated shoulder line, articulated torso, weight of the cloak and visible waist. The approved direction is colorful illustrated science fiction with realistic heroic anatomy. Selective exaggeration should help a player read the figure while moving. One Medium Imperial Standard example is enough for this review.
 
 Review a real combat capture at game scale, with the human defender and the Khorgoth present. Look for independently readable amber worklights, cooler shadowed paving, a broad crimson cloth shape, and differently equipped enemies. Watch a turn, a step and a strike. A successful audio, collision or import test cannot establish style acceptance.
+
+## Weapon contact and separation
+
+Review a walk, strike, hit pause and finish as one exchange at gameplay speed. Follow the fist through the step. Blade length and orientation should stay consistent until the arm changes its pose. The parry cue and first loose weapon frame use that same registration. A lethal sword cut needs an identifiable altered body, a matching limb and separate loose equipment. Author the side or underside visible in flight and a grounded view for each piece.
+
+Boltgun’s developers describe rendering posed enemies from eight directions, distinct death and overkill states, and placing events on animation frames. Imperial Space applies that timing principle to its painted three-quarter actors. [Auroch Digital on PlayStation.Blog](https://blog.playstation.com/2023/04/11/warhammer-40-000-boltgun-releases-may-23-new-gameplay-details-revealed/)

@@ -1,5 +1,9 @@
 # Decision Log
 
+## 23 November 2026 — Register the weapon to the fist and paint the aftermath
+
+The previous lower-body warp also bent the blade in the raider’s hand. Register a single solid cleaver after the legs are posed. Use the final hand coordinate at release. Give the body and each detached part its own painted volume, impact response and grounded silhouette. [Art direction](03_ART_DIRECTION.md#weapon-contact-and-separation)
+
 ## 23 November 2026 — Paint the shift in body mass
 
 Use separate posed drawings for the supported changes in posture. Physics still selects travel, collision and the separately propelled weapon arm. Register each pose to the feet or ground contact. The owner’s style references favor simple, legible shape changes and distinct material faces at game scale. [Art direction](03_ART_DIRECTION.md#mass-and-contact-at-gameplay-scale).

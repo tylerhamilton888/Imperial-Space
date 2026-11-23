@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm5b4afak6x1q"
-path="res://.godot/imported/raider_break.webp-e72cac1295f333787bb647947d60df83.ctex"
+uid="uid://biiw02utpa7bd"
+path="res://.godot/imported/wounded_fall.webp-f973c7e9f1c3816894632a63d321996a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/destruction/raider_break.webp"
-dest_files=["res://.godot/imported/raider_break.webp-e72cac1295f333787bb647947d60df83.ctex"]
+source_file="res://art/raider/wounded_fall.webp"
+dest_files=["res://.godot/imported/wounded_fall.webp-f973c7e9f1c3816894632a63d321996a.ctex"]
 
 [params]
 

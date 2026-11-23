@@ -56,6 +56,7 @@ var _blade_cued := false
 var _fall_direction := Vector2.ZERO
 var _fall_started := false
 var _sever_arm := false
+var _last_grip := Transform2D.IDENTITY
 
 func _ready() -> void:
 	match role:
@@ -80,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		return
 	# Resolve displacement against arena solids, including jambs and cover.
 	if state == &"dead" and not _fall_started and not _fall_direction.is_zero_approx():
-		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm)
+		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm,_last_grip)
 		_view.hide()
 		_fall_started = true
 		_impulse = Vector2.ZERO
@@ -111,7 +112,7 @@ func _behavior(delta: float) -> void:
 		&"windup":
 			if role == &"raider" and not _blade_cued and _duration - _elapsed <= 0.20:
 				_blade_cued = true
-				var blade := global_position + ANKLE_TO_CHEST + facing * 29.0
+				var blade := global_position + _view.cleaver_transform() * Vector2(27,1)
 				Feedback.play(self, &"blade_cue", blade, blade)
 			if _elapsed >= _duration:
 				_resolve_strike()
@@ -237,6 +238,7 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 		set_deferred(&"collision_layer", 0)
 		set_deferred(&"collision_mask", 1)
 		if role == &"raider":
+			_last_grip = _view.cleaver_transform()
 			_sever_arm = kind in [&"melee", &"return_cut", &"riposte"]
 			_fall_direction = incoming.normalized() if not incoming.is_zero_approx() else facing
 		_change_state(&"dead", DEATH_TIME)
@@ -262,6 +264,12 @@ func _change_state(next: StringName, duration := 0.0) -> void:
 	_duration = duration
 
 func _update_art() -> void:
+	if role == &"raider" and state == &"dead":
+		# Hold the actual hit silhouette briefly. Returning to an idle sword
+		# pose here makes the victim appear to pivot on the player's blade.
+		_view.travel = 0.0
+		queue_redraw()
+		return
 	var phase := clampf(_elapsed / _duration, 0.0, 1.0) if _duration > 0.0 else 0.0
 	_view.facing = facing
 	_view.travel = clampf(velocity.length() / maxf(1.0, profile.move_speed), 0.0, 1.0)
@@ -317,7 +325,7 @@ func _draw() -> void:
 		draw_circle(muzzle, 3.2 + phase * 2.3, Color(GUN_WARNING, 0.85), true, -1.0, true)
 	else:
 		if _duration - _elapsed <= 0.145:
-			var glint := facing * 29.0 + ANKLE_TO_CHEST + Vector2(0,-13)
+			var glint := _view.cleaver_transform() * Vector2(27,1)
 			var size := 5.0 + 4.0 * sin(PI * clampf((_duration - _elapsed) / 0.145, 0, 1))
 			draw_colored_polygon(PackedVector2Array([glint + Vector2(0,-size), glint + Vector2(3,0), glint + Vector2(0,size), glint + Vector2(-3,0)]), Color("#fff3ba"))
 		var start := facing.angle() - HALF_SWEEP

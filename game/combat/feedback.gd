@@ -55,6 +55,8 @@ static func _synthesize(kind: StringName) -> AudioStreamWAV:
 				sample += noise * exp(-76.0 * t) * 0.65 + smoothed * exp(-28.0 * t) * 0.32
 			&"melee", &"enemy_swing", &"dodge":
 				sample = smoothed * sin(PI * t / duration) * exp(-10.0 * t) * 0.9
+			&"blade_drop":
+				sample = (sin(TAU*724*t)*0.44+sin(TAU*1287*t)*0.24)*exp(-36*t) + smoothed*exp(-56*t)*0.48
 			&"body_land":
 				sample = sin(TAU*(58*t+0.27*(1.0-exp(-75*t))))*exp(-29*t)*0.86
 				sample += smoothed*exp(-31*t)*0.53 + sin(TAU*487*t)*exp(-50*absf(t-0.035))*0.15

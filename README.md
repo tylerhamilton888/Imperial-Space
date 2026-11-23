@@ -1,6 +1,6 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.1** adds a planted sword strike, a painted Khorgoth collapse, and destructible cover with distinct layers of stone and steel. [Compare the two builds at normal speed](docs/evidence/painted-combat.mp4).
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.2** rebuilds the Khorgoth raider’s cleaver grip and sword finish. Choose **Play counter duel** for the parry and riposte. [Watch the exchange at normal speed](docs/evidence/raider-cleaver.mp4).
 
 [0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 

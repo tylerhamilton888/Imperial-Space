@@ -125,6 +125,25 @@ class ActorArtTests(unittest.TestCase):
                             clearance = min(left, top, alpha.width-right, alpha.height-bottom)
                             self.assertGreaterEqual(clearance, 1, "material touches a cell edge")
 
+    def test_raider_walk_keeps_the_cleaver_registered(self):
+        sockets = json.loads((ART / "raider/grips.json").read_text())
+        first, count = self.roles["raider"]["poses"]["walk"]
+        px, py = self.roles["raider"]["pivot"]
+        for heading in range(HEADINGS):
+            grip = sockets[first][heading]
+            x, y, angle = grip
+            radians = math.radians(angle)
+            # Sample solid metal well beyond the hand, inside the broad blade.
+            tip = (round(px + x + 38 * math.cos(radians)),
+                   round(py + y + 38 * math.sin(radians)))
+            samples = []
+            for row in range(first, first + count):
+                self.assertEqual(sockets[row][heading], grip)
+                samples.append(self.cell("raider", row, heading).getpixel(tip))
+            self.assertTrue(all(pixel[3] >= 240 for pixel in samples))
+            for channel in zip(*samples):
+                self.assertLessEqual(max(channel) - min(channel), 18)
+
     def test_motion_and_attack_silhouettes(self):
         # Idle-only props may legitimately share a drawing across all headings.
         # Static holds at the beginning or end of an attack may also be repeated.

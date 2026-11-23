@@ -1,7 +1,5 @@
-"""Bake registered shutter states and separable Khorgoth paint from the runtime masters."""
+"""Bake registered shutter states and loose fixture paint from the runtime masters."""
 from pathlib import Path
-import numpy as np
-from scipy import ndimage
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps
 
 ART = Path(__file__).resolve().parents[2] / "game/art"
@@ -42,58 +40,6 @@ for stage, name in [(1, "shutter_scored"), (3, "shutter_torn")]:
         pen.line([(123,101),(119,111),(115,119)],fill="#b79c7b")
         pen.line([(104,91),(112,86),(116,86),(123,81)],fill="#302b2a",width=2)
     struck.save(OUT / (name+".webp"), lossless=True, method=6)
-
-# Five hand-traced views of the weapon forearm with the blade attached.
-# The remaining views mirror the registered masks around the boot pivot.
-arms = {
-    0: [(95,98),(106,100),(116,102),(119,110),(116,123),(124,129),(170,148),
-        (171,176),(142,171),(122,155),(120,143),(106,135),(92,134),(92,116)],
-    1: [(85,95),(100,98),(97,110),(98,120),(113,137),(114,177),(86,176),
-        (79,148),(75,128),(73,122),(77,108)],
-    2: [(78,96),(94,98),(92,115),(89,125),(86,134),(77,155),(75,174),
-        (57,177),(57,147),(73,123),(70,114)],
-    7: [(134,96),(151,90),(156,108),(161,124),(171,132),(196,139),(201,163),
-        (165,153),(151,142),(145,135),(143,123)],
-    6: [(158,93),(174,89),(181,104),(184,119),(191,131),(208,157),
-        (199,162),(180,144),(173,132),(166,124),(164,113)]
-}
-source = Image.open(ART / "actors/raider_0.webp").convert("RGBA")
-# All cutouts keep their original registration. The engine spins each about its
-# own bounds center, allowing the two halves to start at the authored contact pose.
-parts = Image.new("RGBA",(2048,388))
-for heading in range(8):
-    base = {3:1,4:0,5:7}.get(heading,heading)
-    mask = Image.new("L",(256,194))
-    ImageDraw.Draw(mask).polygon(arms[base],fill=255)
-    if base != heading:
-        mask = ImageOps.mirror(mask)
-    frame = source.crop((heading*256,0,(heading+1)*256,194))
-    alpha = frame.getchannel("A")
-    for row,clip in enumerate((ImageOps.invert(mask),mask)):
-        piece = frame.copy()
-        cut = ImageChops.multiply(alpha,clip)
-        rim = ImageChops.multiply(cut,ImageOps.invert(clip.filter(ImageFilter.MinFilter(5))))
-        piece.paste((116,43,43,255),mask=rim)
-        piece.putalpha(cut)
-        if row == 0:
-            # The side-on blade hides the near shin in the master. Rebuild the
-            # occluded boot from the adjacent painted view before removing slivers.
-            if base == 0:
-                leg = source.crop((256+109,113,256+141,168))
-                under = Image.new("RGBA",frame.size)
-                under.alpha_composite(leg,(119,110))
-                if heading == 4:
-                    under = ImageOps.mirror(under)
-                under.alpha_composite(piece)
-                piece = under
-            opacity = np.array(piece.getchannel("A"))
-            labels, _ = ndimage.label(opacity > 4)
-            sizes = np.bincount(labels.ravel())
-            sizes[0] = 0
-            keep = ndimage.binary_dilation(labels == sizes.argmax(),iterations=1)
-            piece.putalpha(Image.fromarray(np.where(keep,opacity,0).astype("uint8")))
-        parts.paste(piece,(heading*256,row*194))
-parts.save(OUT/"raider_break.webp", lossless=True, method=6)
 
 # Pick loose metal, capstone and hazard stripe from the shutter's own paint.
 chips = Image.new("RGBA",(96,32))

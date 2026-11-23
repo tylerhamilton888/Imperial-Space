@@ -61,13 +61,20 @@ func run() -> void:
 	foe.receive_hit(shooter,1,100,&"riposte",Vector2.RIGHT)
 	check(foe.state == &"dead" and arena.live_enemies.is_empty(),"lethal contact retires combat target immediately")
 	await ticks(7)
-	check(pieces().size()==2 and not foe.get_node("View").visible,"separated body and arm replace the standing artwork")
+	check(pieces().size()==4 and not foe.get_node("View").visible,"wounded body, loose blade, forearm and shoulder replace armed raider")
+	var loose_kinds := {}
 	for part in pieces():
+		if part.heavy:
+			check(part.paint == Shards.WOUNDED,"dedicated one-armed body selected")
+		else:
+			check(part.paint == Shards.PARTS,"independently illustrated loose-part atlas selected")
+			loose_kinds[part.part_kind] = part.ground_speed
 		check(part.ground_speed.x>0,"finisher sends both pieces along the incoming blow")
+	check(loose_kinds.size()==3 and loose_kinds[Shards.Part.CLEAVER]!=loose_kinds[Shards.Part.FOREARM],"cleaver travels independently of the weapon arm")
 	await ticks(55)
 	for part in pieces():
 		check(part.global_position.x < wall_x and part.landed,"remains settle on the near side of solid cover")
-	check(get_nodes_in_group(&"fallen_actors").size()==2,"no intact corpse duplicates the cut remains")
+	check(get_nodes_in_group(&"fallen_actors").size()==4,"no intact corpse duplicates the cut remains")
 	arena.clear_enemies()
 	check(pieces().is_empty(),"clear removes body parts before another spawn")
 	arena._spawn("raider",shooter.position+Vector2(55,0),true)
@@ -75,7 +82,7 @@ func run() -> void:
 	rifle_victim.facing = Vector2.UP
 	rifle_victim.receive_hit(shooter,2,100,&"bullet",Vector2.LEFT)
 	await ticks(7)
-	check(pieces().size()==1 and pieces()[0].heavy and pieces()[0].fall_row==1,"rear-view rifle fall keeps the body whole")
+	check(pieces().size()==2 and pieces()[0].paint==Shards.FALL and pieces()[1].part_kind==Shards.Part.CLEAVER and pieces()[0].fall_row==1,"rear-view rifle fall keeps the body whole")
 	await ticks(28)
 	check(pieces()[0].landed and is_zero_approx(pieces()[0].angle),"fallen body rests in the painted ground pose")
 	arena.clear_enemies()

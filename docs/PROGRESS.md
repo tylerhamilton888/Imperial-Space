@@ -1,5 +1,11 @@
 # Progress
 
+## 23 November 2026 • Khorgoth cleaver and breakup 0.4.2
+
+Choose **Play counter duel**. Watch the grip during the approach, guard on the glint, then right-click for the sword finish. The forearm, cleaver and shoulder plate each have original loose-part art and land alongside a one-armed body. F5 resets the exchange. [Godot gameplay capture](evidence/raider-cleaver.mp4) · [Verification](TEST_REPORT.md)
+
+The Windows x86-64 build and the change on main are ready for owner review. The current scope is the raider. Review the finish at ordinary zoom before extending this treatment to the gunner.
+
 ## 23 November 2026 • Painted combat review 0.4.1
 
 Open **Play counter duel** to compare the Medium sword and Khorgoth fall. **Play breach drill** contains repainted barricades and the steel shutter. The sword stays in hand into recovery and movement. Both scenes appear in the [matched gameplay capture](evidence/painted-combat.mp4), with 0.4.0 on the left and 0.4.1 on the right. Godot 4.7.2, Windows x86-64 export. [Verification](TEST_REPORT.md).

@@ -1,5 +1,22 @@
 # Art Asset Manifest
 
+## Khorgoth cleaver and separate parts • 0.4.2
+
+Four original generated paintings depict the existing Khorgoth design. The carry, strike, tumble and one-armed fall sheets are project assets for playable review. The registered fall for rifle kills derives from the 0.4.1 full-body art. Boltgun supplied a motion reference. The baker and wrist coordinates are in [the raider source directory](../source_art/actors/raider/). The 0.4.0 raider_break atlas has been retired.
+
+| Source or runtime texture | Dimensions | Bytes |
+| --- | --- | ---: |
+| source_art/actors/raider/carry.webp | 2172 × 724 | 630,118 |
+| source_art/actors/raider/parts.webp | 1312 × 1199 | 280,638 |
+| source_art/actors/raider/sever.webp | 1774 × 887 | 312,966 |
+| source_art/actors/raider/strike.webp | 1269 × 1240 | 513,740 |
+| game/art/actors/raider_0.webp | 2048 × 1552 | 665,364 |
+| game/art/actors/raider_1.webp | 2048 × 1552 | 570,262 |
+| game/art/actors/raider_2.webp | 2048 × 388 | 152,720 |
+| game/art/raider/loose_parts.webp | 288 × 288 | 15,318 |
+| game/art/raider/wounded_fall.webp | 704 × 300 | 56,620 |
+| game/art/painted/raider_fall.webp | 704 × 300 | 57,766 |
+
 ## Painted combat and cover • 0.4.1
 
 Four original generated production sheets use the existing Imperial Space designs as identity references. The user’s Ogre camp and Stellar Holds art supplied the style references. The editable source plates and registration script live in [painted_combat](../source_art/painted_combat/). The game imports the registered derivatives listed below. Status is playable for owner review.

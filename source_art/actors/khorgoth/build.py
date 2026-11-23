@@ -160,7 +160,7 @@ def main():
     build_target()
     desc_path=TARGET/"poses.json"
     desc=json.loads(desc_path.read_text())
-    for role in ("raider","gunner","soldier"):
+    for role in ("gunner","soldier"):
         base, muzzles=extract(role)
         cw,ch=CELL[role]
         pages={}

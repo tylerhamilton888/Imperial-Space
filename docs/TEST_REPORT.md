@@ -1,5 +1,13 @@
 # Verification record
 
+## Raider cleaver 0.4.2 • 23 November 2026
+
+Godot 4.7.2 passed 219 checks across seven gameplay suites at fixed 60 fps, including 58 destruction checks. The new assertions cover the four-piece sword finish, distinct painted parts, independent velocity and two-piece rifle finish. All 16 Python tests passed, including cleaver registration and blade pixels through the full gait in eight headings. The atlas budget checker passed six runtime textures.
+
+Recorded the [counter duel](evidence/raider-cleaver.mp4) under X11/Mesa at 30 fps through the normal game action resolver. The riposte defeated the approaching raider and four pieces were present after landing. The clip is cropped around the exchange and plays at normal speed.
+
+The Windows x86-64 embedded export uses the 4.7.2 release launcher. Verified its embedded pack bounds and ZIP CRC. The exact exported pack passed all 58 destruction checks under Linux. Native Windows execution remains untested. ZIP SHA-256 `e82b17361c75188e862f134caed5dcc0781b2dc095d19f0263fa0baa032bd058`.
+
 ## Painted combat 0.4.1 • 23 November 2026
 
 Ran the seven existing Godot gameplay suites at fixed 60 fps under 4.7.2. All 210 checks passed, including five new checks for the whole-body rifle fall, landing and sword retention. All 15 Python tests passed. The runtime checker passed three atlases and eight fixture frames.

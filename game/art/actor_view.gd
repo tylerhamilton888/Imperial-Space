@@ -1,6 +1,7 @@
 extends Node2D
 ## Directional plates share one pivot at the feet. Combat collision is owned by the actor.
 
+const GRIPS = preload("res://art/raider/grips.json")
 const DENSITY := 1.5
 const CARRY = preload("res://art/painted/medium_sword_carry.webp")
 const SWORD = preload("res://art/painted/medium_sword.webp")
@@ -80,9 +81,7 @@ func muzzle_offset() -> Vector2:
 	var point: Array = DATA.data[role].muzzle[_heading()]
 	return Vector2(point[0], point[1])
 
-func _draw() -> void:
-	if not SHEETS.has(role):
-		return
+func _pose_row() -> int:
 	var poses: Dictionary = DATA.data[role].poses
 	var id := action
 	if id == &"idle" and travel > 0.01:
@@ -91,7 +90,18 @@ func _draw() -> void:
 		id = &"idle"
 	var pose_range: Array = poses[id]
 	var progress := _stride if id == &"walk" else phase
-	var row := int(pose_range[0]) + clampi(floori(progress * int(pose_range[1])), 0, int(pose_range[1]) - 1)
+	return int(pose_range[0]) + clampi(floori(progress * int(pose_range[1])), 0, int(pose_range[1]) - 1)
+
+func cleaver_transform() -> Transform2D:
+	var socket: Array = GRIPS.data[_pose_row()][_heading()]
+	return Transform2D(deg_to_rad(socket[2]),Vector2(socket[0],socket[1])/DENSITY + _recoil * 0.24)
+
+func _draw() -> void:
+	if not SHEETS.has(role):
+		return
+	var row := _pose_row()
+	var id := &"walk" if action == &"idle" and travel > 0.01 else action
+	var progress := phase
 	var dimensions := Vector2(16.0, 6.0) if role == "crusader" else Vector2(13.5, 5.0)
 	draw_set_transform(Vector2(0, 1), 0, dimensions)
 	draw_circle(Vector2.ZERO, 1, Color(0.025, 0.03, 0.04, 0.28), true, -1.0, true)
@@ -136,6 +146,8 @@ func _draw() -> void:
 	# Shear about the boot pivot: the torso absorbs the blow while the feet
 	# and their collision stay planted. Vertical recoil compresses the pose.
 	var transform := Transform2D(Vector2.RIGHT, Vector2(-_recoil.x / 90.0, 1.0 - _recoil.y / 110.0), Vector2.ZERO)
+	if role == "raider":
+		transform = Transform2D(0.0,_recoil * 0.24)
 	draw_set_transform_matrix(transform)
 	draw_texture_rect_region(sprite, Rect2(-pivot / DENSITY, cell / DENSITY), source, tint)
 

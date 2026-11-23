@@ -4,11 +4,11 @@ extends Node2D
 const FALL = preload("res://art/painted/raider_fall.webp")
 const Feedback = preload("res://combat/feedback.gd")
 const LIMIT := 48
-const RAIDER = preload("res://art/destruction/raider_break.webp")
+const WOUNDED = preload("res://art/raider/wounded_fall.webp")
+const PARTS = preload("res://art/raider/loose_parts.webp")
 const FIXTURE = preload("res://art/destruction/fixture_fragments.webp")
-# Centers of the weapon-arm paint in each registered 256 x 194 heading.
-const ARM_CENTERS := [Vector2(130,135), Vector2(94,135), Vector2(79,134), Vector2(162,135),
-	Vector2(126,135), Vector2(90,126), Vector2(181,125), Vector2(166,126)]
+enum Part { CLEAVER, FOREARM, PAULDRON }
+var part_kind := -1
 var paint: Texture2D
 var region: Rect2
 var pivot: Vector2
@@ -41,38 +41,57 @@ static func make(parent: Node2D, feet: Vector2):
 	piece.add_to_group(&"fallen_actors")
 	return piece
 
-static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: Vector2, sever: bool) -> void:
+static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: Vector2, sever: bool, grip: Transform2D) -> void:
 	var along := impact.normalized() if not impact.is_zero_approx() else Vector2.RIGHT
 	var body = make(ground,feet)
-	body.paint = FALL
+	body.paint = WOUNDED if sever else FALL
 	body.heavy = true
-	body.fall_row = (1 if facing.y < -0.20 else 0) + (2 if sever else 0)
-	body.fall_flip = along.x > 0.0
+	body.fall_row = 1 if facing.y < -0.20 else 0
+	body.fall_flip = along.x < 0.0 if sever else along.x > 0.0
 	body.ground_speed = along * (106.0 if sever else 54.0)
 	body.shadow_width = 19.0
 	body.lifetime = 4.5
-	if not sever:
-		return
-	var heading := posmod(roundi(facing.angle() / (TAU / 8.0)), 8)
-	var anchor: Vector2 = ARM_CENTERS[heading]
-	var offset := (anchor - Vector2(128,163)) / 1.5
+	# The loose cleaver begins at its painted center of mass. Its hilt
+	# coincides with the last live grip, including during a raised attack.
+	var blade_center := grip * Vector2(12.7,2.7)
+	launch_part(ground,feet,blade_center,Part.CLEAVER,along,grip.get_rotation(),sever)
+	if sever:
+		launch_part(ground,feet,grip.origin+Vector2(0,-6),Part.FOREARM,along,grip.get_rotation()*0.45,true)
+		var shoulder_x := -12.0 if facing.x >= 0 else 12.0
+		launch_part(ground,feet,Vector2(shoulder_x,-65),Part.PAULDRON,along,0.0,true)
+
+static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Part, along: Vector2, tilt: float, forceful: bool) -> void:
 	var start := feet + Vector2(offset.x,0)
-	if absf(offset.x) > 0.1:
+	if absf(offset.x)>0.1:
 		var ray := PhysicsRayQueryParameters2D.create(feet,start,1)
 		var hit := ground.get_world_2d().direct_space_state.intersect_ray(ray)
 		if not hit.is_empty():
 			start = hit.position + hit.normal
-	var arm = make(ground,start)
-	arm.paint = RAIDER
-	arm.region = Rect2(heading*256,194,256,194)
-	arm.pivot = anchor
-	arm.size_factor = 1.0 / 1.5
-	arm.height = -offset.y
-	arm.lift = 138.0
-	arm.ground_speed = along*185.0 + along.orthogonal()*signf(along.x)*52.0
-	arm.spin = -5.0 if along.x>=0 else 5.0
-	arm.shadow_width = 7.0
-	arm.lifetime = 4.5
+	var piece = make(ground,start)
+	piece.part_kind = kind
+	piece.paint = PARTS
+	piece.region = Rect2(0,kind*96,96,96)
+	piece.pivot = Vector2(48,48)
+	piece.size_factor = 1.0/1.5
+	piece.height = maxf(4,-offset.y)
+	piece.angle = tilt
+	piece.shadow_width = 7.0
+	piece.lifetime = 4.5
+	var side := along.orthogonal()
+	var turn := 1.0 if along.x >= 0.0 else -1.0
+	match kind:
+		Part.CLEAVER:
+			piece.ground_speed = (along*195.0-side*48.0) if forceful else along*54.0
+			piece.lift = 103.0 if forceful else 18.0
+			piece.spin = turn*8.0 if forceful else turn*3.0
+		Part.FOREARM:
+			piece.ground_speed = along*115.0+side*65.0
+			piece.lift = 71.0
+			piece.spin = -turn*3.2
+		Part.PAULDRON:
+			piece.ground_speed = along*83.0-side*84.0
+			piece.lift = 148.0
+			piece.spin = -turn*6.5
 
 static func shed_fixture(ground: Node2D, feet: Vector2, direction: Vector2, contact_height: float, phase: int, seed_id: int, masonry := false) -> void:
 	var rng := RandomNumberGenerator.new()
@@ -124,12 +143,17 @@ func _physics_process(delta: float) -> void:
 		height += lift * delta
 		if height <= 0:
 			height = 0
-			if bounced:
+			if part_kind == Part.CLEAVER and not bounced:
+				Feedback.play(self,&"blade_drop",global_position,global_position)
+			if bounced or part_kind == Part.FOREARM:
 				landed = true
 			else:
 				lift = absf(lift) * 0.25
 				spin *= 0.42
 				bounced = true
+	if part_kind >= 0:
+		var turn_frame := 2 if landed else (floori(age*9) % 2)
+		region.position.x = turn_frame * 96
 	queue_redraw()
 
 func _draw() -> void:
@@ -151,7 +175,7 @@ func _draw() -> void:
 		elif age >= 0.08:
 			key = 1
 		draw_set_transform(Vector2.ZERO,0,Vector2(-1,1) if fall_flip else Vector2.ONE)
-		draw_texture_rect_region(FALL,Rect2(Vector2(-88,-140)/1.5,Vector2(176,150)/1.5),Rect2(176*key,150*fall_row,176,150))
+		draw_texture_rect_region(paint,Rect2(Vector2(-88,-140)/1.5,Vector2(176,150)/1.5),Rect2(176*key,150*fall_row,176,150))
 		return
 	draw_set_transform(Vector2.UP*height,angle)
 	if masonry_chip:

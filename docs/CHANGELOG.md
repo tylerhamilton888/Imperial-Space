@@ -1,5 +1,11 @@
 # Changelog
 
+## Developer Arena 0.4.1 • 23 November 2026
+
+- Redrew the Medium sword windup, contact and follow-through for lateral and diagonal attacks. The Crusader readies and carries the blade following sword use. Firing or reloading brings up the rifle.
+- Replaced the Khorgoth raider's flattened standing silhouette with braced, kneeling, falling and grounded paintings. The shoulder lands with a low impact sound. Rifle kills leave the body intact and sword kills retain the detached weapon arm.
+- Repainted both proving-ground fixture families. The folded shutter reveals its cable and inner rails. The broken barricade exposes its brace and leaves its sun-marked faceplate among the stones. Their shadows follow the changing shape.
+
 ## Developer Arena 0.4.0 • 23 November 2026
 
 - The breach shutter dents, tears and opens. Both waist-high barricades crack, lose a section and collapse into traversable rubble. Rifle tracers, impacts, material sounds and debris originate on the struck fixture.

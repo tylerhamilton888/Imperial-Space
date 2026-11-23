@@ -1,5 +1,13 @@
 # Verification record
 
+## Painted combat 0.4.1 • 23 November 2026
+
+Ran the seven existing Godot gameplay suites at fixed 60 fps under 4.7.2. All 210 checks passed, including five new checks for the whole-body rifle fall, landing and sword retention. All 15 Python tests passed. The runtime checker passed three atlases and eight fixture frames.
+
+Replayed the same breach and parry sequence as 0.4.0 on an X11 desktop at 1280 × 720 / 30 fps. Confirmed both structures collapsed and the duel ended in a riposte. The [matched capture](evidence/painted-combat.mp4) shows both runs cropped at the same zoom and played at normal speed. The review caught an abrupt rifle switch on recovery which the delivered build corrects.
+
+Exported the Windows release using the 4.7.2 launcher from 0.4.0. Verified ZIP CRC and embedded pack bounds. All 49 destruction checks passed against the exact extracted pack under Linux. Native Windows execution remains open. ZIP SHA-256 `903c48b575991f79cf05ce1834ef71ac98ea2bb1587694568986e705c234dff1`.
+
 ## Destruction 0.4.0 • 23 November 2026
 
 All 205 Godot gameplay checks passed at 60 fixed frames per second. The six prior suites cover 161 checks. The 44 new checks in `tools/tests/destruction_checks.gd` cover damage thresholds, shots against closed and open cover, route updates, spawn clearance, duplicate deaths, separated remains, directional force near a wall, cleanup, the 48-piece cap and expiry. All 15 Python tests passed.

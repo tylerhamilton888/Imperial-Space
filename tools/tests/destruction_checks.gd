@@ -70,6 +70,20 @@ func run() -> void:
 	check(get_nodes_in_group(&"fallen_actors").size()==2,"no intact corpse duplicates the cut remains")
 	arena.clear_enemies()
 	check(pieces().is_empty(),"clear removes body parts before another spawn")
+	arena._spawn("raider",shooter.position+Vector2(55,0),true)
+	var rifle_victim = arena.live_enemies[0]
+	rifle_victim.facing = Vector2.UP
+	rifle_victim.receive_hit(shooter,2,100,&"bullet",Vector2.LEFT)
+	await ticks(7)
+	check(pieces().size()==1 and pieces()[0].heavy and pieces()[0].fall_row==1,"rear-view rifle fall keeps the body whole")
+	await ticks(28)
+	check(pieces()[0].landed and is_zero_approx(pieces()[0].angle),"fallen body rests in the painted ground pose")
+	arena.clear_enemies()
+	check(shooter.request_action(&"melee"),"sword draw accepted")
+	await ticks(36)
+	check(shooter.action==&"idle" and shooter.get_node("Visual").sword_readied,"sword remains drawn after recovery")
+	check(shooter.request_action(&"fire") and not shooter.get_node("Visual").sword_readied,"firing restores rifle stance immediately")
+	await ticks(16)
 	arena._spawn("gunner",shooter.position+Vector2(55,0),true)
 	var gunner = arena.live_enemies[0]
 	var start: Vector2 = gunner.position

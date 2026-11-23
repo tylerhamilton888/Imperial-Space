@@ -81,7 +81,14 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	var tint := Color.WHITE.lerp(Color(1.35,1.24,1.1),impact_left/0.10)
 	var plate := profile.plates[phase]
-	draw_texture_rect(plate,Rect2(profile.art_origin,plate.get_size()*profile.art_scale),false,tint)
+	var bounds := Rect2(profile.art_origin,plate.get_size()*profile.art_scale)
+	# Project the current silhouette from its base. A broken aperture also
+	# leaves a gap in its shadow. The rubble casts a short contact shadow.
+	var shadow_depth := 0.09 if phase == 3 and profile.masonry else 0.18
+	draw_set_transform_matrix(Transform2D(Vector2.RIGHT,Vector2(-0.26,-shadow_depth),Vector2(1,2)))
+	draw_texture_rect(plate,bounds,false,Color(0.11,0.09,0.09,0.32))
+	draw_set_transform(Vector2.ZERO)
+	draw_texture_rect(plate,bounds,false,tint)
 	if not is_open:
 		for mark in scars:
 			var uv := (mark-profile.art_origin) / profile.art_scale

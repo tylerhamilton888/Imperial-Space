@@ -53,8 +53,9 @@ var _impulse := Vector2.ZERO
 var _impact_hold := 0.0
 var _exposed := false
 var _blade_cued := false
-var _sever_direction := Vector2.ZERO
-var _severed := false
+var _fall_direction := Vector2.ZERO
+var _fall_started := false
+var _sever_arm := false
 
 func _ready() -> void:
 	match role:
@@ -78,10 +79,10 @@ func _physics_process(delta: float) -> void:
 		_update_art()
 		return
 	# Resolve displacement against arena solids, including jambs and cover.
-	if state == &"dead" and not _severed and not _sever_direction.is_zero_approx():
-		Fragment.split_raider(get_parent(),global_position,facing,_sever_direction)
+	if state == &"dead" and not _fall_started and not _fall_direction.is_zero_approx():
+		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm)
 		_view.hide()
-		_severed = true
+		_fall_started = true
 		_impulse = Vector2.ZERO
 	if _impulse.length_squared() > 4.0:
 		move_and_collide(_impulse * delta)
@@ -89,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	_elapsed += delta
 	if state == &"dead":
 		if _elapsed >= _duration:
-			if not _severed:
+			if not _fall_started:
 				_view.leave_fallen_pose(get_parent(), global_position)
 			queue_free()
 	elif role != &"dummy" and not passive:
@@ -235,8 +236,9 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 	if result == &"killed":
 		set_deferred(&"collision_layer", 0)
 		set_deferred(&"collision_mask", 1)
-		if role == &"raider" and kind in [&"melee", &"return_cut", &"riposte"]:
-			_sever_direction = incoming.normalized() if not incoming.is_zero_approx() else facing
+		if role == &"raider":
+			_sever_arm = kind in [&"melee", &"return_cut", &"riposte"]
+			_fall_direction = incoming.normalized() if not incoming.is_zero_approx() else facing
 		_change_state(&"dead", DEATH_TIME)
 		remove_from_group(&"enemies")
 		died.emit()

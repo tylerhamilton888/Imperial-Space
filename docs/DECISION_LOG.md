@@ -1,5 +1,9 @@
 # Decision Log
 
+## 23 November 2026 — Paint the shift in body mass
+
+Use separate posed drawings for the supported changes in posture. Physics still selects travel, collision and the separately propelled weapon arm. Register each pose to the feet or ground contact. The owner’s style references favor simple, legible shape changes and distinct material faces at game scale. [Art direction](03_ART_DIRECTION.md#mass-and-contact-at-gameplay-scale).
+
 ## 23 November 2026 — Author the break and simulate the aftermath
 
 Give structural fixtures four registered painted plates and one solid footprint. Use health thresholds to select the plate, then release the footprint on collapse. Give the first severable enemy a painted body and weapon arm in each displayed heading. A shared ground sweep and short vertical arc give the remains direction and weight. This controls the final silhouette and lets the artist add another material or enemy family without drawing every fragment in flight. [Arena acceptance](12_DEVELOPER_ARENA.md#destruction-review)

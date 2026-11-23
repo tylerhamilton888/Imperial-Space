@@ -1,5 +1,9 @@
 # Art Direction and Production
 
+## Mass and contact at gameplay scale
+
+Use the Stellar Holds dwarf turnaround and South Meadow crossing as references for planted feet, visible top planes and changes in elevation. The Ogre camp feast establishes how a shoulder overlaps a forearm and how warm upper surfaces turn into cool shadow. Keep Imperial Space armor, architecture and proportions. In combat, the planted boot, bent knee, hip and shoulder should tell the story of the hit before the particles arrive. A broken fixture should reveal its construction and leave recognisable material on the ground. Review the same action at normal speed in the build. [First comparison](evidence/painted-combat.mp4).
+
 ## Scene-specific acceptance targets
 
 These four owner-selected images supplement the [close Karth Vale combat reference](../reference_art/06_karth_vale_art_target.jpg). Match the visual relationships at gameplay zoom. Camera pitch, exact coordinates, labels and action bindings may adapt to the playable scene.

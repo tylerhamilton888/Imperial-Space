@@ -121,6 +121,7 @@ func refill() -> void:
 	_followup_left = 0.0
 	_contact_hold = 0.0
 	_return_cut = false
+	$Visual.sword_readied = false
 	_step_distance = 0.0
 	velocity = Vector2.ZERO
 	_set_action(&"idle")
@@ -279,6 +280,10 @@ func _begin_guard(fresh_press: bool) -> void:
 	_set_action(&"guard")
 
 func _set_action(id: StringName) -> void:
+	if id in [&"melee",&"guard"]:
+		$Visual.sword_readied = true
+	elif id in [&"fire",&"reload"]:
+		$Visual.sword_readied = false
 	action = id
 	action_time = 0.0
 
@@ -428,7 +433,8 @@ func _update_view(delta: float) -> void:
 	var pose := &"parry" if action == &"guard" and _parry_pose_left > 0 else action
 	# The return cut travels back across the silhouette. Contact still falls
 	# inside the painted extension keys in either direction.
-	if action == &"melee" and _return_cut:
+	$Visual.return_stroke = action == &"melee" and _return_cut
+	if $Visual.return_stroke and posmod(roundi(facing.angle()/(TAU/8)),8) in [2,6]:
 		if phase < STRIKE_FIRST:
 			phase = lerpf(0.99, 0.85, phase / STRIKE_FIRST)
 		elif phase < STRIKE_RECOVERY:

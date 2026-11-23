@@ -55,6 +55,9 @@ static func _synthesize(kind: StringName) -> AudioStreamWAV:
 				sample += noise * exp(-76.0 * t) * 0.65 + smoothed * exp(-28.0 * t) * 0.32
 			&"melee", &"enemy_swing", &"dodge":
 				sample = smoothed * sin(PI * t / duration) * exp(-10.0 * t) * 0.9
+			&"body_land":
+				sample = sin(TAU*(58*t+0.27*(1.0-exp(-75*t))))*exp(-29*t)*0.86
+				sample += smoothed*exp(-31*t)*0.53 + sin(TAU*487*t)*exp(-50*absf(t-0.035))*0.15
 			&"stone_hit", &"stone_break":
 				var tail := 18.0 if kind == &"stone_break" else 40.0
 				sample = smoothed * exp(-tail*t) * 0.86 + sin(TAU*84*t)*exp(-35*t)*0.6
@@ -109,6 +112,14 @@ func _draw() -> void:
 			var vertices := PackedVector2Array([side, direction * 16.0, -side, -direction * 2.0])
 			if direction.length_squared() > 0.01:
 				draw_colored_polygon(vertices, color)
+		&"body_land":
+			var t := clampf(_age/_lifetime,0.0,1.0)
+			for i in 6:
+				var dx := -1.0 if i % 2 == 0 else 1.0
+				var pos := Vector2(dx*(6.0+sqrt(t)*(12+i*2)),sin(i*2.8)*3.0-3*sin(t*PI))
+				draw_set_transform(pos,0,Vector2(1.0,0.46))
+				draw_circle(Vector2.ZERO,(2.0+i*0.48)*(1.0+t),Color(0.61,0.52,0.42,0.29*(1.0-t)),true,-1,true)
+			draw_set_transform(Vector2.ZERO)
 		&"sword_arc", &"return_arc", &"riposte_arc":
 			_draw_blade_trail()
 		&"counter_hit", &"blade_hit", &"bullet_hit":

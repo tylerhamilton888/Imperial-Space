@@ -1,6 +1,6 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.0** adds destructible barricades, a shutter that tears open under fire, and a directional sword finish against the Khorgoth raider. [Watch the destruction playtest](docs/evidence/destruction-pass.mp4).
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.1** adds a planted sword strike, a painted Khorgoth collapse, and destructible cover with distinct layers of stone and steel. [Compare the two builds at normal speed](docs/evidence/painted-combat.mp4).
 
 [0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 

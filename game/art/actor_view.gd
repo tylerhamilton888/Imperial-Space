@@ -2,6 +2,8 @@ extends Node2D
 ## Directional plates share one pivot at the feet. Combat collision is owned by the actor.
 
 const DENSITY := 1.5
+const CARRY = preload("res://art/painted/medium_sword_carry.webp")
+const SWORD = preload("res://art/painted/medium_sword.webp")
 const STRAFE = preload("res://art/movement/medium_strafe.webp")
 const DATA := preload("res://art/actors/poses.json")
 const SHEETS := {
@@ -17,6 +19,8 @@ const SHEETS := {
 @export_enum("crusader", "raider", "gunner", "dummy", "soldier") var role: String = "crusader"
 var facing := Vector2.DOWN
 var travel := 0.0
+var sword_readied := false
+var return_stroke := false
 var action: StringName = &"idle"
 var phase := 0.0
 var feedback := 0.0
@@ -99,13 +103,35 @@ func _draw() -> void:
 	var pivot := Vector2(pivot_data[0], pivot_data[1])
 	var source := Rect2(Vector2(_heading(), row % 8) * cell, cell)
 	var sprite: Texture2D = SHEETS[role][floori(row / 8.0)]
-	if _strafing and travel > 0.01 and id in [&"walk", &"fire"]:
+	if role == "crusader" and id == &"melee" and _heading() not in [2,6]:
+		# Windup, transfer, extension and low finish have separate foot and
+		# cloak outlines. Extension begins on the resolver's first contact tick.
+		var key := 0
+		if return_stroke:
+			if progress < 3.0/7.0:
+				key = 3
+			elif progress < 6.0/7.0:
+				key = 2
+			elif progress < 0.94:
+				key = 1
+		elif progress >= 6.0/7.0:
+			key = 3
+		elif progress >= 3.0/7.0:
+			key = 2
+		elif progress >= 0.17:
+			key = 1
+		sprite = SWORD
+		source.position.y = key * cell.y
+	elif role == "crusader" and sword_readied and id in [&"walk",&"idle"]:
+		sprite = CARRY
+		source.position.y = floori(_stride*8.0)*cell.y if travel>0.01 else 0.0
+	elif _strafing and travel > 0.01 and id in [&"walk", &"fire"]:
 		sprite = STRAFE
 		source.position.y = floori(_stride * 8.0) * cell.y
 	_cast_shadow.texture = sprite
 	_cast_shadow.region_rect = source
 	_cast_shadow.offset = -pivot
-	var tint := Color.WHITE * (1.0 + 0.65 * feedback)
+	var tint := Color.WHITE.lerp(Color(1.23,1.16,1.07),feedback)
 	tint.a = 1.0
 	# Shear about the boot pivot: the torso absorbs the blow while the feet
 	# and their collision stay planted. Vertical recoil compresses the pose.

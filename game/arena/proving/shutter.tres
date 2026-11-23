@@ -1,11 +1,12 @@
 [gd_resource type="Resource" format=3]
 
 [ext_resource type="Script" path="res://combat/fixture_profile.gd" id="1"]
-[ext_resource type="Texture2D" path="res://art/proving/wall_intact.webp" id="2"]
-[ext_resource type="Texture2D" path="res://art/destruction/shutter_scored.webp" id="3"]
-[ext_resource type="Texture2D" path="res://art/destruction/shutter_torn.webp" id="4"]
-[ext_resource type="Texture2D" path="res://art/proving/wall_breached.webp" id="5"]
+[ext_resource type="Texture2D" path="res://art/painted/shutter_0.webp" id="2"]
+[ext_resource type="Texture2D" path="res://art/painted/shutter_1.webp" id="3"]
+[ext_resource type="Texture2D" path="res://art/painted/shutter_2.webp" id="4"]
+[ext_resource type="Texture2D" path="res://art/painted/shutter_3.webp" id="5"]
 
 [resource]
 script = ExtResource("1")
 plates = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+art_origin = Vector2(-106,-144)

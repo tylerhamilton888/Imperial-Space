@@ -1,5 +1,23 @@
 # Art Asset Manifest
 
+## Painted combat and cover • 0.4.1
+
+Four original generated production sheets use the existing Imperial Space designs as identity references. The user’s Ogre camp and Stellar Holds art supplied the style references. The editable source plates and registration script live in [painted_combat](../source_art/painted_combat/). The game imports the registered derivatives listed below. Status is playable for owner review.
+
+| Texture | Dimensions | Bytes |
+| --- | --- | ---: |
+| barricade_0.webp | 264 × 120 | 10,572 |
+| barricade_1.webp | 264 × 120 | 11,144 |
+| barricade_2.webp | 264 × 120 | 12,952 |
+| barricade_3.webp | 264 × 120 | 10,272 |
+| medium_sword.webp | 2048 × 832 | 215,944 |
+| medium_sword_carry.webp | 2048 × 1664 | 532,728 |
+| raider_fall.webp | 704 × 600 | 96,338 |
+| shutter_0.webp | 212 × 177 | 16,712 |
+| shutter_1.webp | 212 × 177 | 17,144 |
+| shutter_2.webp | 212 × 177 | 18,012 |
+| shutter_3.webp | 212 × 177 | 18,442 |
+
 ## Destruction paint • 0.4.0
 
 Seven playable review textures derive from the existing proving-ground shutter, range cover and Khorgoth paintings. The [baker](../source_art/destruction/build.py) registers the intermediate states, rebuilds the exposed side-view leg, and splits the raider paint in all eight displayed headings. These derivatives inherit the source provenance recorded below. The runtime frame and atlas audits passed.

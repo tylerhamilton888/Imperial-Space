@@ -1,5 +1,11 @@
 # Progress
 
+## 23 November 2026 • Painted combat review 0.4.1
+
+Open **Play counter duel** to compare the Medium sword and Khorgoth fall. **Play breach drill** contains repainted barricades and the steel shutter. The sword stays in hand into recovery and movement. Both scenes appear in the [matched gameplay capture](evidence/painted-combat.mp4), with 0.4.0 on the left and 0.4.1 on the right. Godot 4.7.2, Windows x86-64 export. [Verification](TEST_REPORT.md).
+
+Owner review is open. The gunner still uses its previous fall and straight north/south sword attacks use the existing keys. Review the visual language at ordinary zoom before extending it to the Heavy kit or campaign ranks.
+
 ## 23 November 2026 • Destruction review 0.4.0
 
 Choose **Play breach drill** for the four-stage shutter and two collapsible stone barricades. Choose **Play counter duel** for the first directional Khorgoth dismemberment. [Watch the nine-second gameplay capture](evidence/destruction-pass.mp4). The Windows x86-64 build uses Godot 4.7.2. [Verification](TEST_REPORT.md).

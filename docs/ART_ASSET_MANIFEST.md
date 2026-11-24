@@ -1,5 +1,34 @@
 # Art Asset Manifest
 
+## Switchyard • 0.5.1
+
+All eight paintings were generated for this project. The previous ivory-and-blue Knight provided the identity reference. Source paintings and the Pillow/SciPy packing recipe are outside Godot's import tree. The body atlas holds eight directions across and four poses down. The shared foot pivot and per-pose fist and shoulder coordinates are in the bake. The canopy, piers, planter, moving passenger car, two travelers, operator, two masonry fixtures and Knight are independently placed. The scenery recipe fills the paving beneath the lifted architecture, registers four barrier states and packs two civilian walks. The Khorgoth finish tints the existing live and detached art. All are playable review assets. [Sources and rebuild script](../source_art/switchyard/)
+
+| Asset | Dimensions | Bytes |
+| --- | --- | ---: |
+| source_art/switchyard/barrier.webp | 1284 × 1225 | 371,054 |
+| source_art/switchyard/car.webp | 1536 × 1024 | 450,756 |
+| source_art/switchyard/court.webp | 1672 × 941 | 418,716 |
+| source_art/switchyard/far.webp | 1448 × 1086 | 641,114 |
+| source_art/switchyard/near.webp | 1448 × 1086 | 597,438 |
+| source_art/switchyard/operator.webp | 2172 × 724 | 388,920 |
+| source_art/switchyard/stride.webp | 1774 × 887 | 895,050 |
+| source_art/switchyard/travelers.webp | 1536 × 1024 | 170,208 |
+| game/transit/court/barrier_0.webp | 145 × 99 | 6,768 |
+| game/transit/court/barrier_1.webp | 145 × 99 | 6,796 |
+| game/transit/court/barrier_2.webp | 145 × 99 | 7,114 |
+| game/transit/court/barrier_3.webp | 145 × 99 | 6,370 |
+| game/transit/court/canopy.webp | 664 × 374 | 57,574 |
+| game/transit/court/east_pier.webp | 166 × 210 | 15,342 |
+| game/transit/court/knight.webp | 1600 × 808 | 367,624 |
+| game/transit/court/operator.webp | 400 × 90 | 16,006 |
+| game/transit/court/paving_0.webp | 640 × 720 | 96,148 |
+| game/transit/court/paving_1.webp | 640 × 720 | 88,310 |
+| game/transit/court/planter.webp | 220 × 358 | 32,656 |
+| game/transit/court/tram.webp | 338 × 229 | 35,434 |
+| game/transit/court/travelers.webp | 240 × 180 | 14,246 |
+| game/transit/court/west_pier.webp | 210 × 150 | 13,412 |
+
 ## The Last Tram • 0.5.0
 
 Original generated artwork for this project, prepared for gameplay review. Station tiles and foreground lamps come from the station master. The transparent car is an independently movable layer. The four operator keys share a lever pivot. The left-facing Knight has nine keyed body poses and hand/shoulder registrations for existing Armory equipment. Original procedural station ambience, lever impact and departure bell are generated with the accompanying sound script. [Masters and recipes](../source_art/transit/).

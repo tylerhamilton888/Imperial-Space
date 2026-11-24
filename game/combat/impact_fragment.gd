@@ -41,9 +41,10 @@ static func make(parent: Node2D, feet: Vector2):
 	piece.add_to_group(&"fallen_actors")
 	return piece
 
-static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: Vector2, sever: bool, grip: Transform2D, art_scale := 1.0) -> void:
+static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: Vector2, sever: bool, grip: Transform2D, art_scale := 1.0, finish: Material = null) -> void:
 	var along := impact.normalized() if not impact.is_zero_approx() else Vector2.RIGHT
 	var body = make(ground,feet)
+	body.material = finish
 	body.paint = WOUNDED if sever else FALL
 	body.heavy = true
 	body.size_factor = art_scale
@@ -55,13 +56,13 @@ static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: 
 	# The loose cleaver begins at its painted center of mass. Its hilt
 	# coincides with the last live grip, including during a raised attack.
 	var blade_center := grip * Vector2(12.7,2.7)
-	launch_part(ground,feet,blade_center,Part.CLEAVER,along,grip.get_rotation(),sever,art_scale)
+	launch_part(ground,feet,blade_center,Part.CLEAVER,along,grip.get_rotation(),sever,art_scale,finish)
 	if sever:
-		launch_part(ground,feet,grip.origin+Vector2(0,-6)*art_scale,Part.FOREARM,along,grip.get_rotation()*0.45,true,art_scale)
+		launch_part(ground,feet,grip.origin+Vector2(0,-6)*art_scale,Part.FOREARM,along,grip.get_rotation()*0.45,true,art_scale,finish)
 		var shoulder_x := -12.0 if facing.x >= 0 else 12.0
-		launch_part(ground,feet,Vector2(shoulder_x,-65)*art_scale,Part.PAULDRON,along,0.0,true,art_scale)
+		launch_part(ground,feet,Vector2(shoulder_x,-65)*art_scale,Part.PAULDRON,along,0.0,true,art_scale,finish)
 
-static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Part, along: Vector2, tilt: float, forceful: bool, art_scale := 1.0) -> void:
+static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Part, along: Vector2, tilt: float, forceful: bool, art_scale := 1.0, finish: Material = null) -> void:
 	var start := feet + Vector2(offset.x,0)
 	if absf(offset.x)>0.1:
 		var ray := PhysicsRayQueryParameters2D.create(feet,start,1)
@@ -69,6 +70,7 @@ static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Pa
 		if not hit.is_empty():
 			start = hit.position + hit.normal
 	var piece = make(ground,start)
+	piece.material = finish
 	piece.part_kind = kind
 	piece.paint = PARTS
 	piece.region = Rect2(0,kind*96,96,96)

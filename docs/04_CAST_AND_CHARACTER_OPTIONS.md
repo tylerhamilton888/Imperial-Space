@@ -1,5 +1,9 @@
 # Cast and character options
 
+## Imperial civilian appearance
+
+Use a Northern European visual direction for Imperial civilians, with tall, strong adult builds, fair complexions and both blond and dark hair. Distinguish individuals with a few readable choices in hair mass, clothing, occupation and posture. At Karth Vale the signalman has a sandy blond beard and a saffron jacket. The two late travelers are a woman with a long ash-blond braid and rust coat, and a dark-haired man in green with rolled sleeves. Their silhouettes and clothing identify them at gameplay zoom.
+
 ## Visual and production rules
 
 Use traditional heroic action, science-fiction, and fantasy attractiveness: massive, handsome, masculine Crusaders; fit, handsome male officers; attractive, feminine adult women. Healthy posture, grooming, and flattering uniforms express confidence and competence. Clothing can emphasize shoulders, waist, and silhouette while remaining credible for the character's occupation.

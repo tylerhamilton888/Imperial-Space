@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		return
 	# Resolve displacement against arena solids, including jambs and cover.
 	if state == &"dead" and not _fall_started and not _fall_direction.is_zero_approx():
-		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm,_last_grip,_view.scale.x)
+		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm,_last_grip,_view.scale.x,_view.material)
 		_view.hide()
 		_fall_started = true
 		_impulse = Vector2.ZERO

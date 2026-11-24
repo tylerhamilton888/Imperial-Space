@@ -16,5 +16,4 @@ script = ExtResource("1")
 shape = SubResource("Circle")
 
 [node name="Visual" type="Node2D" parent="."]
-scale = Vector2(0.82, 0.82)
 script = ExtResource("2")

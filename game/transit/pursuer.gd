@@ -3,13 +3,14 @@ var operator: Node2D
 var knight: Node2D
 var provoked := 0.0
 var retreating := false
+var entry := Vector2.ZERO
 
 func _behavior(delta: float) -> void:
 	if retreating:
-		if position.x < -120 or position.x > 1400:
+		if position.distance_to(entry) < 7.0:
 			queue_free()
 			return
-		facing = Vector2.LEFT if position.x < 640 else Vector2.RIGHT
+		facing = position.direction_to(entry)
 		velocity = facing * profile.move_speed
 		move_and_slide()
 		_change_state(&"approach")
@@ -23,6 +24,11 @@ func _behavior(delta: float) -> void:
 			_target = desired
 			_sense_delay = 0
 			_path_delay = 0
+	# The raiders know the location of the switch even when boarding rails
+	# break their line of sight. The ordinary strike still requires sight.
+	if _target == operator:
+		_last_known = operator.position
+		_memory = SPOT_MEMORY
 	super._behavior(delta)
 
 func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, incoming: Vector2) -> StringName:

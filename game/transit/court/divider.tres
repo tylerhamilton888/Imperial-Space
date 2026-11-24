@@ -1,0 +1,18 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://combat/fixture_profile.gd" id="1"]
+[ext_resource type="Texture2D" path="res://transit/court/barrier_0.webp" id="2"]
+[ext_resource type="Texture2D" path="res://transit/court/barrier_1.webp" id="3"]
+[ext_resource type="Texture2D" path="res://transit/court/barrier_2.webp" id="4"]
+[ext_resource type="Texture2D" path="res://transit/court/barrier_3.webp" id="5"]
+
+[resource]
+script = ExtResource("1")
+plates = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+capacity = 144
+art_origin = Vector2(-72,-72)
+art_scale = Vector2(1,1)
+aim_bounds = Rect2(-65,-61,130,79)
+surface_width = Vector2(-54,54)
+contact_height = 29.0
+masonry = true

@@ -1,5 +1,9 @@
 # Progress
 
+## 24 November 2026 • Isometric tram forecourt 0.5.1
+
+**Play The Last Tram** opens the playable high-angle forecourt with eight painted Knight facings, independent sword mounts and two diagonal approaches. Two civilians can board if the Knight breaks the boarding barrier before departure. The signalman, railings, tram, gate piers, planter, protective masonry and passengers are separate scene objects. [Recorded defense](evidence/tram-forecourt.mp4) · [Native gameplay still](evidence/tram-forecourt.jpg). All nine Godot suites passed on Linux. Next is an owner playtest of the camera and actor readability at the normal game resolution.
+
 ## 24 November 2026 • The Last Tram 0.5.0
 
 Choose **Play The Last Tram** or launch with `-- --tram`. Hold the Karth Vale tram platform while the signalman unlocks the evacuation line. Godot 4.7.2. Both outcomes and replay passed in the Windows export’s embedded game pack. [Gameplay](evidence/last-tram.mp4) · [Test record](TEST_REPORT.md). Next review is whether both approaches, the worker and the departure read during an unassisted first play.

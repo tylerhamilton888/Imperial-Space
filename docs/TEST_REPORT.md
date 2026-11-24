@@ -1,5 +1,15 @@
 # Verification record
 
+## Forecourt 0.5.1 • 24 November 2026
+
+All 275 Godot checks and 16 Python tests passed under Linux. The 24 tram checks enter through the title, traverse the forecourt, query the track and planter boundaries, check all eight heading indices, resolve an undefended loss, reset and intercept both raiders at different depths. Four normal sword contacts advanced the boarding barrier through phases 1, 2, 2 and 3. The footprint blocked traversal until destruction, the second divider retained full integrity, and both passengers crossed the opening. A separate successful defense left the barrier intact and the two passengers behind. The film uses scripted movement and aim with the ordinary combat resolver. It recorded two parries and two hits, all three locks and the surviving operator at full health. [Normal-speed clip](evidence/tram-forecourt.mp4)
+
+The Windows x86-64 ZIP passed CRC. All 24 tram checks passed against the exact PE-embedded game pack on Linux. Native Windows input and rendering still need a playtest. Eleven runtime frame textures and three atlases passed their image profiles. The 1280 × 720 review still passed the preview checker. The 800 × 450 H.264/AAC clip includes the boarding rescue and two counterattacks at real-time speed.
+
+```sh
+godot --headless --path game --fixed-fps 60 --script ../tools/tests/tram_checks.gd
+```
+
 ## The Last Tram 0.5.0 • 24 November 2026
 
 Ran all nine Godot suites (263 checks) and all 16 Python asset-tool tests on Linux. All passed. The 12 tram checks enter through the title screen, advance to the switch, allow the operator to fall, verify the car stays in place, restart, intercept both raiders, protect the worker through three locks, check departure and return to the title.

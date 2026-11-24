@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://transit/court/canopy.webp" id="canopy"]
+[ext_resource type="Texture2D" path="res://transit/court/west_pier.webp" id="west_pier"]
+[ext_resource type="Texture2D" path="res://transit/court/east_pier.webp" id="east_pier"]
+[ext_resource type="Texture2D" path="res://transit/court/planter.webp" id="planter"]
+[ext_resource type="PackedScene" path="res://transit/court/divider.tscn" id="divider"]
+[ext_resource type="Script" path="res://transit/court/queue_rail.gd" id="rail"]
+[ext_resource type="Script" path="res://transit/court/passenger.gd" id="traveler"]
+
+[node name="Forecourt" type="Node2D"]
+y_sort_enabled = true
+
+[node name="canopy" type="StaticBody2D" parent="."]
+position = Vector2(300,230)
+collision_mask = 0
+z_index = -4
+
+[node name="Paint" type="Sprite2D" parent="canopy"]
+centered = false
+position = Vector2(-300,-230)
+texture = ExtResource("canopy")
+
+[node name="Footprint" type="CollisionPolygon2D" parent="canopy"]
+polygon = PackedVector2Array(-400,-330,655,-330,-400,259)
+
+[node name="west_pier" type="StaticBody2D" parent="."]
+position = Vector2(892,134)
+collision_mask = 0
+z_index = 0
+
+[node name="Paint" type="Sprite2D" parent="west_pier"]
+centered = false
+position = Vector2(-149,-134)
+texture = ExtResource("west_pier")
+
+[node name="Footprint" type="CollisionPolygon2D" parent="west_pier"]
+polygon = PackedVector2Array(-133,-134,56,-134,59,-25,2,16,-134,-26)
+
+[node name="east_pier" type="StaticBody2D" parent="."]
+position = Vector2(1170,182)
+collision_mask = 0
+z_index = 0
+
+[node name="Paint" type="Sprite2D" parent="east_pier"]
+centered = false
+position = Vector2(-56,-182)
+texture = ExtResource("east_pier")
+
+[node name="Footprint" type="CollisionPolygon2D" parent="east_pier"]
+polygon = PackedVector2Array(-27,-182,140,-182,140,28,-34,-6)
+
+[node name="planter" type="StaticBody2D" parent="."]
+position = Vector2(1188,483)
+collision_mask = 0
+z_index = 0
+
+[node name="Paint" type="Sprite2D" parent="planter"]
+centered = false
+position = Vector2(-128,-300)
+texture = ExtResource("planter")
+
+[node name="Footprint" type="CollisionPolygon2D" parent="planter"]
+polygon = PackedVector2Array(-116,-14,65,-85,132,-83,132,27,-26,61,-116,26)
+
+[node name="BoardingDivider" parent="." instance=ExtResource("divider")]
+position = Vector2(321,391)
+
+[node name="FreightDivider" parent="." instance=ExtResource("divider")]
+position = Vector2(1198,217)
+
+[node name="WestRail" type="StaticBody2D" parent="."]
+position = Vector2(257,374)
+collision_mask = 0
+script = ExtResource("rail")
+
+[node name="EastRail" type="StaticBody2D" parent="."]
+position = Vector2(382,414)
+collision_mask = 0
+script = ExtResource("rail")
+
+[node name="PassengerA" type="CharacterBody2D" parent="."]
+position = Vector2(345,446)
+script = ExtResource("traveler")
+appearance = 0
+
+[node name="PassengerB" type="CharacterBody2D" parent="."]
+position = Vector2(379,478)
+script = ExtResource("traveler")
+appearance = 1

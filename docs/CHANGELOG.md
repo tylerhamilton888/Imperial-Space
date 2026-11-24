@@ -1,5 +1,12 @@
 # Changelog
 
+## The Last Tram 0.5.1 • 24 November 2026
+
+- Replaced the horizontal platform with a broad isometric forecourt, diagonal train travel and physical boundaries for the station, gate, planter and canal.
+- Added a registered eight-facing Knight with two step contacts, a guard and a strike in each direction. The blade is drawn from the equipped weapon's own art at the painted fist.
+- Added two civilian passengers, an optional boarding rescue and two independently destructible masonry dividers. Dividers have four registered states, material shedding, collision removal and route rebuilding. The station canopy, gate piers and tree planter are placeable solids above the ground layer.
+- Repainted the blond operator in saffron work clothes. Gave the raiders richer rust and violet tones through movement, impact and breakup. Rebalanced the stone floor and station colors at gameplay scale.
+
 ## The Last Tram 0.5.0 • 24 November 2026
 
 - Added a standalone evacuation encounter, a station at dusk, a passenger tram, a working switch operator and three sounds for the platform and machinery.

@@ -7,11 +7,17 @@ const Knight = preload("res://transit/knight.tscn")
 const Pursuer = preload("res://transit/pursuer.tscn")
 const Signalman = preload("res://transit/signalman.gd")
 const Platform = preload("res://transit/platform.gd")
-const Car = preload("res://transit/car.webp")
+const Car = preload("res://transit/court/tram.webp")
 const Clank = preload("res://transit/switch.ogg")
 const Bell = preload("res://transit/departure.ogg")
 const Air = preload("res://transit/station_air.ogg")
 enum Phase { WAITING, HOLD, DEPARTING, CLEAR, LOST }
+const CAR_STOP := Vector2(280,257)
+const OUTBOUND := Vector2(-1,.548)
+const NORTH_ENTRY := Vector2(1042,106)
+const SOUTH_ENTRY := Vector2(429,625)
+const Forecourt = preload("res://transit/court/forecourt.tscn")
+const TRAIN_DOOR := Vector2(287,286)
 const STROKE_TIME := 3.45
 var prefs: RefCounted
 var phase := Phase.WAITING
@@ -24,6 +30,9 @@ var knight
 var operator: Signalman
 var car: Sprite2D
 var threats: Array[CharacterBody2D] = []
+var routes := preload("res://actors/enemies/ground_routes.gd").new()
+var yard: Node2D
+var boarded := 0
 var heading: Label
 var objective: Label
 var condition: Label
@@ -44,21 +53,32 @@ func _ready() -> void:
 	var station := Platform.new()
 	station.z_index = -5
 	add_child(station)
-	car = _sprite(Car,Vector2(610,330),Vector2(-243,-160))
+	car = _sprite(Car,CAR_STOP,Vector2(-169,-166))
+	car.rotation = -.09
 	car.z_index = -3
-	_sprite(preload("res://transit/west_lamp.png"),Vector2(48,271),Vector2.ZERO).z_index = -2
-	_sprite(preload("res://transit/east_lamp.png"),Vector2(1191,270),Vector2.ZERO).z_index = -2
-	for bounds: Rect2 in [Rect2(-50,320,1380,30),Rect2(-50,555,1380,40),Rect2(-30,320,55,265),Rect2(1255,320,55,265),Rect2(26,445,114,109),Rect2(1030,474,225,80)]:
-		_wall(bounds)
+	# The rails and canal follow the same diagonals as the paving.
+	yard = Forecourt.instantiate()
+	add_child(yard)
+	add_child(routes)
+	_rebuild_routes()
+	for fixture in [yard.get_node("BoardingDivider"),yard.get_node("FreightDivider")]:
+		fixture.opened.connect(_rebuild_routes)
+	yard.get_node("BoardingDivider").opened.connect(_boarding_lane_opened)
+	for traveler in _travelers():
+		traveler.boarded.connect(_passenger_boarded)
+	_solid(PackedVector2Array([Vector2(740,760),Vector2(1300,445),Vector2(1300,760)]))
+	for edge: Rect2 in [Rect2(-35,-30,35,790),Rect2(1280,-30,35,790),Rect2(-35,710,1350,30),Rect2(-35,-30,1350,80)]:
+		_wall(edge)
 	knight = Knight.instantiate()
-	knight.position = Vector2(405,477)
+	knight.position = Vector2(652,565)
 	knight.guard_toggle = bool(prefs.config.get_value("controls","toggle_guard",false))
 	add_child(knight)
 	knight.died.connect(_lose.bind("The Knight fell. The last car is still on the platform."))
 	knight.stats_changed.connect(_condition)
 	knight.combat_event.connect(_combat_event)
 	operator = Signalman.new()
-	operator.position = Vector2(626,409)
+	operator.scale = Vector2(.86,.86)
+	operator.position = Vector2(535,303)
 	add_child(operator)
 	operator.wounded.connect(_wounded)
 	operator.fell.connect(_lose.bind("The signalman is down. The line is still locked."))
@@ -67,7 +87,7 @@ func _ready() -> void:
 	for i in 16: ring.append(Vector2.from_angle(TAU*i/16)*4)
 	dispatch_light.polygon = ring
 	dispatch_light.color = Color("#ff7145")
-	dispatch_light.position = operator.position+Vector2(34,-19)
+	dispatch_light.position = operator.position+Vector2(25,-16)*operator.scale
 	dispatch_light.z_index = 2
 	add_child(dispatch_light)
 	_hud()
@@ -77,7 +97,7 @@ func _ready() -> void:
 	add_child(ambient)
 	ambient.finished.connect(ambient.play)
 	ambient.play()
-	_say("Signalman", "The points are jammed. Knight, over here!",5.0)
+	_say("Signalman", "Two on the platform! Break the boarding barrier, then meet me at the lever.",5.0)
 	_condition()
 
 func _sprite(paint: Texture2D, pos: Vector2, offset: Vector2) -> Sprite2D:
@@ -88,6 +108,13 @@ func _sprite(paint: Texture2D, pos: Vector2, offset: Vector2) -> Sprite2D:
 	sprite.position = pos
 	add_child(sprite)
 	return sprite
+
+func _solid(points: PackedVector2Array) -> void:
+	var wall := StaticBody2D.new()
+	var footprint := CollisionPolygon2D.new()
+	footprint.polygon = points
+	wall.add_child(footprint)
+	add_child(wall)
 
 func _wall(box: Rect2) -> void:
 	var wall := StaticBody2D.new()
@@ -105,7 +132,7 @@ func _hud() -> void:
 	var plaque := Trim.frame(layer,Vector2(22,18),Vector2(395,80))
 	heading = UI.label("Karth Vale   /   The Last Tram",23,UI.PAPER,true)
 	UI.place(heading,plaque,Vector2(16,7))
-	objective = UI.label("Reach the signalman at the track lever",16,UI.GOLD)
+	objective = UI.label("Clear the boarding lane or reach the signalman",16,UI.GOLD)
 	UI.place(objective,plaque,Vector2(17,46))
 	UI.place(Trim.button("Return",func(): exit_requested.emit()),layer,Vector2(1151,21),Vector2(106,38))
 	var rail := Trim.frame(layer,Vector2(16,643),Vector2(1248,64))
@@ -122,9 +149,41 @@ func _hud() -> void:
 	UI.place(replay,rail,Vector2(1055,10),Vector2(167,42))
 	replay.hide()
 
+func _rebuild_routes() -> void:
+	var obstacles: Array[Rect2] = []
+	for body in yard.get_children():
+		if not body is StaticBody2D or body.collision_layer == 0 or body.name in [&"canopy",&"planter"]: continue
+		for shape in body.get_children():
+			if shape is CollisionPolygon2D:
+				var bounds := Rect2(shape.to_global(shape.polygon[0]),Vector2.ZERO)
+				for point: Vector2 in shape.polygon:
+					bounds = bounds.expand(shape.to_global(point))
+				obstacles.append(bounds)
+	var perimeter := PackedVector2Array([Vector2(0,437),Vector2(692,50),Vector2(1280,50),Vector2(1280,392),Vector2(1072,469),Vector2(1072,509),Vector2(1150,542),Vector2(824,710),Vector2(0,710)])
+	routes.configure(Rect2(0,50,1280,660),obstacles,perimeter)
+
+func _travelers() -> Array:
+	return [yard.get_node("PassengerA"),yard.get_node("PassengerB")]
+
+func _boarding_lane_opened() -> void:
+	if phase not in [Phase.WAITING,Phase.HOLD]: return
+	if phase == Phase.WAITING:
+		objective.text = "Reach the signalman at the track lever"
+	for traveler in _travelers():
+		traveler.release(Vector2(310,368),TRAIN_DOOR)
+	_say("Passenger","The lane is clear. Come on!",2.5)
+
+func _passenger_boarded() -> void:
+	boarded += 1
+	_condition()
+
+func _close_boarding() -> void:
+	for traveler in _travelers():
+		traveler.wait_here()
+
 func _condition() -> void:
 	if condition:
-		condition.text = "Knight   %d / %d        Signalman   %d / 69" % [knight.health,knight.max_health,operator.health]
+		condition.text = "Knight   %d / %d        Signalman   %d / 69        Last passengers aboard   %d / 2" % [knight.health,knight.max_health,operator.health,boarded]
 
 func _combat_event(kind: StringName, _from: Vector2, _to: Vector2) -> void:
 	if kind in [&"parried",&"riposte",&"cut_landed",&"return_cut"] and prefs.config.get_value("display","impact_camera",true):
@@ -150,6 +209,7 @@ func _spawn(at: Vector2) -> void:
 	enemy.operator = operator
 	enemy.knight = knight
 	enemy.position = at
+	enemy.entry = at
 	add_child(enemy)
 	threats.append(enemy)
 
@@ -158,7 +218,7 @@ func _begin() -> void:
 	age = 0
 	objective.text = "Protect the signalman   ·   0 / 3 locks"
 	_say("Signalman","Hold them off. I can throw the points by hand.",3.3)
-	_spawn(Vector2(947,447))
+	_spawn(NORTH_ENTRY)
 
 func _physics_process(delta: float) -> void:
 	camera.offset = camera.offset.move_toward(Vector2.ZERO,delta*39.0)
@@ -167,12 +227,12 @@ func _physics_process(delta: float) -> void:
 	if caption_time <= 0: voice.text = ""
 	match phase:
 		Phase.WAITING:
-			if knight.position.distance_to(operator.position)<160: _begin()
+			if knight.position.distance_to(operator.position)<145: _begin()
 		Phase.HOLD:
 			if age >= 3.8 and not second_arrived:
 				second_arrived = true
-				_spawn(Vector2(150,435))
-				_say("Signalman","Another one, by the luggage!",2.4)
+				_spawn(SOUTH_ENTRY)
+				_say("Signalman","Another one, coming up the canal walk!",2.4)
 			interrupted = maxf(0,interrupted-delta)
 			if interrupted > 0: return
 			work += delta
@@ -184,11 +244,11 @@ func _physics_process(delta: float) -> void:
 				objective.text = "Protect the signalman   ·   %d / 3 locks" % locks
 				if locks == 3: _depart()
 		Phase.DEPARTING:
-			car.position.x = 610.0 - 90.0*age*age
+			car.position = CAR_STOP + OUTBOUND * 84.0*age*age
 			if car.position.x < -250:
 				phase = Phase.CLEAR
 				objective.text = "Evacuation complete"
-				_say("Transit control","Last car clear. Everyone aboard is through.",6.0)
+				_say("Transit control","Last car clear. All passengers accounted for." if boarded == 2 else "Car clear. %d still on the platform." % (2-boarded),6.0)
 				replay.show()
 
 func _wounded() -> void:
@@ -206,6 +266,7 @@ func _end_fighting() -> void:
 			enemy.remove_from_group(&"enemies")
 
 func _depart() -> void:
+	_close_boarding()
 	phase = Phase.DEPARTING
 	age = 0.0
 	operator.key = 2
@@ -217,6 +278,7 @@ func _depart() -> void:
 
 func _lose(message: String) -> void:
 	if phase not in [Phase.WAITING,Phase.HOLD]: return
+	_close_boarding()
 	phase = Phase.LOST
 	_condition()
 	_end_fighting()

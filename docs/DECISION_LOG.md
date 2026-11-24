@@ -1,5 +1,9 @@
 # Decision Log
 
+## 24 November 2026 — Read the rescue from above
+
+The old stage and its two painted facings made the attack read as a side-scroller. Give the forecourt depth in both movement and framing. Use the open arch and canal walk as separate entry points. Establish the three roles with large color shapes and spend fine detail on a few important landmarks. The boarding rescue tests destruction through its effect on two actual civilians. It uses the same fixture health, damage phases, material fragments and collision removal as the proving ground. The canopy, gate piers and planter have individual scene nodes and footprints. The gear fitting trial remains available as its own scale and equipment comparison. [Art direction](03_ART_DIRECTION.md)
+
 ## 24 November 2026 — Give the first encounter someone to protect
 
 The stationary fitting trial measures equipment, stance and scale. To judge combat in a lived-in place, stage one small rescue at the Karth Vale transit stop. Resolve the outcome through the signalman's health and physical work at the lever. Keep the encounter replayable from the title while the larger mission and its lasting consequences are in development. [Opening mission](05_OPENING_MISSION.md)

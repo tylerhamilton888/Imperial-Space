@@ -1,5 +1,13 @@
 # Art Direction and Production
 
+## Color and camera at play size
+
+Frame the fight from an elevated three-quarter view. In Karth Vale the rails, canopy, paving and canal recede on diagonals. Show an opponent entering from the far side and another coming up from the foreground. Give the Crusader a front, side and readable cape from behind as the mouse moves around him.
+
+Keep the path underfoot quiet. Large patches of ivory and cobalt identify the Knight. The yellow cap and jacket identify the worker at the switch. The Khorgoth's forward shoulders, dusky violet skin and rust armor mark a different silhouette. Save strong local contrasts in the environment for landmarks such as the crimson banner and turquoise station roof. Review at native zoom in motion, then at half size to catch shapes that depend on fine detail. [Playable forecourt](evidence/tram-forecourt.mp4)
+
+Build interactable landmarks, harmable fixtures and movable people as independently placed scene objects. The terrain layer supplies the ground underneath. Register a breakable’s damage art, debris, solid footprint, aim bounds and navigation to the same pivot. Check the blocked and open route using an actor in the running scene.
+
 ## Mass and contact at gameplay scale
 
 Use the Stellar Holds dwarf turnaround and South Meadow crossing as references for planted feet, visible top planes and changes in elevation. The Ogre camp feast establishes how a shoulder overlaps a forearm and how warm upper surfaces turn into cool shadow. Keep Imperial Space armor, architecture and proportions. In combat, the planted boot, bent knee, hip and shoulder should tell the story of the hit before the particles arrive. A broken fixture should reveal its construction and leave recognisable material on the ground. Review the same action at normal speed in the build. [First comparison](evidence/painted-combat.mp4).

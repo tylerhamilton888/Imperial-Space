@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://arena/proving/breach_gate.gd" id="1"]
+[ext_resource type="Resource" path="res://transit/court/divider.tres" id="2"]
+
+[node name="Divider" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1")
+profile = ExtResource("2")
+
+[node name="Masonry" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-66,-14,-51,-25,66,13,51,24)

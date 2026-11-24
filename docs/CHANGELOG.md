@@ -1,5 +1,11 @@
 # Changelog
 
+## The Last Tram 0.5.0 • 24 November 2026
+
+- Added a standalone evacuation encounter, a station at dusk, a passenger tram, a working switch operator and three sounds for the platform and machinery.
+- Raiders can commit to the exposed worker, turn on an intervening Knight and withdraw after the line opens or the defense fails. The tram leaves on a successful defense.
+- Added a separately painted left-facing Knight with registered equipment, and scaled raider weapons, feedback and loose parts with their bearer.
+
 ## Developer Arena 0.4.4 • 24 November 2026
 
 - Added a purpose-painted guard body, separate gripping fingers and a mounted shoulder anchor. The longsword points up and forward at rest and carries forward during a step.

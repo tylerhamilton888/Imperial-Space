@@ -1,5 +1,9 @@
 # Progress
 
+## 24 November 2026 • The Last Tram 0.5.0
+
+Choose **Play The Last Tram** or launch with `-- --tram`. Hold the Karth Vale tram platform while the signalman unlocks the evacuation line. Godot 4.7.2. Both outcomes and replay passed in the Windows export’s embedded game pack. [Gameplay](evidence/last-tram.mp4) · [Test record](TEST_REPORT.md). Next review is whether both approaches, the worker and the departure read during an unassisted first play.
+
 ## 24 November 2026 • Ready guard and relative scale 0.4.4
 
 In **Armory trial** the Knight stands about 134 pixels tall beside the 98-pixel trooper. He raises the weapon in a dedicated idle guard after he moves or strikes. [Native-scale comparison](evidence/knight-guard-scale.png) · [Motion](evidence/knight-ready-guard.mp4). Both weapon profiles and shoulder pieces are available to try. This scale is a proposal for review.

@@ -1,5 +1,17 @@
 # Verification record
 
+## The Last Tram 0.5.0 • 24 November 2026
+
+Ran all nine Godot suites (263 checks) and all 16 Python asset-tool tests on Linux. All passed. The 12 tram checks enter through the title screen, advance to the switch, allow the operator to fall, verify the car stays in place, restart, intercept both raiders, protect the worker through three locks, check departure and return to the title.
+
+Recorded a 1280 × 720 X11 Godot session at 30 fps. Fixed input drove movement, aim, guards and two successful ripostes. The worker finished at 69 health. [Normal-speed clip with sound](evidence/last-tram.mp4) · [Full-size still](evidence/last-tram.jpg). Seven runtime textures and the review screenshot passed the image checker. The 15.2-second H.264/AAC clip is 607,542 bytes.
+
+Verified the Windows ZIP CRC and recovered the Godot pack from the executable's PE section. All 12 tram checks passed against those exact exported resources under Linux. Native Windows startup and input still need a Windows playtest.
+
+```sh
+godot --headless --path game --fixed-fps 60 --script ../tools/tests/tram_checks.gd
+```
+
 ## Ready guard 0.4.4 • 24 November 2026
 
 All 251 Godot checks and 16 Python tests passed. The 32 Armory checks include entry into guard, stopping after a walk, and returning to guard after hitting with all four equipment combinations. The source alpha silhouette measures 163 pixels for the new idle body. The view scales it to 133.7 pixels beside the 98-pixel trooper. The old standing frame measured 164 pixels.

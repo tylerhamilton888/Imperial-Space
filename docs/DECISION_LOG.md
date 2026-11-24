@@ -1,5 +1,9 @@
 # Decision Log
 
+## 24 November 2026 — Give the first encounter someone to protect
+
+The stationary fitting trial measures equipment, stance and scale. To judge combat in a lived-in place, stage one small rescue at the Karth Vale transit stop. Resolve the outcome through the signalman's health and physical work at the lever. Keep the encounter replayable from the title while the larger mission and its lasting consequences are in development. [Opening mission](05_OPENING_MISSION.md)
+
 ## 24 November 2026 — Bring the Knight closer to infantry scale
 
 The previously proposed Knight-to-trooper height ratio of 1.67 looked excessive in play. Try approximately 1.37 in the Armory, preserving the trooper and camera as references. Keep the lowered follow-through as its own strike key and author a separate rested guard for both weapons. [Side-by-side capture](evidence/knight-guard-scale.png).

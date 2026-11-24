@@ -41,26 +41,27 @@ static func make(parent: Node2D, feet: Vector2):
 	piece.add_to_group(&"fallen_actors")
 	return piece
 
-static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: Vector2, sever: bool, grip: Transform2D) -> void:
+static func fall_raider(ground: Node2D, feet: Vector2, facing: Vector2, impact: Vector2, sever: bool, grip: Transform2D, art_scale := 1.0) -> void:
 	var along := impact.normalized() if not impact.is_zero_approx() else Vector2.RIGHT
 	var body = make(ground,feet)
 	body.paint = WOUNDED if sever else FALL
 	body.heavy = true
+	body.size_factor = art_scale
 	body.fall_row = 1 if facing.y < -0.20 else 0
 	body.fall_flip = along.x < 0.0 if sever else along.x > 0.0
 	body.ground_speed = along * (106.0 if sever else 54.0)
-	body.shadow_width = 19.0
+	body.shadow_width = 19.0 * art_scale
 	body.lifetime = 4.5
 	# The loose cleaver begins at its painted center of mass. Its hilt
 	# coincides with the last live grip, including during a raised attack.
 	var blade_center := grip * Vector2(12.7,2.7)
-	launch_part(ground,feet,blade_center,Part.CLEAVER,along,grip.get_rotation(),sever)
+	launch_part(ground,feet,blade_center,Part.CLEAVER,along,grip.get_rotation(),sever,art_scale)
 	if sever:
-		launch_part(ground,feet,grip.origin+Vector2(0,-6),Part.FOREARM,along,grip.get_rotation()*0.45,true)
+		launch_part(ground,feet,grip.origin+Vector2(0,-6)*art_scale,Part.FOREARM,along,grip.get_rotation()*0.45,true,art_scale)
 		var shoulder_x := -12.0 if facing.x >= 0 else 12.0
-		launch_part(ground,feet,Vector2(shoulder_x,-65),Part.PAULDRON,along,0.0,true)
+		launch_part(ground,feet,Vector2(shoulder_x,-65)*art_scale,Part.PAULDRON,along,0.0,true,art_scale)
 
-static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Part, along: Vector2, tilt: float, forceful: bool) -> void:
+static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Part, along: Vector2, tilt: float, forceful: bool, art_scale := 1.0) -> void:
 	var start := feet + Vector2(offset.x,0)
 	if absf(offset.x)>0.1:
 		var ray := PhysicsRayQueryParameters2D.create(feet,start,1)
@@ -72,10 +73,10 @@ static func launch_part(ground: Node2D, feet: Vector2, offset: Vector2, kind: Pa
 	piece.paint = PARTS
 	piece.region = Rect2(0,kind*96,96,96)
 	piece.pivot = Vector2(48,48)
-	piece.size_factor = 1.0/1.5
+	piece.size_factor = art_scale/1.5
 	piece.height = maxf(4,-offset.y)
 	piece.angle = tilt
-	piece.shadow_width = 7.0
+	piece.shadow_width = 7.0 * art_scale
 	piece.lifetime = 4.5
 	var side := along.orthogonal()
 	var turn := 1.0 if along.x >= 0.0 else -1.0
@@ -174,7 +175,7 @@ func _draw() -> void:
 			key = 2
 		elif age >= 0.08:
 			key = 1
-		draw_set_transform(Vector2.ZERO,0,Vector2(-1,1) if fall_flip else Vector2.ONE)
+		draw_set_transform(Vector2.ZERO,0,(Vector2(-1,1) if fall_flip else Vector2.ONE)*size_factor)
 		draw_texture_rect_region(paint,Rect2(Vector2(-88,-140)/1.5,Vector2(176,150)/1.5),Rect2(176*key,150*fall_row,176,150))
 		return
 	draw_set_transform(Vector2.UP*height,angle)

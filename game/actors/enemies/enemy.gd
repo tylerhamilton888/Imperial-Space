@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		return
 	# Resolve displacement against arena solids, including jambs and cover.
 	if state == &"dead" and not _fall_started and not _fall_direction.is_zero_approx():
-		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm,_last_grip)
+		Fragment.fall_raider(get_parent(),global_position,facing,_fall_direction,_sever_arm,_last_grip,_view.scale.x)
 		_view.hide()
 		_fall_started = true
 		_impulse = Vector2.ZERO
@@ -112,7 +112,7 @@ func _behavior(delta: float) -> void:
 		&"windup":
 			if role == &"raider" and not _blade_cued and _duration - _elapsed <= 0.20:
 				_blade_cued = true
-				var blade := global_position + _view.cleaver_transform() * Vector2(27,1)
+				var blade := global_position + _view.transform * _view.cleaver_transform() * Vector2(27,1)
 				Feedback.play(self, &"blade_cue", blade, blade)
 			if _elapsed >= _duration:
 				_resolve_strike()
@@ -204,7 +204,7 @@ func _resolve_strike() -> void:
 		Feedback.play(self, &"enemy_shot", global_position + _view.muzzle_offset(), visible_end)
 	else:
 		var offset := _target.global_position - global_position
-		var start := global_position + ANKLE_TO_CHEST
+		var start := global_position + ANKLE_TO_CHEST * _view.scale
 		Feedback.play(self, &"enemy_swing", start, start + _strike_direction * 35.0)
 		if offset.length() <= profile.attack_reach and absf(_strike_direction.angle_to(offset)) <= HALF_SWEEP and _clear_sight(_target.global_position):
 			var outcome: StringName = _target.call(&"receive_hit", self, _attack_id, profile.damage, &"melee", offset.normalized())
@@ -219,7 +219,7 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 	if result != &"hit" and result != &"killed":
 		return result
 	_flash = 1.0
-	var contact := global_position + ANKLE_TO_CHEST
+	var contact := global_position + ANKLE_TO_CHEST * _view.scale
 	var impact := &"bullet_hit"
 	var push := 60.0
 	match kind:
@@ -238,7 +238,7 @@ func receive_hit(source: Node2D, attack_id: int, damage: int, kind: StringName, 
 		set_deferred(&"collision_layer", 0)
 		set_deferred(&"collision_mask", 1)
 		if role == &"raider":
-			_last_grip = _view.cleaver_transform()
+			_last_grip = _view.transform * _view.cleaver_transform()
 			_sever_arm = kind in [&"melee", &"return_cut", &"riposte"]
 			_fall_direction = incoming.normalized() if not incoming.is_zero_approx() else facing
 		_change_state(&"dead", DEATH_TIME)
@@ -303,17 +303,17 @@ func _update_art() -> void:
 	queue_redraw()
 
 func get_aim_bounds() -> Rect2:
-	return profile.aim_bounds
+	return Rect2(profile.aim_bounds.position * _view.scale, profile.aim_bounds.size * _view.scale)
 
 func _draw() -> void:
 	if vitality == null or state == &"dead":
 		return
 	if health < max_health or role == &"dummy":
-		var height := profile.aim_bounds.position.y - 7.0
+		var height := get_aim_bounds().position.y - 7.0
 		draw_rect(Rect2(-21,height,42,4), Color("#17212b"))
 		draw_rect(Rect2(-20,height+1,40.0*health/max_health,2), Color("#dfaf70") if role == &"dummy" else Color("#f08064"))
 	if _exposed:
-		var tip := Vector2(0, profile.aim_bounds.position.y - 17.0)
+		var tip := Vector2(0, get_aim_bounds().position.y - 17.0)
 		draw_polyline(PackedVector2Array([tip + Vector2(-7,-5), tip + Vector2(0,2), tip + Vector2(7,-5)]), Color("#ffe7a1"), 2.5, true)
 	if state != &"windup":
 		return
@@ -325,7 +325,7 @@ func _draw() -> void:
 		draw_circle(muzzle, 3.2 + phase * 2.3, Color(GUN_WARNING, 0.85), true, -1.0, true)
 	else:
 		if _duration - _elapsed <= 0.145:
-			var glint := _view.cleaver_transform() * Vector2(27,1)
+			var glint := _view.transform * _view.cleaver_transform() * Vector2(27,1)
 			var size := 5.0 + 4.0 * sin(PI * clampf((_duration - _elapsed) / 0.145, 0, 1))
 			draw_colored_polygon(PackedVector2Array([glint + Vector2(0,-size), glint + Vector2(3,0), glint + Vector2(0,size), glint + Vector2(-3,0)]), Color("#fff3ba"))
 		var start := facing.angle() - HALF_SWEEP

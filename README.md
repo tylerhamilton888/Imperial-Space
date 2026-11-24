@@ -1,6 +1,8 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.4** gives the Armory Knight a dedicated ready guard and a revised scale beside Imperial infantry. Choose **Armory trial** from the title screen. [Compare both builds](docs/evidence/knight-guard-scale.png) · [Watch the walk and strikes](docs/evidence/knight-ready-guard.mp4).
+A single-player PC action RPG about an Imperial Crusader. In **The Last Tram (0.5.0)**, defend a Karth Vale signalman as he unlocks the evacuation line. Choose **Play The Last Tram** from the title screen. [Watch the encounter](docs/evidence/last-tram.mp4) · [View the platform](docs/evidence/last-tram.jpg).
+
+The **Armory trial** still offers the modular Knight, two weapons and a choice of pauldrons. [Compare the ready guard and scale](docs/evidence/knight-guard-scale.png).
 
 [0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 
@@ -10,7 +12,9 @@ A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.
 
 ## Play
 
-On Windows x86-64, extract the Windows ZIP and run `ImperialSpace.exe`. On Linux x86-64, extract the Linux ZIP, make `ImperialSpace.x86_64` executable if necessary, and launch it. Choose **Play counter duel**. Face the raider and tap Shift as its blade glints. Right-click during the opening to riposte, or left-click for a countershot. On a regular sword hit, click again during recovery for a return cut. F5 starts a rematch. Open F1 → **Crossfire drill** to bait a gunner into hitting its own raider. The breach drill has a separate title button. **Developer Arena** opens the empty forecourt.
+On Windows x86-64, extract the Windows ZIP and run `ImperialSpace.exe`. On Linux x86-64, extract the Linux ZIP, make `ImperialSpace.x86_64` executable if necessary, and launch it. For the tram, walk up to the signalman and intercept the raiders coming from the two ends of the platform. Aim with the mouse, right-click to swing, Shift to parry and Space to dodge. F5 restarts.
+
+For the standalone combat drill, choose **Play counter duel**. Face the raider and tap Shift as its blade glints. Right-click during the opening to riposte, or left-click for a countershot. On a regular sword hit, click again during recovery for a return cut. F5 starts a rematch. Open F1 → **Crossfire drill** to bait a gunner into hitting its own raider. The breach drill has a separate title button. **Developer Arena** opens the empty forecourt.
 
 | Default control | Action |
 | --- | --- |

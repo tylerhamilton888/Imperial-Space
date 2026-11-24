@@ -1,5 +1,26 @@
 # Art Asset Manifest
 
+## The Last Tram • 0.5.0
+
+Original generated artwork for this project, prepared for gameplay review. Station tiles and foreground lamps come from the station master. The transparent car is an independently movable layer. The four operator keys share a lever pivot. The left-facing Knight has nine keyed body poses and hand/shoulder registrations for existing Armory equipment. Original procedural station ambience, lever impact and departure bell are generated with the accompanying sound script. [Masters and recipes](../source_art/transit/).
+
+| Source or runtime asset | Dimensions or format | Bytes |
+| --- | --- | ---: |
+| source_art/transit/car.webp | 2172 × 724 | 473,356 |
+| source_art/transit/knight_left.webp | 1247 × 1261 | 476,476 |
+| source_art/transit/signalman.webp | 2172 × 724 | 296,812 |
+| source_art/transit/station.webp | 1672 × 941 | 681,446 |
+| game/transit/car.webp | 486 × 164 | 44,816 |
+| game/transit/departure.ogg | Ogg Vorbis | 27,813 |
+| game/transit/east_lamp.png | 37 × 70 | 7,088 |
+| game/transit/knight_left.webp | 1024 × 624 | 114,858 |
+| game/transit/platform_0.webp | 640 × 720 | 191,004 |
+| game/transit/platform_1.webp | 640 × 720 | 191,058 |
+| game/transit/signalman.webp | 640 × 126 | 25,124 |
+| game/transit/station_air.ogg | Ogg Vorbis | 34,806 |
+| game/transit/switch.ogg | Ogg Vorbis | 6,756 |
+| game/transit/west_lamp.png | 32 × 70 | 6,052 |
+
 ## Armory guard • 0.4.4
 
 One original generated right-facing guard painting uses the previous Armory Knight as an identity reference. The reproducible bake registers its gripping fingers, fist, shoulder and ground contact. The new key occupies the first column of the third atlas row. Playable for review.

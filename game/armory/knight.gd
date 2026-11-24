@@ -4,7 +4,7 @@ const Item = preload("res://armory/item.gd")
 
 func _ready() -> void:
 	super._ready()
-	melee_contact_offset = Vector2(0,-116)
+	melee_contact_offset = Vector2(0,-116) * $Visual.scale
 
 func equip(weapon: Weapon, shoulder: Item) -> bool:
 	if action != &"idle" or weapon == null or shoulder == null:

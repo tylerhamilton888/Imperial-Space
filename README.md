@@ -1,6 +1,6 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.3** adds the **Armory trial**. Walk into reach, press the melee button to strike, use 1 to change the weapon and 2 to change the shoulder armor. [Target and gameplay](docs/evidence/armory-comparison.jpg) · [Normal-speed equipment trial](docs/evidence/armory-trial.mp4).
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.4** gives the Armory Knight a dedicated ready guard and a revised scale beside Imperial infantry. Choose **Armory trial** from the title screen. [Compare both builds](docs/evidence/knight-guard-scale.png) · [Watch the walk and strikes](docs/evidence/knight-ready-guard.mp4).
 
 [0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 

@@ -1,5 +1,11 @@
 # Verification record
 
+## Ready guard 0.4.4 • 24 November 2026
+
+All 251 Godot checks and 16 Python tests passed. The 32 Armory checks include entry into guard, stopping after a walk, and returning to guard after hitting with all four equipment combinations. The source alpha silhouette measures 163 pixels for the new idle body. The view scales it to 133.7 pixels beside the 98-pixel trooper. The old standing frame measured 164 pixels.
+
+Recorded both hits under X11 at 30 fps using the regular player resolver. The [paired captures](evidence/knight-guard-scale.png) use matching 360 × 205 crops from 1280 × 720 gameplay with the original camera and character positions. Verified Windows ZIP CRC, embedded pack bounds and all 32 Armory checks against the exact exported pack on Linux. Native Windows execution remains unverified.
+
 ## Armory trial 0.4.3 • 24 November 2026
 
 The seven existing Godot suites passed 219 checks. The new armory suite passed 25 checks covering independent slot fitting, invalid and mid-swing swaps, four walk keys, one contact per strike, item-specific damage, solid cover, returning to the menu and booting into the trial. All 16 Python tests passed. The blade and shoulder use independent art and transform records. Ten runtime images passed frame or atlas budget checks.

@@ -1,5 +1,15 @@
 # Art Asset Manifest
 
+## Armory guard • 0.4.4
+
+One original generated right-facing guard painting uses the previous Armory Knight as an identity reference. The reproducible bake registers its gripping fingers, fist, shoulder and ground contact. The new key occupies the first column of the third atlas row. Playable for review.
+
+| File | Dimensions | Bytes |
+| --- | --- | ---: |
+| source_art/armory/guard.webp | 1391 × 1131 | 166,054 |
+| game/armory/body.webp | 1024 × 624 | 124,870 |
+| game/armory/hands.png | 1024 × 624 | 9,326 |
+
 ## Modular armory studies • 0.4.3
 
 The attached Sprite Acceptance Pack v1 supplied the static trooper, Khorgoth training target, cover and longsword. The four imports match their manifest SHA-256 values. Original generated pose and equipment sheets use its Knight as reference. The forecourt comes from the previous courtyard clarity study. These are playable review assets. The registration script and masters are in [source art](../source_art/armory/).

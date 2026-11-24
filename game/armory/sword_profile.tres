@@ -2,4 +2,4 @@
 [ext_resource type="Script" path="res://combat/medium_kit.gd" id="1"]
 [resource]
 script = ExtResource("1")
-sword_reach = 110.0
+sword_reach = 90.0

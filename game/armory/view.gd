@@ -2,13 +2,14 @@ extends Node2D
 const BODY = preload("res://armory/body.webp")
 const HANDS = preload("res://armory/hands.png")
 const SOCKETS = preload("res://armory/sockets.json")
+const IDLE_GUARD := 8
 const PIVOT := Vector2(128,181)
 const CELL := Vector2(256,208)
 const Item = preload("res://armory/item.gd")
 const Weapon = preload("res://armory/weapon.gd")
 var weapon: Weapon = preload("res://armory/sword.tres")
 var shoulder: Item = preload("res://armory/plate.tres")
-var frame := 0
+var frame := IDLE_GUARD
 var stride := 0.0
 var return_stroke := false
 var sword_readied := true
@@ -33,7 +34,7 @@ func pose(_aim: Vector2, velocity: Vector2, action: StringName, phase: float, de
 		stride = fposmod(stride + velocity.length() * delta * backwards / 104.0, 1.0)
 		frame = floori(stride*4)
 	else:
-		frame = 7
+		frame = IDLE_GUARD
 	recoil = recoil.move_toward(Vector2.ZERO, delta*25)
 	queue_redraw()
 

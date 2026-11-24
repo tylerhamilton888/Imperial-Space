@@ -1,5 +1,10 @@
 # Changelog
 
+## Developer Arena 0.4.4 • 24 November 2026
+
+- Added a purpose-painted guard body, separate gripping fingers and a mounted shoulder anchor. The longsword points up and forward at rest and carries forward during a step.
+- Reduced the Armory Knight’s draw scale to 82% around the boot pivot and adjusted weapon reach, contact effects and the footprint for the smaller figure.
+
 ## Developer Arena 0.4.3 • 24 November 2026
 
 - Added an optional Armory trial with a walk, timed melee contact, independent weapon and shoulder slots, a scale-reference trooper, a training target and solid cover.

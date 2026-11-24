@@ -1,5 +1,9 @@
 # Decision Log
 
+## 24 November 2026 — Bring the Knight closer to infantry scale
+
+The previously proposed Knight-to-trooper height ratio of 1.67 looked excessive in play. Try approximately 1.37 in the Armory, preserving the trooper and camera as references. Keep the lowered follow-through as its own strike key and author a separate rested guard for both weapons. [Side-by-side capture](evidence/knight-guard-scale.png).
+
 ## 24 November 2026 — Share motions across compatible equipment
 
 Use a socket on each authored pose and a small foreground hand layer to register interchangeable weapons. The shoulder plate has a separate attachment point. Reserve new body animations for different grip or weight families. Validate one-handed fittings in the optional arena trial before expanding the runtime art library. [Equipment art](03_ART_DIRECTION.md#equipment-at-gameplay-scale)

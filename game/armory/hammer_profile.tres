@@ -7,4 +7,4 @@ return_cut_damage = 64
 sword_total = 0.62
 sword_contact_start = 0.21
 sword_contact_end = 0.32
-sword_reach = 80.0
+sword_reach = 66.0

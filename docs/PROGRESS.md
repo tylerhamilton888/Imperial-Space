@@ -1,5 +1,9 @@
 # Progress
 
+## 24 November 2026 • Ready guard and relative scale 0.4.4
+
+In **Armory trial** the Knight stands about 134 pixels tall beside the 98-pixel trooper. He raises the weapon in a dedicated idle guard after he moves or strikes. [Native-scale comparison](evidence/knight-guard-scale.png) · [Motion](evidence/knight-ready-guard.mp4). Both weapon profiles and shoulder pieces are available to try. This scale is a proposal for review.
+
 ## 24 November 2026 • Modular Armory trial 0.4.3
 
 From the title screen choose **Armory trial**, or run with `-- --armory`. A one-handed Knight can practice on a Khorgoth target beside Imperial infantry and solid cover. Use 1 and 2 to change weapon and shoulder plate independently. [Native-scale comparison](evidence/armory-comparison.jpg) · [Moving trial](evidence/armory-trial.mp4). Built and recorded on Godot 4.7.2. Next proof is an independently drawn opposite facing and a removable off-hand shield.

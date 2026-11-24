@@ -27,6 +27,9 @@ func run() -> void:
 	await ticks(4)
 	check(knight.melee_profile == view.weapon.melee_profile,"Default weapon tuning")
 	check(not knight.equip(trial.WEAPONS[0],trial.WEAPONS[1]),"Reject a weapon in the shoulder slot")
+	check(view.frame == view.IDLE_GUARD, "Spawn in the idle guard")
+	var guard_socket: Array = view.SOCKETS.data[view.IDLE_GUARD]
+	check(guard_socket[1] < view.SOCKETS.data[7][1], "Ready fist sits above the low recovery key")
 	var poses := {}
 	Input.action_press(&"move_right")
 	for i in 27:
@@ -35,6 +38,7 @@ func run() -> void:
 	Input.action_release(&"move_right")
 	await ticks(4)
 	check(poses.size() == 4,"Four moving body keys")
+	check(view.frame == view.IDLE_GUARD, "Stopping restores the ready stance")
 	for pair in [[0,0],[1,0],[1,1],[0,1]]:
 		if trial.weapon_index != pair[0]:
 			trial.swap(true)
@@ -49,6 +53,7 @@ func run() -> void:
 		check(trial.weapon_index == pair[0] and view.weapon == trial.WEAPONS[pair[0]],"Mid-strike swap rejected")
 		await ticks(60)
 		check(trial.hit_count == before+1,"One contact per strike")
+		check(view.frame == view.IDLE_GUARD, "Every equipment combination recovers to guard")
 		check(trial.status.text.begins_with(str(knight.melee_profile.sword_damage)+" damage"),"Equipped item damage")
 	knight.position = Vector2(552,490)
 	Input.action_press(&"move_down")

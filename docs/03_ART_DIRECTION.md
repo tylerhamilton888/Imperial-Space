@@ -111,3 +111,11 @@ Review a real combat capture at game scale, with the human defender and the Khor
 Review a walk, strike, hit pause and finish as one exchange at gameplay speed. Follow the fist through the step. Blade length and orientation should stay consistent until the arm changes its pose. The parry cue and first loose weapon frame use that same registration. A lethal sword cut needs an identifiable altered body, a matching limb and separate loose equipment. Author the side or underside visible in flight and a grounded view for each piece.
 
 Boltgun’s developers describe rendering posed enemies from eight directions, distinct death and overkill states, and placing events on animation frames. Imperial Space applies that timing principle to its painted three-quarter actors. [Auroch Digital on PlayStation.Blog](https://blog.playstation.com/2023/04/11/warhammer-40-000-boltgun-releases-may-23-new-gameplay-details-revealed/)
+
+## Equipment at gameplay scale
+
+Use the proposed Sprite Acceptance Pack v1 as the reference for broad ivory plate, dark articulated joints, a readable helmet, deep cloth folds and one clear heraldic field. The Knight and infantry studies are about 164 and 98 pixels tall at the shared reference scale. Color and ornament can vary independently of Light, Medium and Heavy function.
+
+The right-facing Armory proof has eight body keys, right-hand and shoulder coordinates per key, and a foreground gauntlet layer. Each item supplies its image, grip or mount offset and display size. A weapon additionally supplies combat tuning and can adjust its presentation on specific pose keys. Choose new body motions for two-handed grips, rifles and major changes of armor bulk. Author left/rear facings with the correct hand and drawing order. Keep intact layers beneath removable parts. The trial's blue shield and cloak are still painted into the body.
+
+Use a mounted shoulder piece as the first armor swap. Torso or silhouette-changing suits need body coverage for each supported motion family. Equipment identity, functional armor weight and visual tradition remain separate decisions. Future inventory saves should store stable item IDs independent of the pose artwork.

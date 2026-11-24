@@ -1,5 +1,10 @@
 # Changelog
 
+## Developer Arena 0.4.3 • 24 November 2026
+
+- Added an optional Armory trial with a walk, timed melee contact, independent weapon and shoulder slots, a scale-reference trooper, a training target and solid cover.
+- Added ivory and winged pauldrons, a longsword and a war hammer. The equipped weapon supplies the attack timing, damage, reach and grip used during the trial.
+
 ## Developer Arena 0.4.2 • 23 November 2026
 
 - Registered a rigid cleaver to the Khorgoth’s painted fist in its walk, raised strike and recovery. The parry glint follows the weapon. The final blow holds the hit pose through the short impact pause.

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://combat/medium_kit.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sword_damage = 54
+return_cut_damage = 64
+sword_total = 0.62
+sword_contact_start = 0.21
+sword_contact_end = 0.32
+sword_reach = 80.0

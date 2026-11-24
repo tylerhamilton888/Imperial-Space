@@ -1,5 +1,11 @@
 # Verification record
 
+## Armory trial 0.4.3 • 24 November 2026
+
+The seven existing Godot suites passed 219 checks. The new armory suite passed 25 checks covering independent slot fitting, invalid and mid-swing swaps, four walk keys, one contact per strike, item-specific damage, solid cover, returning to the menu and booting into the trial. All 16 Python tests passed. The blade and shoulder use independent art and transform records. Ten runtime images passed frame or atlas budget checks.
+
+Recorded a 1280 × 720 Godot 4.7.2 X11 session with fixed input and the ordinary player action resolver. The sword and hammer both registered damage. [Target comparison](evidence/armory-comparison.jpg) and [normal-speed gear changes](evidence/armory-trial.mp4). Native Windows execution remains unverified. The ZIP passed CRC and all 25 Armory checks passed against its exact embedded game pack under Linux.
+
 ## Raider cleaver 0.4.2 • 23 November 2026
 
 Godot 4.7.2 passed 219 checks across seven gameplay suites at fixed 60 fps, including 58 destruction checks. The new assertions cover the four-piece sword finish, distinct painted parts, independent velocity and two-piece rifle finish. All 16 Python tests passed, including cleaver registration and blade pixels through the full gait in eight headings. The atlas budget checker passed six runtime textures.

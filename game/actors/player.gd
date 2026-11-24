@@ -14,6 +14,8 @@ const STRIKE_FIRST := 3.0 / 7.0
 const STRIKE_RECOVERY := 6.0 / 7.0
 const PLAYER_ACTIONS: Array[StringName] = [&"dodge", &"guard", &"melee", &"fire", &"reload", &"heal"]
 
+var melee_profile := KIT
+var melee_contact_offset := TORSO
 var _vitals := Vitality.new(KIT.max_health)
 var health: int:
 	get: return _vitals.health
@@ -174,7 +176,7 @@ func _physics_process(delta: float) -> void:
 		&"reload", &"heal":
 			speed *= 0.75
 	velocity = movement * speed
-	if action == &"melee" and action_time >= KIT.sword_contact_start - 0.055 and action_time < KIT.sword_contact_end:
+	if action == &"melee" and action_time >= melee_profile.sword_contact_start - 0.055 and action_time < melee_profile.sword_contact_end:
 		var drive := 72.0
 		if _return_cut:
 			drive = 115.0
@@ -294,13 +296,13 @@ func _advance_action() -> void:
 				_shot_fired = true
 				_fire_rifle()
 		&"melee":
-			if action_time >= KIT.sword_contact_start and action_time <= KIT.sword_contact_end:
+			if action_time >= melee_profile.sword_contact_start and action_time <= melee_profile.sword_contact_end:
 				if not _trail_drawn:
 					_trail_drawn = true
 					var stroke := &"return_arc" if _return_cut else &"sword_arc"
 					if is_instance_valid(_counter_target):
 						stroke = &"riposte_arc"
-					Feedback.play(self, stroke, global_position + TORSO, global_position + TORSO + _aim_locked)
+					Feedback.play(self, stroke, global_position + melee_contact_offset, global_position + melee_contact_offset + _aim_locked)
 				_sword_contact()
 	if action_time < _duration():
 		return
@@ -320,7 +322,7 @@ func _advance_action() -> void:
 func _duration() -> float:
 	match action:
 		&"fire": return KIT.shot_interval
-		&"melee": return KIT.sword_total
+		&"melee": return melee_profile.sword_total
 		&"reload": return KIT.reload_time
 		&"heal": return KIT.heal_time
 		&"dodge": return KIT.dodge_total
@@ -361,7 +363,7 @@ func _fire_rifle() -> void:
 		_feedback(&"hit", visible_end, visible_end)
 
 func _sword_contact() -> void:
-	var targets := Query.melee_targets(self, _aim_locked, KIT.sword_reach, deg_to_rad(KIT.sword_half_angle_degrees), 4)
+	var targets := Query.melee_targets(self, _aim_locked, melee_profile.sword_reach, deg_to_rad(melee_profile.sword_half_angle_degrees), 4)
 	for target in targets:
 		var id := target.get_instance_id()
 		if _sword_contacts.has(id):
@@ -370,13 +372,13 @@ func _sword_contact() -> void:
 		var direction := global_position.direction_to(target.global_position)
 		var counter := is_instance_valid(_counter_target) and target == _counter_target
 		var kind := &"melee"
-		var damage: int = KIT.sword_damage
+		var damage: int = melee_profile.sword_damage
 		if counter:
 			kind = &"riposte"
-			damage = KIT.riposte_damage
+			damage = melee_profile.riposte_damage
 		elif _return_cut:
 			kind = &"return_cut"
-			damage = KIT.return_cut_damage
+			damage = melee_profile.return_cut_damage
 		var result: Variant = target.call(&"receive_hit", self, _attack_id, damage, kind, direction)
 		if result not in [&"hit", &"killed"] or not target.is_in_group(&"combatants"):
 			continue
@@ -424,12 +426,12 @@ func _update_view(delta: float) -> void:
 	var facing := _aim_locked if action in [&"melee", &"fire"] else aim_direction
 	var phase := clampf(action_time / _duration(), 0, 1)
 	if action == &"melee":
-		if action_time < KIT.sword_contact_start:
-			phase = remap(action_time, 0.0, KIT.sword_contact_start, 0.0, STRIKE_FIRST)
-		elif action_time < KIT.sword_contact_end:
-			phase = remap(action_time, KIT.sword_contact_start, KIT.sword_contact_end, STRIKE_FIRST, STRIKE_RECOVERY)
+		if action_time < melee_profile.sword_contact_start:
+			phase = remap(action_time, 0.0, melee_profile.sword_contact_start, 0.0, STRIKE_FIRST)
+		elif action_time < melee_profile.sword_contact_end:
+			phase = remap(action_time, melee_profile.sword_contact_start, melee_profile.sword_contact_end, STRIKE_FIRST, STRIKE_RECOVERY)
 		else:
-			phase = remap(action_time, KIT.sword_contact_end, KIT.sword_total, STRIKE_RECOVERY, 1.0)
+			phase = remap(action_time, melee_profile.sword_contact_end, melee_profile.sword_total, STRIKE_RECOVERY, 1.0)
 	var pose := &"parry" if action == &"guard" and _parry_pose_left > 0 else action
 	# The return cut travels back across the silhouette. Contact still falls
 	# inside the painted extension keys in either direction.

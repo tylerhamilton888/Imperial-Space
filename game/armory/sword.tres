@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://armory/weapon.gd" id="1"]
+[ext_resource type="Texture2D" path="res://armory/longsword.png" id="2"]
+[ext_resource type="Resource" path="res://armory/sword_profile.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+slot = 1
+title = "Longsword"
+texture = ExtResource("2")
+display_size = Vector2(90, 90)
+anchor = Vector2(18, 16)
+melee_profile = ExtResource("3")

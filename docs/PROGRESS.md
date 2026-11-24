@@ -1,5 +1,9 @@
 # Progress
 
+## 24 November 2026 • Modular Armory trial 0.4.3
+
+From the title screen choose **Armory trial**, or run with `-- --armory`. A one-handed Knight can practice on a Khorgoth target beside Imperial infantry and solid cover. Use 1 and 2 to change weapon and shoulder plate independently. [Native-scale comparison](evidence/armory-comparison.jpg) · [Moving trial](evidence/armory-trial.mp4). Built and recorded on Godot 4.7.2. Next proof is an independently drawn opposite facing and a removable off-hand shield.
+
 ## 23 November 2026 • Khorgoth cleaver and breakup 0.4.2
 
 Choose **Play counter duel**. Watch the grip during the approach, guard on the glint, then right-click for the sword finish. The forearm, cleaver and shoulder plate each have original loose-part art and land alongside a one-armed body. F5 resets the exchange. [Godot gameplay capture](evidence/raider-cleaver.mp4) · [Verification](TEST_REPORT.md)

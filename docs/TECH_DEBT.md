@@ -2,6 +2,7 @@
 
 | Area | Observed limitation or remaining risk | Resolution |
 | --- | --- | --- |
+| Armory fitting | One right-facing one-handed stance, two weapon profiles and one removable shoulder slot. The shield and cape are part of the body. The Khorgoth is a static training target. | Author opposite facing, hand ordering and removable off-hand shield, then a two-handed family. Full suit variants, inventory persistence and other faction motion remain open. |
 | Windows | Release exported. The available Linux compatibility runner failed during its own initialization. Native Windows startup, audio and input still require a PC playtest. | First Windows playtest |
 | Directional movement | Five painted Crusader views provide eight displayed aim headings. Three headings mirror the opposing painting, reversing weapon handedness. Lateral travel now uses a dedicated eight-phase step. Some north/south attacks still use the nearest diagonal pose. | Review lateral gait, rifle handedness and top/bottom sword transitions in the new mixed-squad clip before producing further armor weights |
 | Second sword stroke | The six lateral and diagonal headings use the new planted sword keys. North and south still use the earlier seven-key swing, including its return timing. | Author the opposite-side finish and check the visible edge against the contact tick at gameplay zoom. |

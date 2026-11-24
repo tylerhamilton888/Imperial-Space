@@ -1,5 +1,9 @@
 # Decision Log
 
+## 24 November 2026 — Share motions across compatible equipment
+
+Use a socket on each authored pose and a small foreground hand layer to register interchangeable weapons. The shoulder plate has a separate attachment point. Reserve new body animations for different grip or weight families. Validate one-handed fittings in the optional arena trial before expanding the runtime art library. [Equipment art](03_ART_DIRECTION.md#equipment-at-gameplay-scale)
+
 ## 23 November 2026 — Register the weapon to the fist and paint the aftermath
 
 The previous lower-body warp also bent the blade in the raider’s hand. Register a single solid cleaver after the legs are posed. Use the final hand coordinate at release. Give the body and each detached part its own painted volume, impact response and grounded silhouette. [Art direction](03_ART_DIRECTION.md#weapon-contact-and-separation)

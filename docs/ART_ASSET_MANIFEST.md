@@ -1,5 +1,24 @@
 # Art Asset Manifest
 
+## Modular armory studies • 0.4.3
+
+The attached Sprite Acceptance Pack v1 supplied the static trooper, Khorgoth training target, cover and longsword. The four imports match their manifest SHA-256 values. Original generated pose and equipment sheets use its Knight as reference. The forecourt comes from the previous courtyard clarity study. These are playable review assets. The registration script and masters are in [source art](../source_art/armory/).
+
+| File | Dimensions | Bytes |
+| --- | --- | ---: |
+| game/armory/barricade.png | 256 × 208 | 16,071 |
+| game/armory/hammer.png | 73 × 72 | 6,489 |
+| game/armory/hands.png | 1024 × 416 | 7,739 |
+| game/armory/ivory.png | 31 × 28 | 2,397 |
+| game/armory/khorgoth_raider.png | 256 × 208 | 28,834 |
+| game/armory/longsword.png | 128 × 128 | 8,487 |
+| game/armory/trooper_front_three_quarter.png | 256 × 208 | 11,040 |
+| game/armory/winged.png | 39 × 34 | 3,399 |
+| game/armory/body.webp | 1024 × 416 | 113,250 |
+| game/armory/forecourt.webp | 1280 × 720 | 200,904 |
+| source_art/armory/equipment.webp | 2172 × 724 | 197,350 |
+| source_art/armory/poses.webp | 1774 × 887 | 439,186 |
+
 ## Khorgoth cleaver and separate parts • 0.4.2
 
 Four original generated paintings depict the existing Khorgoth design. The carry, strike, tumble and one-armed fall sheets are project assets for playable review. The registered fall for rifle kills derives from the 0.4.1 full-body art. Boltgun supplied a motion reference. The baker and wrist coordinates are in [the raider source directory](../source_art/actors/raider/). The 0.4.0 raider_break atlas has been retired.

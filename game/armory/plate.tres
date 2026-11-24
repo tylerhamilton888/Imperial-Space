@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://armory/item.gd" id="1"]
+[ext_resource type="Texture2D" path="res://armory/ivory.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+title = "Ivory plate"
+texture = ExtResource("2")
+display_size = Vector2(31, 28)
+anchor = Vector2(17, 12)

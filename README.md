@@ -1,6 +1,6 @@
 # Imperial Space
 
-A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.2** rebuilds the Khorgoth raider’s cleaver grip and sword finish. Choose **Play counter duel** for the parry and riposte. [Watch the exchange at normal speed](docs/evidence/raider-cleaver.mp4).
+A single-player PC action RPG about an Imperial Crusader. **Developer Arena 0.4.3** adds the **Armory trial**. Walk into reach, press the melee button to strike, use 1 to change the weapon and 2 to change the shoulder armor. [Target and gameplay](docs/evidence/armory-comparison.jpg) · [Normal-speed equipment trial](docs/evidence/armory-trial.mp4).
 
 [0.2.0 breach drill](docs/evidence/proving-ground-breach.mp4) · [Proving ground screenshot](docs/evidence/proving-ground-breach.jpg)
 

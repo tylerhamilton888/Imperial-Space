@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3]
+[ext_resource type="Script" path="res://armory/weapon.gd" id="1"]
+[ext_resource type="Texture2D" path="res://armory/hammer.png" id="2"]
+[ext_resource type="Resource" path="res://armory/hammer_profile.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+slot = 1
+title = "War hammer"
+texture = ExtResource("2")
+display_size = Vector2(73, 72)
+anchor = Vector2(18, 17)
+melee_profile = ExtResource("3")
+pose_angles = PackedFloat32Array(4, 4, 4, 4, -17, -12, 29, 11)
